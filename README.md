@@ -1,423 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Portfolio</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>My Portfolio</title>
 
 <style>
+*{box-sizing:border-box}
 
-* {
-    box-sizing: border-box;
+:root{
+--bg:#f2efe8;
+--text:#111;
+--muted:#777;
+--line:#d4d0c8;
+--white:#fff;
 }
 
-html {
-    scroll-behavior: smooth;
+html{scroll-behavior:smooth}
+
+body{
+margin:0;
+background:var(--bg);
+color:var(--text);
+font-family:Arial,Helvetica,sans-serif;
 }
 
-body {
-    margin: 0;
-    background: #f3f0e9;
-    color: #111;
-    font-family: Arial, Helvetica, sans-serif;
+button,input,textarea{font:inherit}
+
+button{cursor:pointer}
+
+header{
+position:sticky;
+top:0;
+z-index:100;
+background:rgba(242,239,232,.94);
+backdrop-filter:blur(18px);
+border-bottom:1px solid var(--line);
 }
 
-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(243,240,233,.94);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid #ccc;
+.header{
+max-width:1450px;
+margin:auto;
+padding:18px 30px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
 }
 
-.header {
-    max-width: 1400px;
-    margin: auto;
-    padding: 18px 30px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+.logo{
+font-family:Georgia,serif;
+font-size:25px;
 }
 
-.logo {
-    font-family: Georgia, serif;
-    font-size: 25px;
+nav{
+display:flex;
+align-items:center;
+gap:5px;
+flex-wrap:wrap;
 }
 
-nav {
-    display: flex;
-    gap: 8px;
-    align-items: center;
+nav button{
+background:none;
+border:0;
+padding:9px 11px;
+font-size:10px;
+letter-spacing:1.5px;
+text-transform:uppercase;
 }
 
-nav button {
-    border: 0;
-    background: transparent;
-    padding: 9px 12px;
-    cursor: pointer;
+nav button:hover{text-decoration:underline}
 
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
+.edit-button{
+background:#111!important;
+color:white;
 }
 
-.edit {
-    background: #111;
-    color: white;
+main{
+max-width:1450px;
+margin:auto;
+padding:50px 30px 100px;
 }
 
-main {
-    max-width: 1400px;
-    margin: auto;
-    padding: 50px 30px 100px;
+.page{display:none}
+.page.active{display:block}
+
+.eyebrow{
+font-size:10px;
+letter-spacing:3px;
+text-transform:uppercase;
+color:var(--muted);
+margin-bottom:15px;
 }
 
-.page {
-    display: none;
+h1,h2,h3{
+font-family:Georgia,serif;
+font-weight:normal;
 }
 
-.page.active {
-    display: block;
+h1{
+font-size:clamp(60px,10vw,140px);
+line-height:.86;
+letter-spacing:-7px;
+margin:0 0 35px;
 }
 
-.eyebrow {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    color: #777;
-    margin-bottom: 15px;
+h2{
+font-size:clamp(50px,8vw,100px);
+line-height:.9;
+letter-spacing:-5px;
+margin:0 0 40px;
 }
 
-h1 {
-    font-family: Georgia, serif;
-    font-size: clamp(60px, 9vw, 130px);
-    line-height: .88;
-    font-weight: normal;
-    letter-spacing: -6px;
-    margin: 0 0 35px;
+.hero{
+min-height:76vh;
+display:grid;
+grid-template-columns:1.1fr .9fr;
+gap:70px;
+align-items:center;
 }
 
-h2 {
-    font-family: Georgia, serif;
-    font-size: clamp(50px, 7vw, 90px);
-    font-weight: normal;
-    letter-spacing: -4px;
+.bio{
+max-width:650px;
+font-size:18px;
+line-height:1.7;
 }
 
-.bio {
-    max-width: 650px;
-    font-size: 18px;
-    line-height: 1.7;
+.profile{
+aspect-ratio:4/5;
+background:#ddd;
+overflow:hidden;
 }
 
-.hero {
-    min-height: 75vh;
-
-    display: grid;
-    grid-template-columns: 1.1fr .9fr;
-    gap: 60px;
-    align-items: center;
+.profile img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:none;
 }
 
-.profile {
-    aspect-ratio: 4 / 5;
-    background: #ddd;
-    overflow: hidden;
+.profile-empty{
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:10px;
+letter-spacing:2px;
+text-transform:uppercase;
+color:#777;
 }
 
-.profile img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.gallery{
+columns:3 280px;
+column-gap:18px;
 }
 
-.gallery {
-    columns: 3 280px;
-    column-gap: 18px;
+.photo{
+break-inside:avoid;
+margin-bottom:18px;
+position:relative;
 }
 
-.photo {
-    break-inside: avoid;
-    margin-bottom: 18px;
-    position: relative;
+.photo img{
+width:100%;
+display:block;
 }
 
-.photo img {
-    width: 100%;
-    display: block;
+.delete-photo{
+display:none;
+position:absolute;
+right:12px;
+top:12px;
+width:36px;
+height:36px;
+border:0;
+border-radius:50%;
+background:rgba(0,0,0,.8);
+color:#fff;
+font-size:20px;
 }
 
-.delete-photo {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+.editing .delete-photo{display:block}
 
-    width: 35px;
-    height: 35px;
-
-    border: 0;
-    border-radius: 50%;
-
-    background: rgba(0,0,0,.8);
-    color: white;
-
-    cursor: pointer;
+.panel{
+display:none;
+border:1px solid #111;
+padding:25px;
+margin-bottom:40px;
 }
 
-.editing .delete-photo {
-    display: block;
+.editing .panel{display:block}
+
+.panel-title{
+font-size:10px;
+text-transform:uppercase;
+letter-spacing:2px;
+margin-bottom:20px;
 }
 
-.delete-photo {
-    display: none;
+input,textarea{
+width:100%;
+border:1px solid #aaa;
+background:white;
+padding:13px;
+margin-bottom:15px;
+outline:none;
 }
 
-.panel {
-    display: none;
-
-    border: 1px solid #111;
-    padding: 25px;
-    margin-bottom: 35px;
+textarea{
+min-height:130px;
+resize:vertical;
 }
 
-.editing .panel {
-    display: block;
+.primary{
+background:#111;
+color:#fff;
+border:1px solid #111;
+padding:12px 20px;
 }
 
-input,
-textarea {
-    width: 100%;
-    padding: 13px;
-
-    border: 1px solid #aaa;
-    background: white;
-
-    margin-bottom: 15px;
+.secondary{
+background:transparent;
+color:#111;
+border:1px solid #111;
+padding:11px 18px;
 }
 
-textarea {
-    min-height: 130px;
+.count{
+font-size:11px;
+color:#777;
+margin-top:12px;
 }
 
-.primary {
-    border: 1px solid #111;
-    background: #111;
-    color: white;
-    padding: 12px 18px;
-    cursor: pointer;
+.article{
+display:grid;
+grid-template-columns:150px 1fr auto;
+gap:30px;
+align-items:center;
+border-top:1px solid #111;
+padding:30px 0;
 }
 
-.secondary {
-    border: 1px solid #111;
-    background: transparent;
-    padding: 12px 18px;
-    cursor: pointer;
+.article-date{
+font-size:10px;
+letter-spacing:2px;
+text-transform:uppercase;
+color:#777;
 }
 
-.article {
-    border-top: 1px solid #111;
-
-    padding: 30px 0;
-
-    display: grid;
-    grid-template-columns: 150px 1fr auto;
-
-    gap: 25px;
-    align-items: center;
+.article-title{
+font-family:Georgia,serif;
+font-size:clamp(25px,4vw,45px);
 }
 
-.article-title {
-    font-family: Georgia, serif;
-    font-size: 35px;
+.article-actions{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
 }
 
-.date {
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #777;
+.coming{
+border-top:1px solid #111;
+border-bottom:1px solid #111;
+padding:70px 0;
 }
 
-.coming {
-    border-top: 1px solid #111;
-    border-bottom: 1px solid #111;
-
-    padding: 70px 0;
+.coming h3{
+font-size:clamp(45px,8vw,100px);
+letter-spacing:-5px;
+margin:0;
 }
 
-.coming h3 {
-    font-family: Georgia, serif;
-    font-size: clamp(45px,7vw,90px);
-    font-weight: normal;
-    margin: 0;
+.document{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+border-top:1px solid #111;
+padding:25px 0;
 }
 
-.document {
-    border-top: 1px solid #111;
-    padding: 25px 0;
-
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
+.document-title{
+font-family:Georgia,serif;
+font-size:25px;
 }
 
-.modal {
-    display: none;
-
-    position: fixed;
-    inset: 0;
-
-    z-index: 500;
-
-    background: rgba(0,0,0,.65);
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
+footer{
+max-width:1450px;
+margin:auto;
+border-top:1px solid #111;
+padding:25px 30px;
+display:flex;
+justify-content:space-between;
+font-size:10px;
+text-transform:uppercase;
+letter-spacing:2px;
 }
 
-.modal.active {
-    display: flex;
+.modal{
+position:fixed;
+inset:0;
+z-index:500;
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
+background:rgba(0,0,0,.65);
 }
 
-.modal-box {
-    background: #f3f0e9;
+.modal.open{display:flex}
 
-    width: min(550px,100%);
-
-    padding: 35px;
+.modal-box{
+width:min(600px,100%);
+max-height:90vh;
+overflow:auto;
+background:var(--bg);
+padding:35px;
 }
 
-.modal-box h2 {
-    font-size: 50px;
-    margin-top: 0;
+.modal-box h2{
+font-size:55px;
+margin-bottom:25px;
 }
 
-footer {
-    max-width: 1400px;
-    margin: auto;
-
-    border-top: 1px solid #111;
-
-    padding: 25px 30px;
-
-    display: flex;
-    justify-content: space-between;
-
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.error{
+display:none;
+color:#a00000;
+font-size:12px;
+margin-bottom:15px;
 }
 
-@media(max-width:750px) {
+@media(max-width:750px){
 
-    .header {
-        padding: 15px;
-        flex-wrap: wrap;
-    }
-
-    nav {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    nav button {
-        font-size: 9px;
-        padding: 7px 4px;
-    }
-
-    main {
-        padding: 35px 15px 70px;
-    }
-
-    .hero {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
-
-    .profile {
-        order: -1;
-    }
-
-    h1 {
-        font-size: 65px;
-    }
-
-    .gallery {
-        columns: 2 130px;
-        column-gap: 8px;
-    }
-
-    .photo {
-        margin-bottom: 8px;
-    }
-
-    .article {
-        grid-template-columns: 1fr;
-    }
-
-    .article-title {
-        font-size: 30px;
-    }
-
-    footer {
-        padding: 20px 15px;
-    }
+.header{
+padding:15px;
+flex-wrap:wrap;
 }
 
+nav{
+width:100%;
+justify-content:space-between;
+}
+
+nav button{
+font-size:8px;
+padding:7px 4px;
+}
+
+main{
+padding:35px 15px 70px;
+}
+
+.hero{
+grid-template-columns:1fr;
+gap:35px;
+}
+
+.profile{order:-1}
+
+h1{
+font-size:65px;
+letter-spacing:-4px;
+}
+
+h2{
+font-size:55px;
+letter-spacing:-3px;
+}
+
+.gallery{
+columns:2 130px;
+column-gap:8px;
+}
+
+.photo{
+margin-bottom:8px;
+}
+
+.article{
+grid-template-columns:1fr;
+gap:12px;
+}
+
+.document{
+display:block;
+}
+
+footer{
+padding:20px 15px;
+display:block;
+}
+}
 </style>
 </head>
 
-
 <body>
 
-
 <header>
-
 <div class="header">
 
-<div class="logo" id="logo">
-Portfolio
-</div>
+<div class="logo" id="logo">Portfolio</div>
 
 <nav>
-
-<button onclick="page('home')">
-Home
-</button>
-
-<button onclick="page('photography')">
-Photography
-</button>
-
-<button onclick="page('research')">
-Research
-</button>
-
-<button onclick="page('newspaper')">
-Newspaper
-</button>
-
-<button class="edit" onclick="openEditor()">
-Edit
-</button>
-
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('photography')">Photography</button>
+<button onclick="showPage('research')">Research</button>
+<button onclick="showPage('newspaper')">Newspaper</button>
+<button class="edit-button" onclick="editButton()">Edit</button>
 </nav>
 
 </div>
-
 </header>
 
 
-
 <main>
-
 
 <!-- HOME -->
 
@@ -431,9 +427,7 @@ Edit
 Photographer · Researcher · Writer
 </div>
 
-<h1 id="name">
-Your Name
-</h1>
+<h1 id="name">Your Name</h1>
 
 <p class="bio" id="bio">
 Welcome to my personal portfolio.
@@ -441,68 +435,77 @@ Welcome to my personal portfolio.
 
 </div>
 
-
 <div class="profile">
 
-<img id="profilePhoto"
-style="display:none">
+<img id="profilePhoto">
+
+<div id="profileEmpty" class="profile-empty">
+Profile Photo
+</div>
 
 </div>
+
+</div>
+
+<div class="panel">
+
+<div class="panel-title">
+Edit Home
+</div>
+
+<input id="nameInput" placeholder="Your name">
+
+<textarea id="bioInput"
+placeholder="Your biography"></textarea>
+
+<input id="profileInput"
+type="file"
+accept="image/*">
+
+<button class="primary" onclick="saveHome()">
+Save Home
+</button>
 
 </div>
 
 </section>
-
 
 
 <!-- PHOTOGRAPHY -->
 
 <section id="photography" class="page">
 
-<div class="eyebrow">
-01 / Visual Archive
-</div>
+<div class="eyebrow">01 / Visual Archive</div>
 
-<h2>
-Photography
-</h2>
-
+<h2>Photography</h2>
 
 <div class="panel">
 
-<h3>
+<div class="panel-title">
 Add Photography
-</h3>
-
-<p>
-Up to 25 photographs.
-</p>
+</div>
 
 <input
-id="photoUpload"
+id="photoInput"
 type="file"
 accept="image/*"
 multiple
 >
 
-<button
-class="primary"
+<button class="primary"
 onclick="uploadPhotos()">
-
 Upload Photos
-
 </button>
 
+<div class="count" id="photoCount">
+0 / 25 photos
 </div>
 
-
-<div id="gallery"
-class="gallery">
-
 </div>
+
+<div id="gallery" class="gallery"></div>
 
 </section>
-
 
 
 <!-- RESEARCH -->
@@ -513,36 +516,35 @@ class="gallery">
 02 / Political Archive
 </div>
 
-<h2>
-Research
-</h2>
-
+<h2>Research</h2>
 
 <div class="panel">
 
-<h3>
-Add Research
-</h3>
+<div class="panel-title">
+Add Research Document
+</div>
 
-<p>
-Research documents should be kept private rather than placed in the public GitHub Pages repository.
-</p>
+<input
+id="researchTitle"
+placeholder="Document title"
+>
+
+<input
+id="researchFile"
+type="file"
+accept=".pdf,.doc,.docx,.txt"
+>
+
+<button class="primary"
+onclick="uploadResearch()">
+Add Document
+</button>
 
 </div>
 
-
-<div class="document">
-
-Political research archive
-
-<span>
-Private
-</span>
-
-</div>
+<div id="researchList"></div>
 
 </section>
-
 
 
 <!-- NEWSPAPER -->
@@ -553,58 +555,44 @@ Private
 03 / School Newspaper
 </div>
 
-<h2>
-Articles
-</h2>
-
+<h2>Articles</h2>
 
 <div class="panel">
 
-<h3>
+<div class="panel-title">
 Add Article
-</h3>
-
+</div>
 
 <input
 id="articleTitle"
 placeholder="Article title"
 >
 
-
 <input
 id="articleDate"
 placeholder="September 20, 2026"
 >
 
-
 <input
 id="articleURL"
-placeholder="https://..."
+placeholder="https://your-article.com"
 >
 
-
-<button
-class="primary"
+<button class="primary"
 onclick="addArticle()">
-
 Publish Article
-
 </button>
 
 </div>
 
 
-<div
-id="coming"
-class="coming">
+<div id="coming" class="coming">
 
 <div class="eyebrow">
 First edition
 </div>
 
-<h3>
-Coming September 16
-</h3>
+<h3>Coming September 16</h3>
 
 <p>
 School newspaper articles will appear here.
@@ -612,16 +600,11 @@ School newspaper articles will appear here.
 
 </div>
 
-
-<div id="articles">
-
-</div>
+<div id="articleList"></div>
 
 </section>
 
-
 </main>
-
 
 
 <footer>
@@ -637,12 +620,9 @@ Personal Archive
 </footer>
 
 
+<!-- EDIT CODE -->
 
-<!-- CODE MODAL -->
-
-<div
-id="codeModal"
-class="modal">
+<div id="codeModal" class="modal">
 
 <div class="modal-box">
 
@@ -650,90 +630,85 @@ class="modal">
 Private Editor
 </div>
 
-<h2>
-Edit
-</h2>
+<h2>Enter Code</h2>
 
 <input
-id="code"
+id="codeInput"
 type="password"
 maxlength="4"
 inputmode="numeric"
-placeholder="Enter 4 digit code"
+placeholder="••••"
 >
 
-<p
-id="error"
-style="display:none;color:#a00">
-
+<div id="codeError" class="error">
 Incorrect code.
+</div>
 
-</p>
-
-<button
-class="primary"
+<button class="primary"
 onclick="checkCode()">
-
-Continue
-
+Enter
 </button>
 
-<button
-class="secondary"
-onclick="closeModal()">
-
+<button class="secondary"
+onclick="closeCode()">
 Cancel
-
 </button>
 
 </div>
 
 </div>
-
 
 
 <script>
 
-/* ======================================================
-   GITHUB SETTINGS
-====================================================== */
+/* =====================================================
+   IMPORTANT SETTINGS
+===================================================== */
 
-const GITHUB_OWNER =
-"YOUR-GITHUB-USERNAME";
+/*
+   PUT YOUR SUPABASE INFORMATION HERE.
 
-const GITHUB_REPO =
-"YOUR-REPOSITORY";
+   Do NOT change anything else until these are entered.
+*/
 
-const GITHUB_BRANCH =
-"main";
+const SUPABASE_URL =
+"PASTE_YOUR_SUPABASE_URL_HERE";
+
+const SUPABASE_KEY =
+"PASTE_YOUR_SUPABASE_ANON_KEY_HERE";
 
 
 /* YOUR EDIT CODE */
 
-const EDIT_CODE =
-"4547";
+const EDIT_CODE = "4547";
 
 
-/* PHOTO LIMIT */
+/* MAXIMUM PHOTOS */
 
-const MAX_PHOTOS =
-25;
+const MAX_PHOTOS = 25;
 
 
-/* ======================================================
-   NAVIGATION
-====================================================== */
+/* =====================================================
+   STATE
+===================================================== */
 
-function page(name) {
+let editing = false;
+
+
+/* =====================================================
+   PAGE SWITCHING
+===================================================== */
+
+function showPage(id){
 
 document
 .querySelectorAll(".page")
-.forEach(p =>
-p.classList.remove("active")
-);
+.forEach(page=>{
+page.classList.remove("active");
+});
 
 document
-.getElementById(name)
+.getElementById(id)
 .classList.add("active");
 
 window.scrollTo({
@@ -744,22 +719,17 @@ behavior:"smooth"
 }
 
 
-/* ======================================================
-   EDITING
-====================================================== */
+/* =====================================================
+   EDIT BUTTON
+===================================================== */
 
-let editing =
-false;
+function editButton(){
 
+if(editing){
 
-function openEditor() {
+editing=false;
 
-if(editing) {
-
-editing = false;
-
-document.body
-.classList.remove("editing");
+document.body.classList.remove("editing");
 
 return;
 
@@ -767,430 +737,163 @@ return;
 
 document
 .getElementById("codeModal")
-.classList.add("active");
+.classList.add("open");
 
 document
-.getElementById("code")
+.getElementById("codeInput")
 .focus();
 
 }
 
 
-function checkCode() {
+function checkCode(){
 
-const entered =
+const code =
 document
-.getElementById("code")
+.getElementById("codeInput")
 .value;
 
-if(entered === EDIT_CODE) {
+if(code === EDIT_CODE){
 
-editing = true;
+editing=true;
 
-document.body
-.classList.add("editing");
+document.body.classList.add("editing");
 
-closeModal();
+closeCode();
 
-} else {
+}else{
 
 document
-.getElementById("error")
-.style.display =
-"block";
+.getElementById("codeError")
+.style.display="block";
 
 }
 
 }
 
 
-function closeModal() {
+function closeCode(){
 
 document
 .getElementById("codeModal")
-.classList.remove("active");
+.classList.remove("open");
+
+document
+.getElementById("codeError")
+.style.display="none";
+
+document
+.getElementById("codeInput")
+.value="";
 
 }
 
 
-/* ======================================================
-   GITHUB API
-====================================================== */
+/* =====================================================
+   SUPABASE REQUEST
+===================================================== */
 
-/*
-
-IMPORTANT:
-
-Never put a GitHub access token here.
-
-The website will ask the owner for authorization
-when an edit needs to be made.
-
-*/
-
-
-async function githubRequest(
-url,
+async function dbRequest(
+endpoint,
 options={}
-) {
+){
 
-const token =
-sessionStorage.getItem(
-"github_token"
-);
-
-if(!token) {
-
-const newToken =
-prompt(
-"Enter your GitHub access token:"
-);
-
-if(!newToken) {
+if(
+SUPABASE_URL.includes("PASTE_") ||
+SUPABASE_KEY.includes("PASTE_")
+){
 
 throw new Error(
-"GitHub authorization required."
+"Supabase has not been connected yet."
 );
 
 }
-
-sessionStorage.setItem(
-"github_token",
-newToken
-);
-
-return githubRequest(
-url,
-options
-);
-
-}
-
-
-options.headers = {
-
-...(options.headers || {}),
-
-"Authorization":
-"Bearer " + token,
-
-"Accept":
-"application/vnd.github+json",
-
-"X-GitHub-Api-Version":
-"2022-11-28"
-
-};
-
 
 const response =
 await fetch(
-url,
-options
+SUPABASE_URL +
+"/rest/v1/" +
+endpoint,
+{
+
+...options,
+
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":
+"Bearer "+SUPABASE_KEY,
+"Content-Type":
+"application/json",
+...(options.headers||{})
+}
+
+}
 );
 
+if(!response.ok){
 
-if(response.status === 401) {
+const text =
+await response.text();
 
-sessionStorage.removeItem(
-"github_token"
-);
-
-throw new Error(
-"GitHub authorization expired."
-);
+throw new Error(text);
 
 }
 
-
-if(!response.ok) {
-
-throw new Error(
-"GitHub request failed."
-);
-
-}
-
+if(response.status===204)
+return null;
 
 return response.json();
 
 }
 
 
-/* ======================================================
-   GET FILE
-====================================================== */
-
-async function getGithubFile(
-path
-) {
-
-const url =
-`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}?ref=${GITHUB_BRANCH}`;
-
-return githubRequest(url);
-
-}
-
-
-/* ======================================================
-   SAVE FILE
-====================================================== */
-
-async function saveGithubFile(
-path,
-content,
-message,
-sha=null
-) {
-
-const url =
-`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`;
-
-
-const body = {
-
-message: message,
-
-content: content,
-
-branch: GITHUB_BRANCH
-
-};
-
-
-if(sha) {
-
-body.sha =
-sha;
-
-}
-
-
-return githubRequest(
-url,
-{
-method:"PUT",
-
-headers:{
-"Content-Type":
-"application/json"
-},
-
-body:
-JSON.stringify(body)
-
-}
-);
-
-}
-
-
-/* ======================================================
-   BASE64
-====================================================== */
-
-function fileToBase64(file) {
-
-return new Promise(
-(resolve,reject)=> {
-
-const reader =
-new FileReader();
-
-reader.onload =
-() => {
-
-const result =
-reader.result;
-
-resolve(
-result.split(",")[1]
-);
-
-};
-
-reader.onerror =
-reject;
-
-reader.readAsDataURL(file);
-
-});
-
-}
-
-
-/* ======================================================
-   UPLOAD PHOTOS
-====================================================== */
-
-async function uploadPhotos() {
-
-if(!editing) {
-
-alert(
-"Enter the edit code first."
-);
-
-return;
-
-}
-
-
-const files =
-Array.from(
-document
-.getElementById("photoUpload")
-.files
-);
-
-
-if(files.length === 0) {
-
-alert(
-"Choose at least one photo."
-);
-
-return;
-
-}
-
-
-if(files.length > MAX_PHOTOS) {
-
-alert(
-"You can upload up to 25 photos at a time."
-);
-
-return;
-
-}
-
-
-alert(
-"GitHub will now be used to publish your photographs."
-);
-
-
-/*
-
-For a production version, photographs should
-be stored in an external image CDN or Git LFS
-rather than putting many large originals directly
-into the repository.
-
-This starter system stores optimized JPEGs.
-
-*/
-
-
-for(const file of files) {
-
-const compressed =
-await compressImage(
-file
-);
-
-const base64 =
-await fileToBase64(
-compressed
-);
-
-
-const filename =
-"photo-" +
-Date.now() +
-"-" +
-Math.random()
-.toString(36)
-.substring(2,8) +
-".jpg";
-
-
-await saveGithubFile(
-
-"photos/" +
-filename,
-
-base64,
-
-"Add photography " +
-filename
-
-);
-
-}
-
-
-alert(
-"Photos published. Refresh the website to see them."
-);
-
-}
-
-
-/* ======================================================
+/* =====================================================
    IMAGE COMPRESSION
-====================================================== */
+===================================================== */
 
-function compressImage(file) {
+function compressImage(file){
 
 return new Promise(
-(resolve,reject)=> {
+(resolve,reject)=>{
 
 const reader =
 new FileReader();
 
 reader.onload =
-event => {
+event=>{
 
-const img =
+const image =
 new Image();
 
-img.onload =
-() => {
+image.onload=()=>{
 
-let width =
-img.width;
+let width=image.width;
+let height=image.height;
 
-let height =
-img.height;
+const max=1800;
 
-const max =
-1800;
+if(width>max || height>max){
 
-
-if(width > max ||
-height > max) {
-
-if(width > height) {
+if(width>height){
 
 height =
-height *
-max /
-width;
+height*max/width;
+
+width=max;
+
+}else{
 
 width =
-max;
+width*max/height;
 
-} else {
-
-width =
-width *
-max /
-height;
-
-height =
-max;
+height=max;
 
 }
 
 }
-
 
 const canvas =
-document
-.createElement("canvas");
+document.createElement("canvas");
 
 canvas.width =
 Math.round(width);
@@ -1198,40 +901,39 @@ Math.round(width);
 canvas.height =
 Math.round(height);
 
-
 const ctx =
 canvas.getContext("2d");
 
 ctx.drawImage(
-img,
+image,
 0,
 0,
 canvas.width,
 canvas.height
 );
 
-
 canvas.toBlob(
-blob =>
-resolve(blob),
+blob=>{
+
+if(blob) resolve(blob);
+else reject(
+new Error("Compression failed")
+);
+
+},
 "image/jpeg",
 .82
 );
 
 };
 
+image.onerror=reject;
 
-img.onerror =
-reject;
-
-img.src =
-event.target.result;
+image.src=event.target.result;
 
 };
 
-
-reader.onerror =
-reject;
+reader.onerror=reject;
 
 reader.readAsDataURL(file);
 
@@ -1240,97 +942,253 @@ reader.readAsDataURL(file);
 }
 
 
-/* ======================================================
-   LOAD PUBLIC PHOTOS
-====================================================== */
+/* =====================================================
+   UPLOAD FILE TO SUPABASE STORAGE
+===================================================== */
 
-async function loadPhotos() {
-
-try {
-
-const url =
-`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/photos?ref=${GITHUB_BRANCH}`;
+async function uploadStorage(
+bucket,
+path,
+file
+){
 
 const response =
-await fetch(url);
+await fetch(
 
-if(!response.ok)
-return;
+SUPABASE_URL +
+"/storage/v1/object/" +
+bucket +
+"/" +
+path,
 
-const files =
-await response.json();
+{
 
+method:"POST",
 
-const gallery =
-document
-.getElementById("gallery");
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":
+"Bearer "+SUPABASE_KEY,
+"Content-Type":
+file.type || "application/octet-stream"
+},
 
-gallery.innerHTML = "";
+body:file
 
+}
 
-for(const file of files) {
-
-if(!file.name
-.match(/\.(jpg|jpeg|png|webp)$/i))
-continue;
-
-
-const card =
-document
-.createElement("div");
-
-card.className =
-"photo";
-
-
-const image =
-document
-.createElement("img");
-
-image.loading =
-"lazy";
-
-image.src =
-file.download_url;
-
-image.alt =
-"Photography";
-
-
-const deleteButton =
-document
-.createElement("button");
-
-deleteButton.className =
-"delete-photo";
-
-deleteButton.textContent =
-"×";
-
-
-deleteButton.onclick =
-() =>
-deletePhoto(
-file.path,
-file.sha
 );
 
+if(!response.ok){
 
-card.appendChild(
-image
-);
-
-card.appendChild(
-deleteButton
-);
-
-gallery.appendChild(
-card
+throw new Error(
+await response.text()
 );
 
 }
 
-} catch(error) {
+return response.json();
+
+}
+
+
+/* =====================================================
+   PUBLIC FILE URL
+===================================================== */
+
+function publicFile(
+bucket,
+path
+){
+
+return (
+SUPABASE_URL +
+"/storage/v1/object/public/" +
+bucket +
+"/" +
+path
+);
+
+}
+
+
+/* =====================================================
+   PHOTOGRAPHY
+===================================================== */
+
+async function uploadPhotos(){
+
+if(!editing){
+
+alert("Enter 4547 first.");
+
+return;
+
+}
+
+const input =
+document.getElementById("photoInput");
+
+const files =
+Array.from(input.files);
+
+if(!files.length){
+
+alert("Choose photos first.");
+
+return;
+
+}
+
+
+const current =
+await dbRequest(
+"photos?select=id"
+);
+
+if(
+current.length + files.length >
+MAX_PHOTOS
+){
+
+alert(
+"You can have a maximum of 25 photos."
+);
+
+return;
+
+}
+
+
+try{
+
+for(const file of files){
+
+const compressed =
+await compressImage(file);
+
+const filename =
+Date.now()+"-"+Math.random()
+.toString(36)
+.substring(2)+".jpg";
+
+
+await uploadStorage(
+"photos",
+filename,
+compressed
+);
+
+
+await dbRequest(
+"photos",
+{
+
+method:"POST",
+
+body:JSON.stringify({
+
+filename:filename,
+
+url:publicFile(
+"photos",
+filename
+),
+
+created_at:
+new Date().toISOString()
+
+})
+
+}
+);
+
+}
+
+input.value="";
+
+await loadPhotos();
+
+alert("Photos published.");
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Could not upload photos. Check your storage setup."
+);
+
+}
+
+}
+
+
+/* =====================================================
+   LOAD PHOTOS
+===================================================== */
+
+async function loadPhotos(){
+
+try{
+
+const photos =
+await dbRequest(
+"photos?select=*&order=created_at.desc"
+);
+
+const gallery =
+document.getElementById("gallery");
+
+gallery.innerHTML="";
+
+
+photos.forEach(photo=>{
+
+const card =
+document.createElement("div");
+
+card.className="photo";
+
+
+const image =
+document.createElement("img");
+
+image.src=photo.url;
+
+image.loading="lazy";
+
+
+const deleteButton =
+document.createElement("button");
+
+deleteButton.className=
+"delete-photo";
+
+deleteButton.textContent="×";
+
+deleteButton.onclick=()=>{
+deletePhoto(photo);
+};
+
+
+card.appendChild(image);
+card.appendChild(deleteButton);
+
+gallery.appendChild(card);
+
+});
+
+
+document
+.getElementById("photoCount")
+.textContent=
+photos.length+
+" / "+
+MAX_PHOTOS+
+" photos";
+
+}catch(error){
 
 console.error(error);
 
@@ -1339,71 +1197,261 @@ console.error(error);
 }
 
 
-/* ======================================================
+/* =====================================================
    DELETE PHOTO
-====================================================== */
+===================================================== */
 
-async function deletePhoto(
-path,
-sha
-) {
+async function deletePhoto(photo){
 
-if(!editing)
-return;
+if(!editing)return;
 
-
-if(!confirm(
+if(
+!confirm(
 "Delete this photograph?"
-))
-return;
+)
+)return;
 
 
-await githubRequest(
+try{
 
-`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`,
+await dbRequest(
+"photos?id=eq."+photo.id,
+{
+method:"DELETE"
+}
+);
+
+
+await fetch(
+
+SUPABASE_URL+
+"/storage/v1/object/photos/"+
+photo.filename,
 
 {
 
 method:"DELETE",
 
 headers:{
-"Content-Type":
-"application/json"
-},
+"apikey":SUPABASE_KEY,
+"Authorization":
+"Bearer "+SUPABASE_KEY
+}
 
-body:
-JSON.stringify({
-
-message:
-"Delete photograph",
-
-sha:
-sha,
-
-branch:
-GITHUB_BRANCH
-
-})
-
+}
 );
 
 
 loadPhotos();
 
+}catch(error){
+
+console.error(error);
+
+alert("Could not delete photo.");
+
+}
+
 }
 
 
-/* ======================================================
-   ARTICLES
-====================================================== */
+/* =====================================================
+   HOME
+===================================================== */
 
-async function addArticle() {
+async function loadHome(){
 
-if(!editing) {
+try{
+
+const data =
+await dbRequest(
+"site_settings?select=*&id=eq.1"
+);
+
+if(!data.length)return;
+
+const settings=data[0];
+
+
+document
+.getElementById("name")
+.textContent=
+settings.name ||
+"Your Name";
+
+
+document
+.getElementById("logo")
+.textContent=
+settings.name ||
+"Portfolio";
+
+
+document
+.getElementById("footerName")
+.textContent=
+settings.name ||
+"Your Name";
+
+
+document
+.getElementById("bio")
+.textContent=
+settings.bio ||
+"Welcome to my personal portfolio.";
+
+
+if(settings.profile_url){
+
+const image =
+document.getElementById(
+"profilePhoto"
+);
+
+image.src=
+settings.profile_url;
+
+image.style.display="block";
+
+document
+.getElementById("profileEmpty")
+.style.display="none";
+
+}
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+
+async function saveHome(){
+
+if(!editing)return;
+
+
+const name =
+document
+.getElementById("nameInput")
+.value.trim();
+
+
+const bio =
+document
+.getElementById("bioInput")
+.value.trim();
+
+
+const file =
+document
+.getElementById("profileInput")
+.files[0];
+
+
+try{
+
+let profileURL=null;
+
+
+if(file){
+
+const compressed =
+await compressImage(file);
+
+const filename=
+"profile-"+Date.now()+".jpg";
+
+await uploadStorage(
+"photos",
+filename,
+compressed
+);
+
+profileURL=
+publicFile(
+"photos",
+filename
+);
+
+}
+
+
+const existing =
+await dbRequest(
+"site_settings?select=*&id=eq.1"
+);
+
+
+const object={
+
+id:1,
+
+name:name||"Your Name",
+
+bio:
+bio||
+"Welcome to my personal portfolio."
+
+};
+
+
+if(profileURL)
+object.profile_url=
+profileURL;
+
+
+if(existing.length){
+
+await dbRequest(
+"site_settings?id=eq.1",
+{
+method:"PATCH",
+body:JSON.stringify(object)
+}
+);
+
+}else{
+
+await dbRequest(
+"site_settings",
+{
+method:"POST",
+body:JSON.stringify(object)
+}
+);
+
+}
+
+
+await loadHome();
+
+alert("Home page updated.");
+
+}catch(error){
+
+console.error(error);
 
 alert(
-"Enter the edit code first."
+"Could not save your changes."
 );
+
+}
+
+}
+
+
+/* =====================================================
+   ARTICLE SYSTEM
+===================================================== */
+
+async function addArticle(){
+
+if(!editing){
+
+alert("Enter 4547 first.");
 
 return;
 
@@ -1413,28 +1461,25 @@ return;
 const title =
 document
 .getElementById("articleTitle")
-.value
-.trim();
+.value.trim();
 
 
 const date =
 document
 .getElementById("articleDate")
-.value
-.trim();
+.value.trim();
 
 
 const url =
 document
 .getElementById("articleURL")
-.value
-.trim();
+.value.trim();
 
 
-if(!title || !url) {
+if(!title || !url){
 
 alert(
-"Enter a title and article link."
+"Enter an article title and link."
 );
 
 return;
@@ -1442,177 +1487,180 @@ return;
 }
 
 
-const article = {
+try{
+
+await dbRequest(
+"articles",
+{
+
+method:"POST",
+
+body:JSON.stringify({
 
 title:title,
 
 date:
-date || "Published",
+date||"Published",
 
-url:url
+url:url,
 
-};
+created_at:
+new Date().toISOString()
 
+})
 
-const filename =
-"article-" +
-Date.now() +
-".json";
-
-
-const encoded =
-btoa(
-unescape(
-encodeURIComponent(
-JSON.stringify(
-article,
-null,
-2
-)
-)
-)
-);
-
-
-await saveGithubFile(
-
-"articles/" +
-filename,
-
-encoded,
-
-"Add newspaper article"
-
+}
 );
 
 
 document
 .getElementById("articleTitle")
-.value = "";
+.value="";
 
 document
 .getElementById("articleDate")
-.value = "";
+.value="";
 
 document
 .getElementById("articleURL")
-.value = "";
+.value="";
 
+
+await loadArticles();
+
+alert("Article published.");
+
+}catch(error){
+
+console.error(error);
 
 alert(
-"Article published."
+"Could not publish article."
 );
 
-
-loadArticles();
+}
 
 }
 
 
-/* ======================================================
+/* =====================================================
    LOAD ARTICLES
-====================================================== */
+===================================================== */
 
-async function loadArticles() {
+async function loadArticles(){
 
-try {
+try{
 
-const response =
-await fetch(
-
-`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/articles?ref=${GITHUB_BRANCH}`
-
+const articles =
+await dbRequest(
+"articles?select=*&order=created_at.desc"
 );
-
-
-if(!response.ok)
-return;
-
-
-const files =
-await response.json();
 
 
 const list =
 document
-.getElementById("articles");
+.getElementById("articleList");
+
+list.innerHTML="";
 
 
-list.innerHTML = "";
-
-
-let articleCount =
-0;
-
-
-for(const file of files) {
-
-if(!file.name.endsWith(".json"))
-continue;
-
-
-const data =
-await fetch(
-file.download_url
-);
-
-const article =
-await data.json();
-
-
-articleCount++;
-
-
-const row =
-document
-.createElement("div");
-
-row.className =
-"article";
-
-
-row.innerHTML = `
-
-<div class="date">
-${escapeHTML(article.date)}
-</div>
-
-<div class="article-title">
-${escapeHTML(article.title)}
-</div>
-
-<div>
-
-<a
-class="secondary"
-href="${safeURL(article.url)}"
-target="_blank"
-rel="noopener noreferrer">
-
-Read Article
-
-</a>
-
-</div>
-
-`;
-
-
-list.appendChild(row);
-
-}
-
-
-if(articleCount > 0) {
+if(articles.length){
 
 document
 .getElementById("coming")
-.style.display =
-"none";
+.style.display="none";
+
+}else{
+
+document
+.getElementById("coming")
+.style.display="block";
 
 }
 
-} catch(error) {
+
+articles.forEach(article=>{
+
+const row =
+document.createElement("div");
+
+row.className="article";
+
+
+const date =
+document.createElement("div");
+
+date.className="article-date";
+
+date.textContent=
+article.date;
+
+
+const title =
+document.createElement("div");
+
+title.className="article-title";
+
+title.textContent=
+article.title;
+
+
+const actions =
+document.createElement("div");
+
+actions.className=
+"article-actions";
+
+
+const read =
+document.createElement("a");
+
+read.className=
+"secondary";
+
+read.textContent=
+"Read Article";
+
+read.href=
+safeURL(article.url);
+
+read.target="_blank";
+
+read.rel=
+"noopener noreferrer";
+
+
+actions.appendChild(read);
+
+
+if(editing){
+
+const remove =
+document.createElement("button");
+
+remove.className=
+"secondary";
+
+remove.textContent=
+"Delete";
+
+remove.onclick=
+()=>deleteArticle(article);
+
+actions.appendChild(remove);
+
+}
+
+
+row.appendChild(date);
+row.appendChild(title);
+row.appendChild(actions);
+
+list.appendChild(row);
+
+});
+
+}catch(error){
 
 console.error(error);
 
@@ -1621,45 +1669,283 @@ console.error(error);
 }
 
 
-/* ======================================================
-   SECURITY HELPERS
-====================================================== */
-
-function escapeHTML(
-text
-) {
-
-return String(text)
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
-
-}
-
-
-function safeURL(
-url
-) {
-
-try {
-
-const parsed =
-new URL(url);
+async function deleteArticle(article){
 
 if(
-parsed.protocol !== "http:" &&
-parsed.protocol !== "https:"
-) {
+!confirm(
+"Delete this article?"
+)
+)return;
+
+
+await dbRequest(
+"articles?id=eq."+article.id,
+{
+method:"DELETE"
+}
+);
+
+loadArticles();
+
+}
+
+
+/* =====================================================
+   RESEARCH
+===================================================== */
+
+async function uploadResearch(){
+
+if(!editing){
+
+alert("Enter 4547 first.");
+
+return;
+
+}
+
+
+const title =
+document
+.getElementById("researchTitle")
+.value.trim();
+
+
+const file =
+document
+.getElementById("researchFile")
+.files[0];
+
+
+if(!title || !file){
+
+alert(
+"Enter a title and choose a file."
+);
+
+return;
+
+}
+
+
+try{
+
+const filename=
+Date.now()+"-"+file.name;
+
+
+await uploadStorage(
+"research",
+filename,
+file
+);
+
+
+await dbRequest(
+"research",
+{
+
+method:"POST",
+
+body:JSON.stringify({
+
+title:title,
+
+filename:filename,
+
+created_at:
+new Date().toISOString()
+
+})
+
+}
+);
+
+
+document
+.getElementById("researchTitle")
+.value="";
+
+document
+.getElementById("researchFile")
+.value="";
+
+
+loadResearch();
+
+alert("Research document added.");
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Could not upload research."
+);
+
+}
+
+}
+
+
+/* =====================================================
+   LOAD RESEARCH
+===================================================== */
+
+async function loadResearch(){
+
+try{
+
+const data =
+await dbRequest(
+"research?select=*&order=created_at.desc"
+);
+
+
+const list =
+document
+.getElementById("researchList");
+
+list.innerHTML="";
+
+
+data.forEach(item=>{
+
+const row =
+document.createElement("div");
+
+row.className="document";
+
+
+const title =
+document.createElement("div");
+
+title.className="document-title";
+
+title.textContent=
+item.title;
+
+
+const actions =
+document.createElement("div");
+
+
+const open =
+document.createElement("a");
+
+open.className="secondary";
+
+open.textContent="Open";
+
+open.href=
+publicFile(
+"research",
+item.filename
+);
+
+open.target="_blank";
+
+
+actions.appendChild(open);
+
+
+if(editing){
+
+const del =
+document.createElement("button");
+
+del.className="secondary";
+
+del.textContent="Delete";
+
+del.onclick=
+()=>deleteResearch(item);
+
+actions.appendChild(del);
+
+}
+
+
+row.appendChild(title);
+row.appendChild(actions);
+
+list.appendChild(row);
+
+});
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+
+async function deleteResearch(item){
+
+if(
+!confirm(
+"Delete this document?"
+)
+)return;
+
+
+await dbRequest(
+"research?id=eq."+item.id,
+{
+method:"DELETE"
+}
+);
+
+
+await fetch(
+
+SUPABASE_URL+
+"/storage/v1/object/research/"+
+item.filename,
+
+{
+
+method:"DELETE",
+
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":
+"Bearer "+SUPABASE_KEY
+}
+
+}
+);
+
+
+loadResearch();
+
+}
+
+
+/* =====================================================
+   SAFE ARTICLE LINKS
+===================================================== */
+
+function safeURL(url){
+
+try{
+
+const u=new URL(url);
+
+if(
+u.protocol!=="https:" &&
+u.protocol!=="http:"
+){
 
 return "#";
 
 }
 
-return parsed.href;
+return u.href;
 
-} catch {
+}catch{
 
 return "#";
 
@@ -1668,13 +1954,52 @@ return "#";
 }
 
 
-/* ======================================================
-   START
-====================================================== */
+/* =====================================================
+   REFRESH EDITABLE LISTS
+===================================================== */
+
+function refresh(){
+
+loadHome();
 
 loadPhotos();
 
 loadArticles();
+
+loadResearch();
+
+}
+
+
+/* =====================================================
+   START WEBSITE
+===================================================== */
+
+window.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+refresh();
+
+}
+);
+
+
+/* =====================================================
+   ENTER KEY FOR CODE
+===================================================== */
+
+document
+.getElementById("codeInput")
+.addEventListener(
+"keydown",
+event=>{
+
+if(event.key==="Enter")
+checkCode();
+
+}
+);
 
 </script>
 
