@@ -1,1192 +1,692 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Your Name — Personal Portfolio</title>
-
-    <meta name="description"
-          content="Personal portfolio featuring photography, political research, and newspaper articles.">
-
-    <style>
-
-        /* =========================================================
-           GLOBAL
-        ========================================================= */
-
-        :root {
-            --background: #f4f1eb;
-            --paper: #fffdf8;
-            --black: #151515;
-            --gray: #68645e;
-            --light-gray: #d8d3ca;
-            --accent: #9e3027;
-            --white: #ffffff;
-
-            --max-width: 1250px;
-            --header-height: 78px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: var(--background);
-            color: var(--black);
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.5;
-        }
-
-        button,
-        input,
-        textarea {
-            font-family: inherit;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        a {
-            color: inherit;
-        }
-
-        .container {
-            width: min(var(--max-width), calc(100% - 50px));
-            margin: auto;
-        }
-
-
-        /* =========================================================
-           HEADER / NAVIGATION
-        ========================================================= */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-
-            height: var(--header-height);
-
-            background: rgba(244, 241, 235, 0.95);
-            backdrop-filter: blur(15px);
-
-            border-bottom: 1px solid var(--light-gray);
-        }
-
-        .navbar {
-            height: 100%;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 30px;
-        }
-
-        .logo {
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: 25px;
-            font-weight: bold;
-
-            letter-spacing: -1px;
-
-            white-space: nowrap;
-        }
-
-        .navigation {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .navigation button {
-            border: none;
-            background: transparent;
-
-            padding: 10px 14px;
-
-            font-size: 11px;
-            font-weight: bold;
-
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-
-            transition: 0.2s;
-        }
-
-        .navigation button:hover {
-            color: var(--accent);
-        }
-
-        .mobile-menu-button {
-            display: none;
-
-            background: transparent;
-
-            border: 1px solid var(--light-gray);
-
-            padding: 10px 13px;
-
-            font-size: 11px;
-            font-weight: bold;
-
-            letter-spacing: 1px;
-        }
-
-
-        /* =========================================================
-           HOME
-        ========================================================= */
-
-        .home {
-            min-height: calc(100vh - var(--header-height));
-
-            display: grid;
-
-            grid-template-columns: 1.15fr 0.85fr;
-
-            gap: 70px;
-
-            align-items: center;
-
-            padding-top: 80px;
-            padding-bottom: 100px;
-        }
-
-        .eyebrow {
-            color: var(--accent);
-
-            font-size: 11px;
-            font-weight: bold;
-
-            letter-spacing: 3px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 22px;
-        }
-
-        .home-title {
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: clamp(60px, 9vw, 125px);
-
-            line-height: 0.86;
-
-            letter-spacing: -7px;
-
-            margin-bottom: 35px;
-        }
-
-        .home-bio {
-            max-width: 650px;
-
-            color: #4e4a44;
-
-            font-size: 19px;
-
-            line-height: 1.7;
-        }
-
-        .home-photo {
-            width: 100%;
-
-            aspect-ratio: 4 / 5;
-
-            background: #ded9d0;
-
-            overflow: hidden;
-
-            box-shadow:
-                0 25px 60px rgba(0, 0, 0, 0.10);
-        }
-
-        .home-photo img {
-            width: 100%;
-            height: 100%;
-
-            display: block;
-
-            object-fit: cover;
-        }
-
-        .photo-placeholder {
-            width: 100%;
-            height: 100%;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            text-align: center;
-
-            padding: 30px;
-
-            color: #777;
-
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: 22px;
-        }
-
-
-        /* =========================================================
-           SECTIONS
-        ========================================================= */
-
-        section {
-            scroll-margin-top: var(--header-height);
-        }
-
-        .section {
-            border-top: 1px solid var(--light-gray);
-
-            padding: 100px 0;
-        }
-
-        .section-header {
-            display: flex;
-
-            justify-content: space-between;
-            align-items: flex-end;
-
-            gap: 30px;
-
-            margin-bottom: 35px;
-        }
-
-        .section-number {
-            color: var(--gray);
-
-            font-size: 11px;
-            font-weight: bold;
-
-            letter-spacing: 3px;
-
-            margin-bottom: 10px;
-        }
-
-        .section-title {
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: clamp(45px, 6vw, 80px);
-
-            line-height: 0.9;
-
-            letter-spacing: -4px;
-        }
-
-        .section-description {
-            max-width: 700px;
-
-            color: var(--gray);
-
-            line-height: 1.7;
-
-            margin-bottom: 40px;
-        }
-
-        .edit-button {
-            border: none;
-
-            background: transparent;
-
-            color: var(--black);
-
-            padding: 10px 0;
-
-            font-size: 11px;
-            font-weight: bold;
-
-            letter-spacing: 2px;
-
-            text-transform: uppercase;
-
-            border-bottom: 1px solid var(--black);
-
-            transition: 0.2s;
-        }
-
-        .edit-button:hover {
-            color: var(--accent);
-
-            border-color: var(--accent);
-        }
-
-
-        /* =========================================================
-           PHOTOGRAPHY
-        ========================================================= */
-
-        .gallery {
-            columns: 3 280px;
-
-            column-gap: 18px;
-        }
-
-        .gallery-item {
-            break-inside: avoid;
-
-            margin-bottom: 18px;
-
-            background: var(--paper);
-        }
-
-        .gallery-item img {
-            width: 100%;
-
-            display: block;
-
-            height: auto;
-        }
-
-        .gallery-caption {
-            padding: 12px 14px;
-
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: 14px;
-        }
-
-        .empty-state {
-            border: 1px dashed #bcb6ad;
-
-            background: rgba(255,255,255,0.3);
-
-            padding: 60px 30px;
-
-            text-align: center;
-
-            color: var(--gray);
-
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: 20px;
-        }
-
-
-        /* =========================================================
-           RESEARCH
-        ========================================================= */
-
-        .document-grid {
-            display: grid;
-
-            grid-template-columns: repeat(2, 1fr);
-
-            gap: 18px;
-        }
-
-        .document {
-            background: var(--paper);
-
-            border: 1px solid var(--light-gray);
-
-            padding: 28px;
-        }
-
-        .document-title {
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: 24px;
-
-            margin-bottom: 10px;
-        }
-
-        .document-description {
-            color: var(--gray);
-
-            line-height: 1.6;
-
-            margin-bottom: 20px;
-        }
-
-        .document-link {
-            display: inline-block;
-
-            font-size: 12px;
-            font-weight: bold;
-
-            text-decoration: none;
-
-            border-bottom: 1px solid var(--black);
-
-            padding-bottom: 3px;
-        }
-
-
-        /* =========================================================
-           ARTICLES
-        ========================================================= */
-
-        .article-list {
-            display: grid;
-
-            gap: 15px;
-        }
-
-        .article {
-            background: var(--paper);
-
-            border: 1px solid var(--light-gray);
-
-            padding: 25px 28px;
-
-            display: flex;
-
-            justify-content: space-between;
-            align-items: center;
-
-            gap: 30px;
-        }
-
-        .article-title {
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: 25px;
-
-            margin-bottom: 5px;
-        }
-
-        .article-date {
-            color: var(--gray);
-
-            font-size: 13px;
-        }
-
-        .article-link {
-            font-size: 12px;
-            font-weight: bold;
-
-            text-decoration: none;
-
-            white-space: nowrap;
-
-            border-bottom: 1px solid var(--black);
-
-            padding-bottom: 4px;
-        }
-
-        .coming-soon {
-            padding: 35px 0;
-
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: 23px;
-
-            font-style: italic;
-
-            color: var(--gray);
-        }
-
-
-        /* =========================================================
-           FOOTER
-        ========================================================= */
-
-        footer {
-            border-top: 1px solid var(--light-gray);
-
-            padding: 45px 0;
-
-            color: var(--gray);
-
-            font-size: 12px;
-        }
-
-        .footer-content {
-            display: flex;
-
-            justify-content: space-between;
-
-            gap: 20px;
-        }
-
-
-        /* =========================================================
-           MODAL
-        ========================================================= */
-
-        .modal-background {
-            position: fixed;
-
-            inset: 0;
-
-            z-index: 5000;
-
-            background: rgba(15, 15, 15, 0.65);
-
-            display: none;
-
-            align-items: center;
-            justify-content: center;
-
-            padding: 20px;
-        }
-
-        .modal-background.active {
-            display: flex;
-        }
-
-        .modal {
-            width: min(600px, 100%);
-
-            max-height: 90vh;
-
-            overflow-y: auto;
-
-            background: var(--background);
-
-            padding: 35px;
-
-            box-shadow:
-                0 30px 100px rgba(0,0,0,0.3);
-        }
-
-        .modal-title {
-            font-family: Georgia, "Times New Roman", serif;
-
-            font-size: 36px;
-
-            margin-bottom: 25px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-
-            font-size: 11px;
-            font-weight: bold;
-
-            letter-spacing: 1.5px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 8px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-
-            border: 1px solid var(--light-gray);
-
-            background: var(--white);
-
-            padding: 13px;
-
-            font-size: 15px;
-
-            outline: none;
-        }
-
-        .form-group textarea {
-            min-height: 130px;
-
-            resize: vertical;
-        }
-
-        .modal-actions {
-            display: flex;
-
-            justify-content: flex-end;
-
-            gap: 10px;
-
-            margin-top: 25px;
-        }
-
-        .primary-button,
-        .secondary-button {
-            padding: 12px 18px;
-
-            border: 1px solid var(--black);
-
-            font-size: 12px;
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-        .primary-button {
-            background: var(--black);
-
-            color: var(--white);
-        }
-
-        .secondary-button {
-            background: transparent;
-
-            color: var(--black);
-        }
-
-        .warning {
-            color: var(--accent);
-
-            font-size: 12px;
-
-            line-height: 1.5;
-
-            margin-top: 10px;
-        }
-
-
-        /* =========================================================
-           PASSWORD SCREEN
-        ========================================================= */
-
-        .password-box {
-            text-align: center;
-        }
-
-        .password-box input {
-            width: 180px;
-
-            text-align: center;
-
-            font-size: 28px;
-
-            letter-spacing: 8px;
-
-            padding: 13px;
-
-            border: 1px solid var(--light-gray);
-
-            background: white;
-
-            margin: 15px 0;
-        }
-
-        .password-error {
-            color: var(--accent);
-
-            font-size: 13px;
-
-            display: none;
-
-            margin-top: 10px;
-        }
-
-
-        /* =========================================================
-           DELETE BUTTONS
-        ========================================================= */
-
-        .delete-button {
-            border: none;
-
-            background: transparent;
-
-            color: var(--accent);
-
-            font-size: 10px;
-
-            font-weight: bold;
-
-            letter-spacing: 1px;
-
-            text-transform: uppercase;
-
-            margin-top: 10px;
-        }
-
-
-        /* =========================================================
-           RESPONSIVE — TABLET
-        ========================================================= */
-
-        @media (max-width: 850px) {
-
-            .container {
-                width: min(100% - 35px, var(--max-width));
-            }
-
-            .home {
-                grid-template-columns: 1fr;
-
-                gap: 45px;
-
-                padding-top: 60px;
-            }
-
-            .home-photo {
-                max-width: 650px;
-            }
-
-            .document-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .navigation {
-                display: none;
-
-                position: absolute;
-
-                top: var(--header-height);
-
-                left: 0;
-                right: 0;
-
-                background: var(--background);
-
-                border-bottom: 1px solid var(--light-gray);
-
-                padding: 10px 20px;
-
-                flex-direction: column;
-
-                align-items: stretch;
-            }
-
-            .navigation.open {
-                display: flex;
-            }
-
-            .navigation button {
-                text-align: left;
-
-                padding: 14px;
-            }
-
-            .mobile-menu-button {
-                display: block;
-            }
-        }
-
-
-        /* =========================================================
-           RESPONSIVE — PHONE
-        ========================================================= */
-
-        @media (max-width: 600px) {
-
-            :root {
-                --header-height: 65px;
-            }
-
-            .container {
-                width: calc(100% - 28px);
-            }
-
-            .home {
-                padding-top: 45px;
-
-                padding-bottom: 70px;
-            }
-
-            .home-title {
-                font-size: 62px;
-
-                letter-spacing: -4px;
-            }
-
-            .home-bio {
-                font-size: 17px;
-            }
-
-            .section {
-                padding: 70px 0;
-            }
-
-            .section-header {
-                align-items: flex-start;
-
-                flex-direction: column;
-
-                gap: 20px;
-            }
-
-            .section-title {
-                font-size: 48px;
-
-                letter-spacing: -3px;
-            }
-
-            .gallery {
-                columns: 1;
-            }
-
-            .article {
-                flex-direction: column;
-
-                align-items: flex-start;
-            }
-
-            .article-link {
-                white-space: normal;
-            }
-
-            .footer-content {
-                flex-direction: column;
-            }
-
-            .modal {
-                padding: 25px;
-            }
-        }
-
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Portfolio</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #f3f0e9;
+    color: #111;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(243,240,233,.94);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #ccc;
+}
+
+.header {
+    max-width: 1400px;
+    margin: auto;
+    padding: 18px 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 25px;
+}
+
+nav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+nav button {
+    border: 0;
+    background: transparent;
+    padding: 9px 12px;
+    cursor: pointer;
+
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.edit {
+    background: #111;
+    color: white;
+}
+
+main {
+    max-width: 1400px;
+    margin: auto;
+    padding: 50px 30px 100px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.eyebrow {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-family: Georgia, serif;
+    font-size: clamp(60px, 9vw, 130px);
+    line-height: .88;
+    font-weight: normal;
+    letter-spacing: -6px;
+    margin: 0 0 35px;
+}
+
+h2 {
+    font-family: Georgia, serif;
+    font-size: clamp(50px, 7vw, 90px);
+    font-weight: normal;
+    letter-spacing: -4px;
+}
+
+.bio {
+    max-width: 650px;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+.hero {
+    min-height: 75vh;
+
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.profile {
+    aspect-ratio: 4 / 5;
+    background: #ddd;
+    overflow: hidden;
+}
+
+.profile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery {
+    columns: 3 280px;
+    column-gap: 18px;
+}
+
+.photo {
+    break-inside: avoid;
+    margin-bottom: 18px;
+    position: relative;
+}
+
+.photo img {
+    width: 100%;
+    display: block;
+}
+
+.delete-photo {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    width: 35px;
+    height: 35px;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: rgba(0,0,0,.8);
+    color: white;
+
+    cursor: pointer;
+}
+
+.editing .delete-photo {
+    display: block;
+}
+
+.delete-photo {
+    display: none;
+}
+
+.panel {
+    display: none;
+
+    border: 1px solid #111;
+    padding: 25px;
+    margin-bottom: 35px;
+}
+
+.editing .panel {
+    display: block;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 13px;
+
+    border: 1px solid #aaa;
+    background: white;
+
+    margin-bottom: 15px;
+}
+
+textarea {
+    min-height: 130px;
+}
+
+.primary {
+    border: 1px solid #111;
+    background: #111;
+    color: white;
+    padding: 12px 18px;
+    cursor: pointer;
+}
+
+.secondary {
+    border: 1px solid #111;
+    background: transparent;
+    padding: 12px 18px;
+    cursor: pointer;
+}
+
+.article {
+    border-top: 1px solid #111;
+
+    padding: 30px 0;
+
+    display: grid;
+    grid-template-columns: 150px 1fr auto;
+
+    gap: 25px;
+    align-items: center;
+}
+
+.article-title {
+    font-family: Georgia, serif;
+    font-size: 35px;
+}
+
+.date {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #777;
+}
+
+.coming {
+    border-top: 1px solid #111;
+    border-bottom: 1px solid #111;
+
+    padding: 70px 0;
+}
+
+.coming h3 {
+    font-family: Georgia, serif;
+    font-size: clamp(45px,7vw,90px);
+    font-weight: normal;
+    margin: 0;
+}
+
+.document {
+    border-top: 1px solid #111;
+    padding: 25px 0;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 500;
+
+    background: rgba(0,0,0,.65);
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-box {
+    background: #f3f0e9;
+
+    width: min(550px,100%);
+
+    padding: 35px;
+}
+
+.modal-box h2 {
+    font-size: 50px;
+    margin-top: 0;
+}
+
+footer {
+    max-width: 1400px;
+    margin: auto;
+
+    border-top: 1px solid #111;
+
+    padding: 25px 30px;
+
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@media(max-width:750px) {
+
+    .header {
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    nav button {
+        font-size: 9px;
+        padding: 7px 4px;
+    }
+
+    main {
+        padding: 35px 15px 70px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .profile {
+        order: -1;
+    }
+
+    h1 {
+        font-size: 65px;
+    }
+
+    .gallery {
+        columns: 2 130px;
+        column-gap: 8px;
+    }
+
+    .photo {
+        margin-bottom: 8px;
+    }
+
+    .article {
+        grid-template-columns: 1fr;
+    }
+
+    .article-title {
+        font-size: 30px;
+    }
+
+    footer {
+        padding: 20px 15px;
+    }
+}
+
+</style>
 </head>
 
 
 <body>
 
 
-<!-- ============================================================
-     NAVIGATION
-============================================================ -->
-
 <header>
 
-    <div class="container navbar">
+<div class="header">
 
-        <div class="logo" id="navigationName">
-            YOUR NAME
-        </div>
+<div class="logo" id="logo">
+Portfolio
+</div>
 
-        <button
-            class="mobile-menu-button"
-            onclick="toggleMobileMenu()"
-        >
-            MENU
-        </button>
+<nav>
 
-        <nav class="navigation" id="navigation">
+<button onclick="page('home')">
+Home
+</button>
 
-            <button onclick="goToSection('home')">
-                Home
-            </button>
+<button onclick="page('photography')">
+Photography
+</button>
 
-            <button onclick="goToSection('photography')">
-                Photography
-            </button>
+<button onclick="page('research')">
+Research
+</button>
 
-            <button onclick="goToSection('research')">
-                Political Research
-            </button>
+<button onclick="page('newspaper')">
+Newspaper
+</button>
 
-            <button onclick="goToSection('articles')">
-                Newspaper
-            </button>
+<button class="edit" onclick="openEditor()">
+Edit
+</button>
 
-        </nav>
+</nav>
 
-    </div>
+</div>
 
 </header>
 
 
 
-<!-- ============================================================
-     HOMEPAGE
-============================================================ -->
-
 <main>
 
-<section id="home">
 
-    <div class="container home">
+<!-- HOME -->
 
-        <div>
+<section id="home" class="page active">
 
-            <div class="eyebrow">
-                Portfolio / Journal / Work
-            </div>
+<div class="hero">
 
-            <h1
-                class="home-title"
-                id="homeName"
-            >
-                YOUR<br>
-                NAME
-            </h1>
+<div>
 
-            <p
-                class="home-bio"
-                id="homeBio"
-            >
-                Write your biography here. Talk about who you are,
-                what you care about, and the work you are creating.
-            </p>
+<div class="eyebrow">
+Photographer · Researcher · Writer
+</div>
 
-            <br>
+<h1 id="name">
+Your Name
+</h1>
 
-            <button
-                class="edit-button"
-                onclick="startEditing('home')"
-            >
-                Edit
-            </button>
+<p class="bio" id="bio">
+Welcome to my personal portfolio.
+</p>
 
-        </div>
+</div>
 
 
-        <div
-            class="home-photo"
-            id="homePhoto"
-        >
+<div class="profile">
 
-            <div class="photo-placeholder">
+<img id="profilePhoto"
+style="display:none">
 
-                Your portrait<br>
-                will appear here.
+</div>
 
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
 
-<!-- ============================================================
-     PHOTOGRAPHY
-============================================================ -->
+<!-- PHOTOGRAPHY -->
 
-<section
-    class="section"
-    id="photography"
+<section id="photography" class="page">
+
+<div class="eyebrow">
+01 / Visual Archive
+</div>
+
+<h2>
+Photography
+</h2>
+
+
+<div class="panel">
+
+<h3>
+Add Photography
+</h3>
+
+<p>
+Up to 25 photographs.
+</p>
+
+<input
+id="photoUpload"
+type="file"
+accept="image/*"
+multiple
 >
 
-    <div class="container">
+<button
+class="primary"
+onclick="uploadPhotos()">
 
-        <div class="section-header">
+Upload Photos
 
-            <div>
+</button>
 
-                <div class="section-number">
-                    01 / VISUAL WORK
-                </div>
-
-                <h2 class="section-title">
-                    Photography
-                </h2>
-
-            </div>
-
-            <button
-                class="edit-button"
-                onclick="startEditing('photography')"
-            >
-                Edit
-            </button>
-
-        </div>
+</div>
 
 
-        <p class="section-description">
+<div id="gallery"
+class="gallery">
 
-            A visual archive of photographs, places, people,
-            ideas and moments.
-
-        </p>
-
-
-        <div
-            class="gallery"
-            id="gallery"
-        >
-
-            <div class="empty-state">
-
-                Your photography gallery is ready.
-
-                <br><br>
-
-                Click <strong>Edit</strong> to add photographs
-                from your camera roll.
-
-            </div>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
 
-<!-- ============================================================
-     POLITICAL RESEARCH
-============================================================ -->
+<!-- RESEARCH -->
 
-<section
-    class="section"
-    id="research"
+<section id="research" class="page">
+
+<div class="eyebrow">
+02 / Political Archive
+</div>
+
+<h2>
+Research
+</h2>
+
+
+<div class="panel">
+
+<h3>
+Add Research
+</h3>
+
+<p>
+Research documents should be kept private rather than placed in the public GitHub Pages repository.
+</p>
+
+</div>
+
+
+<div class="document">
+
+Political research archive
+
+<span>
+Private
+</span>
+
+</div>
+
+</section>
+
+
+
+<!-- NEWSPAPER -->
+
+<section id="newspaper" class="page">
+
+<div class="eyebrow">
+03 / School Newspaper
+</div>
+
+<h2>
+Articles
+</h2>
+
+
+<div class="panel">
+
+<h3>
+Add Article
+</h3>
+
+
+<input
+id="articleTitle"
+placeholder="Article title"
 >
 
-    <div class="container">
 
-        <div class="section-header">
-
-            <div>
-
-                <div class="section-number">
-                    02 / NOTES & SOURCES
-                </div>
-
-                <h2 class="section-title">
-                    Political<br>
-                    Research
-                </h2>
-
-            </div>
-
-            <button
-                class="edit-button"
-                onclick="startEditing('research')"
-            >
-                Edit
-            </button>
-
-        </div>
-
-
-        <p class="section-description">
-
-            Research documents, notes, sources and projects.
-            Use this section as your personal research archive.
-
-        </p>
-
-
-        <div
-            class="document-grid"
-            id="documentGrid"
-        >
-
-            <div class="empty-state">
-
-                No research documents yet.
-
-                <br><br>
-
-                Click <strong>Edit</strong> to add one.
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- ============================================================
-     SCHOOL NEWSPAPER
-============================================================ -->
-
-<section
-    class="section"
-    id="articles"
+<input
+id="articleDate"
+placeholder="September 20, 2026"
 >
 
-    <div class="container">
 
-        <div class="section-header">
-
-            <div>
-
-                <div class="section-number">
-                    03 / SCHOOL NEWSPAPER
-                </div>
-
-                <h2 class="section-title">
-                    Articles
-                </h2>
-
-            </div>
-
-            <button
-                class="edit-button"
-                onclick="startEditing('articles')"
-            >
-                Edit
-            </button>
-
-        </div>
+<input
+id="articleURL"
+placeholder="https://..."
+>
 
 
-        <p class="section-description">
+<button
+class="primary"
+onclick="addArticle()">
 
-            Published writing and reporting from the school newspaper.
+Publish Article
 
-        </p>
+</button>
+
+</div>
 
 
-        <div
-            class="article-list"
-            id="articleList"
-        >
+<div
+id="coming"
+class="coming">
 
-            <!-- Coming soon is automatically replaced
-                 once an article is added. -->
+<div class="eyebrow">
+First edition
+</div>
 
-        </div>
+<h3>
+Coming September 16
+</h3>
 
-    </div>
+<p>
+School newspaper articles will appear here.
+</p>
+
+</div>
+
+
+<div id="articles">
+
+</div>
 
 </section>
+
 
 </main>
 
 
 
-<!-- ============================================================
-     FOOTER
-============================================================ -->
-
 <footer>
 
-    <div class="container footer-content">
+<span id="footerName">
+Your Name
+</span>
 
-        <span id="footerName">
-            YOUR NAME
-        </span>
-
-        <span>
-            © <span id="currentYear"></span>
-            — Personal Portfolio
-        </span>
-
-    </div>
+<span>
+Personal Archive
+</span>
 
 </footer>
 
 
 
-<!-- ============================================================
-     EDIT MODAL
-============================================================ -->
+<!-- CODE MODAL -->
 
 <div
-    class="modal-background"
-    id="modalBackground"
+id="codeModal"
+class="modal">
+
+<div class="modal-box">
+
+<div class="eyebrow">
+Private Editor
+</div>
+
+<h2>
+Edit
+</h2>
+
+<input
+id="code"
+type="password"
+maxlength="4"
+inputmode="numeric"
+placeholder="Enter 4 digit code"
 >
 
-    <div
-        class="modal"
-        id="modal"
-    >
+<p
+id="error"
+style="display:none;color:#a00">
 
-    </div>
+Incorrect code.
+
+</p>
+
+<button
+class="primary"
+onclick="checkCode()">
+
+Continue
+
+</button>
+
+<button
+class="secondary"
+onclick="closeModal()">
+
+Cancel
+
+</button>
+
+</div>
 
 </div>
 
@@ -1194,1554 +694,989 @@
 
 <script>
 
-/*
-==================================================================
-                         WEBSITE SETTINGS
-==================================================================
+/* ======================================================
+   GITHUB SETTINGS
+====================================================== */
 
-EDIT CODE:
+const GITHUB_OWNER =
+"YOUR-GITHUB-USERNAME";
 
-4547
+const GITHUB_REPO =
+"YOUR-REPOSITORY";
 
-IMPORTANT:
-
-This is a front-end HTML website.
-
-The code protects the editing interface, but it is NOT real
-server-side security.
-
-Someone who knows how to inspect the HTML/JavaScript can find
-the code.
-
-For a truly private political research archive, a future version
-should use an actual login/account system and server-side security.
-
-==================================================================
-*/
+const GITHUB_BRANCH =
+"main";
 
 
-/* ================================================================
-   WEBSITE DATA
-================================================================ */
+/* YOUR EDIT CODE */
 
-const EDIT_CODE = "4547";
-
-const STORAGE_KEY = "myMagazinePortfolio_v2";
+const EDIT_CODE =
+"4547";
 
 
-const defaultData = {
+/* PHOTO LIMIT */
 
-    name: "YOUR NAME",
-
-    bio:
-        "Write your biography here. Talk about who you are, " +
-        "what you care about, and the work you are creating.",
-
-    profilePhoto: "",
-
-    photos: [],
-
-    documents: [],
-
-    articles: []
-
-};
+const MAX_PHOTOS =
+25;
 
 
-
-let websiteData = loadWebsiteData();
-
-
-
-/* ================================================================
-   LOAD DATA
-================================================================ */
-
-function loadWebsiteData() {
-
-    try {
-
-        const saved =
-            localStorage.getItem(STORAGE_KEY);
-
-        if (!saved) {
-
-            return {
-                ...defaultData
-            };
-
-        }
-
-        const parsed =
-            JSON.parse(saved);
-
-        return {
-            ...defaultData,
-            ...parsed
-        };
-
-    } catch (error) {
-
-        console.error(
-            "Could not load website data:",
-            error
-        );
-
-        return {
-            ...defaultData
-        };
-
-    }
-
-}
-
-
-
-/* ================================================================
-   SAVE DATA
-================================================================ */
-
-function saveWebsiteData() {
-
-    try {
-
-        localStorage.setItem(
-            STORAGE_KEY,
-            JSON.stringify(websiteData)
-        );
-
-    } catch (error) {
-
-        alert(
-            "Your browser could not save this change. " +
-            "Large photo or document files may have exceeded " +
-            "the browser's storage limit."
-        );
-
-        console.error(error);
-
-    }
-
-}
-
-
-
-/* ================================================================
+/* ======================================================
    NAVIGATION
-================================================================ */
+====================================================== */
 
-function goToSection(sectionID) {
+function page(name) {
 
-    const section =
-        document.getElementById(sectionID);
+document
+.querySelectorAll(".page")
+.forEach(p =>
+p.classList.remove("active")
+);
 
-    if (!section) {
-        return;
-    }
+document
+.getElementById(name)
+.classList.add("active");
 
-    section.scrollIntoView({
-        behavior: "smooth"
-    });
-
-    document
-        .getElementById("navigation")
-        .classList.remove("open");
-
-}
-
-
-
-function toggleMobileMenu() {
-
-    document
-        .getElementById("navigation")
-        .classList.toggle("open");
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
 
+/* ======================================================
+   EDITING
+====================================================== */
 
-/* ================================================================
-   ESCAPE HTML
-================================================================ */
+let editing =
+false;
 
-function escapeHTML(value) {
 
-    return String(value ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+function openEditor() {
+
+if(editing) {
+
+editing = false;
+
+document.body
+.classList.remove("editing");
+
+return;
+
+}
+
+document
+.getElementById("codeModal")
+.classList.add("active");
+
+document
+.getElementById("code")
+.focus();
 
 }
 
 
+function checkCode() {
 
-/* ================================================================
-   MODAL
-================================================================ */
+const entered =
+document
+.getElementById("code")
+.value;
 
-function openModal(content) {
+if(entered === EDIT_CODE) {
 
-    document.getElementById(
-        "modal"
-    ).innerHTML = content;
+editing = true;
 
-    document
-        .getElementById("modalBackground")
-        .classList.add("active");
+document.body
+.classList.add("editing");
+
+closeModal();
+
+} else {
+
+document
+.getElementById("error")
+.style.display =
+"block";
 
 }
 
+}
 
 
 function closeModal() {
 
-    document
-        .getElementById("modalBackground")
-        .classList.remove("active");
+document
+.getElementById("codeModal")
+.classList.remove("active");
 
 }
 
 
+/* ======================================================
+   GITHUB API
+====================================================== */
 
-/* Close modal when clicking outside */
+/*
+
+IMPORTANT:
+
+Never put a GitHub access token here.
+
+The website will ask the owner for authorization
+when an edit needs to be made.
+
+*/
+
+
+async function githubRequest(
+url,
+options={}
+) {
+
+const token =
+sessionStorage.getItem(
+"github_token"
+);
+
+if(!token) {
+
+const newToken =
+prompt(
+"Enter your GitHub access token:"
+);
+
+if(!newToken) {
+
+throw new Error(
+"GitHub authorization required."
+);
+
+}
+
+sessionStorage.setItem(
+"github_token",
+newToken
+);
+
+return githubRequest(
+url,
+options
+);
+
+}
+
+
+options.headers = {
+
+...(options.headers || {}),
+
+"Authorization":
+"Bearer " + token,
+
+"Accept":
+"application/vnd.github+json",
+
+"X-GitHub-Api-Version":
+"2022-11-28"
+
+};
+
+
+const response =
+await fetch(
+url,
+options
+);
+
+
+if(response.status === 401) {
+
+sessionStorage.removeItem(
+"github_token"
+);
+
+throw new Error(
+"GitHub authorization expired."
+);
+
+}
+
+
+if(!response.ok) {
+
+throw new Error(
+"GitHub request failed."
+);
+
+}
+
+
+return response.json();
+
+}
+
+
+/* ======================================================
+   GET FILE
+====================================================== */
+
+async function getGithubFile(
+path
+) {
+
+const url =
+`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}?ref=${GITHUB_BRANCH}`;
+
+return githubRequest(url);
+
+}
+
+
+/* ======================================================
+   SAVE FILE
+====================================================== */
+
+async function saveGithubFile(
+path,
+content,
+message,
+sha=null
+) {
+
+const url =
+`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`;
+
+
+const body = {
+
+message: message,
+
+content: content,
+
+branch: GITHUB_BRANCH
+
+};
+
+
+if(sha) {
+
+body.sha =
+sha;
+
+}
+
+
+return githubRequest(
+url,
+{
+method:"PUT",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:
+JSON.stringify(body)
+
+}
+);
+
+}
+
+
+/* ======================================================
+   BASE64
+====================================================== */
+
+function fileToBase64(file) {
+
+return new Promise(
+(resolve,reject)=> {
+
+const reader =
+new FileReader();
+
+reader.onload =
+() => {
+
+const result =
+reader.result;
+
+resolve(
+result.split(",")[1]
+);
+
+};
+
+reader.onerror =
+reject;
+
+reader.readAsDataURL(file);
+
+});
+
+}
+
+
+/* ======================================================
+   UPLOAD PHOTOS
+====================================================== */
+
+async function uploadPhotos() {
+
+if(!editing) {
+
+alert(
+"Enter the edit code first."
+);
+
+return;
+
+}
+
+
+const files =
+Array.from(
+document
+.getElementById("photoUpload")
+.files
+);
+
+
+if(files.length === 0) {
+
+alert(
+"Choose at least one photo."
+);
+
+return;
+
+}
+
+
+if(files.length > MAX_PHOTOS) {
+
+alert(
+"You can upload up to 25 photos at a time."
+);
+
+return;
+
+}
+
+
+alert(
+"GitHub will now be used to publish your photographs."
+);
+
+
+/*
+
+For a production version, photographs should
+be stored in an external image CDN or Git LFS
+rather than putting many large originals directly
+into the repository.
+
+This starter system stores optimized JPEGs.
+
+*/
+
+
+for(const file of files) {
+
+const compressed =
+await compressImage(
+file
+);
+
+const base64 =
+await fileToBase64(
+compressed
+);
+
+
+const filename =
+"photo-" +
+Date.now() +
+"-" +
+Math.random()
+.toString(36)
+.substring(2,8) +
+".jpg";
+
+
+await saveGithubFile(
+
+"photos/" +
+filename,
+
+base64,
+
+"Add photography " +
+filename
+
+);
+
+}
+
+
+alert(
+"Photos published. Refresh the website to see them."
+);
+
+}
+
+
+/* ======================================================
+   IMAGE COMPRESSION
+====================================================== */
+
+function compressImage(file) {
+
+return new Promise(
+(resolve,reject)=> {
+
+const reader =
+new FileReader();
+
+reader.onload =
+event => {
+
+const img =
+new Image();
+
+img.onload =
+() => {
+
+let width =
+img.width;
+
+let height =
+img.height;
+
+const max =
+1800;
+
+
+if(width > max ||
+height > max) {
+
+if(width > height) {
+
+height =
+height *
+max /
+width;
+
+width =
+max;
+
+} else {
+
+width =
+width *
+max /
+height;
+
+height =
+max;
+
+}
+
+}
+
+
+const canvas =
+document
+.createElement("canvas");
+
+canvas.width =
+Math.round(width);
+
+canvas.height =
+Math.round(height);
+
+
+const ctx =
+canvas.getContext("2d");
+
+ctx.drawImage(
+img,
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+canvas.toBlob(
+blob =>
+resolve(blob),
+"image/jpeg",
+.82
+);
+
+};
+
+
+img.onerror =
+reject;
+
+img.src =
+event.target.result;
+
+};
+
+
+reader.onerror =
+reject;
+
+reader.readAsDataURL(file);
+
+});
+
+}
+
+
+/* ======================================================
+   LOAD PUBLIC PHOTOS
+====================================================== */
+
+async function loadPhotos() {
+
+try {
+
+const url =
+`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/photos?ref=${GITHUB_BRANCH}`;
+
+const response =
+await fetch(url);
+
+if(!response.ok)
+return;
+
+const files =
+await response.json();
+
+
+const gallery =
+document
+.getElementById("gallery");
+
+gallery.innerHTML = "";
+
+
+for(const file of files) {
+
+if(!file.name
+.match(/\.(jpg|jpeg|png|webp)$/i))
+continue;
+
+
+const card =
+document
+.createElement("div");
+
+card.className =
+"photo";
+
+
+const image =
+document
+.createElement("img");
+
+image.loading =
+"lazy";
+
+image.src =
+file.download_url;
+
+image.alt =
+"Photography";
+
+
+const deleteButton =
+document
+.createElement("button");
+
+deleteButton.className =
+"delete-photo";
+
+deleteButton.textContent =
+"×";
+
+
+deleteButton.onclick =
+() =>
+deletePhoto(
+file.path,
+file.sha
+);
+
+
+card.appendChild(
+image
+);
+
+card.appendChild(
+deleteButton
+);
+
+gallery.appendChild(
+card
+);
+
+}
+
+} catch(error) {
+
+console.error(error);
+
+}
+
+}
+
+
+/* ======================================================
+   DELETE PHOTO
+====================================================== */
+
+async function deletePhoto(
+path,
+sha
+) {
+
+if(!editing)
+return;
+
+
+if(!confirm(
+"Delete this photograph?"
+))
+return;
+
+
+await githubRequest(
+
+`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${path}`,
+
+{
+
+method:"DELETE",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:
+JSON.stringify({
+
+message:
+"Delete photograph",
+
+sha:
+sha,
+
+branch:
+GITHUB_BRANCH
+
+})
+
+);
+
+
+loadPhotos();
+
+}
+
+
+/* ======================================================
+   ARTICLES
+====================================================== */
+
+async function addArticle() {
+
+if(!editing) {
+
+alert(
+"Enter the edit code first."
+);
+
+return;
+
+}
+
+
+const title =
+document
+.getElementById("articleTitle")
+.value
+.trim();
+
+
+const date =
+document
+.getElementById("articleDate")
+.value
+.trim();
+
+
+const url =
+document
+.getElementById("articleURL")
+.value
+.trim();
+
+
+if(!title || !url) {
+
+alert(
+"Enter a title and article link."
+);
+
+return;
+
+}
+
+
+const article = {
+
+title:title,
+
+date:
+date || "Published",
+
+url:url
+
+};
+
+
+const filename =
+"article-" +
+Date.now() +
+".json";
+
+
+const encoded =
+btoa(
+unescape(
+encodeURIComponent(
+JSON.stringify(
+article,
+null,
+2
+)
+)
+)
+);
+
+
+await saveGithubFile(
+
+"articles/" +
+filename,
+
+encoded,
+
+"Add newspaper article"
+
+);
+
 
 document
-    .getElementById("modalBackground")
-    .addEventListener(
-        "click",
-        function(event) {
+.getElementById("articleTitle")
+.value = "";
 
-            if (
-                event.target.id ===
-                "modalBackground"
-            ) {
+document
+.getElementById("articleDate")
+.value = "";
 
-                closeModal();
-
-            }
-
-        }
-    );
+document
+.getElementById("articleURL")
+.value = "";
 
 
-
-/* ================================================================
-   EDIT AUTHENTICATION
-================================================================ */
-
-function startEditing(page) {
-
-    const code =
-        prompt(
-            "Enter your 4-digit edit code:"
-        );
-
-    if (code === null) {
-        return;
-    }
-
-    if (code !== EDIT_CODE) {
-
-        alert(
-            "Incorrect edit code."
-        );
-
-        return;
-
-    }
+alert(
+"Article published."
+);
 
 
-    if (page === "home") {
-
-        showHomeEditor();
-
-    }
-
-
-    if (page === "photography") {
-
-        showPhotographyEditor();
-
-    }
-
-
-    if (page === "research") {
-
-        showResearchEditor();
-
-    }
-
-
-    if (page === "articles") {
-
-        showArticleEditor();
-
-    }
+loadArticles();
 
 }
 
 
+/* ======================================================
+   LOAD ARTICLES
+====================================================== */
 
-/* ================================================================
-   HOMEPAGE EDITOR
-================================================================ */
+async function loadArticles() {
 
-function showHomeEditor() {
+try {
 
-    openModal(`
+const response =
+await fetch(
 
-        <h3 class="modal-title">
-            Edit Homepage
-        </h3>
+`https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/articles?ref=${GITHUB_BRANCH}`
 
-
-        <div class="form-group">
-
-            <label>
-                Your Name
-            </label>
-
-            <input
-                id="editName"
-                type="text"
-                value="${escapeHTML(websiteData.name)}"
-                placeholder="Your Name"
-            >
-
-        </div>
+);
 
 
-        <div class="form-group">
-
-            <label>
-                Biography
-            </label>
-
-            <textarea
-                id="editBio"
-                placeholder="Write your bio..."
-            >${escapeHTML(websiteData.bio)}</textarea>
-
-        </div>
+if(!response.ok)
+return;
 
 
-        <div class="form-group">
-
-            <label>
-                Profile Photo
-            </label>
-
-            <input
-                id="editProfilePhoto"
-                type="file"
-                accept="image/*"
-            >
-
-        </div>
+const files =
+await response.json();
 
 
-        <p class="warning">
-
-            Your photo is stored in this browser.
-
-        </p>
+const list =
+document
+.getElementById("articles");
 
 
-        <div class="modal-actions">
-
-            <button
-                class="secondary-button"
-                onclick="closeModal()"
-            >
-                Cancel
-            </button>
-
-            <button
-                class="primary-button"
-                onclick="saveHomepage()"
-            >
-                Save Changes
-            </button>
-
-        </div>
-
-    `);
-
-}
+list.innerHTML = "";
 
 
-
-/* ================================================================
-   SAVE HOMEPAGE
-================================================================ */
-
-async function saveHomepage() {
-
-    const name =
-        document
-            .getElementById("editName")
-            .value
-            .trim();
-
-    const bio =
-        document
-            .getElementById("editBio")
-            .value
-            .trim();
-
-    const photoInput =
-        document.getElementById(
-            "editProfilePhoto"
-        );
+let articleCount =
+0;
 
 
-    websiteData.name =
-        name || "YOUR NAME";
+for(const file of files) {
 
-    websiteData.bio =
-        bio ||
-        defaultData.bio;
+if(!file.name.endsWith(".json"))
+continue;
 
 
-    if (
-        photoInput.files &&
-        photoInput.files.length > 0
-    ) {
+const data =
+await fetch(
+file.download_url
+);
 
-        websiteData.profilePhoto =
-            await fileToDataURL(
-                photoInput.files[0]
-            );
-
-    }
+const article =
+await data.json();
 
 
-    saveWebsiteData();
+articleCount++;
 
-    renderWebsite();
 
-    closeModal();
+const row =
+document
+.createElement("div");
+
+row.className =
+"article";
+
+
+row.innerHTML = `
+
+<div class="date">
+${escapeHTML(article.date)}
+</div>
+
+<div class="article-title">
+${escapeHTML(article.title)}
+</div>
+
+<div>
+
+<a
+class="secondary"
+href="${safeURL(article.url)}"
+target="_blank"
+rel="noopener noreferrer">
+
+Read Article
+
+</a>
+
+</div>
+
+`;
+
+
+list.appendChild(row);
 
 }
 
 
+if(articleCount > 0) {
 
-/* ================================================================
-   PHOTOGRAPHY EDITOR
-================================================================ */
+document
+.getElementById("coming")
+.style.display =
+"none";
 
-function showPhotographyEditor() {
+}
 
-    openModal(`
+} catch(error) {
 
-        <h3 class="modal-title">
-            Add Photography
-        </h3>
+console.error(error);
 
-
-        <div class="form-group">
-
-            <label>
-                Choose Photos
-            </label>
-
-            <input
-                id="photoFiles"
-                type="file"
-                accept="image/*"
-                multiple
-            >
-
-        </div>
-
-
-        <p class="warning">
-
-            You can select multiple photographs
-            from your computer or camera roll.
-
-        </p>
-
-
-        <div class="modal-actions">
-
-            <button
-                class="secondary-button"
-                onclick="closeModal()"
-            >
-                Cancel
-            </button>
-
-            <button
-                class="primary-button"
-                onclick="addPhotography()"
-            >
-                Add Photos
-            </button>
-
-        </div>
-
-    `);
+}
 
 }
 
 
+/* ======================================================
+   SECURITY HELPERS
+====================================================== */
 
-/* ================================================================
-   ADD PHOTOS
-================================================================ */
+function escapeHTML(
+text
+) {
 
-async function addPhotography() {
-
-    const input =
-        document.getElementById(
-            "photoFiles"
-        );
-
-    const files =
-        Array.from(input.files || []);
-
-
-    if (files.length === 0) {
-
-        alert(
-            "Please choose at least one photo."
-        );
-
-        return;
-
-    }
-
-
-    for (const file of files) {
-
-        try {
-
-            const dataURL =
-                await fileToDataURL(file);
-
-            websiteData.photos.push({
-
-                image: dataURL,
-
-                name: file.name
-
-            });
-
-        } catch (error) {
-
-            console.error(
-                "Could not load photo:",
-                error
-            );
-
-        }
-
-    }
-
-
-    saveWebsiteData();
-
-    renderWebsite();
-
-    closeModal();
+return String(text)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
 
 }
 
 
+function safeURL(
+url
+) {
 
-/* ================================================================
-   DELETE PHOTO
-================================================================ */
+try {
 
-function deletePhoto(index) {
+const parsed =
+new URL(url);
 
-    const confirmed =
-        confirm(
-            "Remove this photograph?"
-        );
+if(
+parsed.protocol !== "http:" &&
+parsed.protocol !== "https:"
+) {
 
-    if (!confirmed) {
-        return;
-    }
+return "#";
 
+}
 
-    websiteData.photos.splice(
-        index,
-        1
-    );
+return parsed.href;
 
-    saveWebsiteData();
+} catch {
 
-    renderWebsite();
+return "#";
+
+}
 
 }
 
 
+/* ======================================================
+   START
+====================================================== */
 
-/* ================================================================
-   RESEARCH EDITOR
-================================================================ */
+loadPhotos();
 
-function showResearchEditor() {
-
-    openModal(`
-
-        <h3 class="modal-title">
-            Add Research
-        </h3>
-
-
-        <div class="form-group">
-
-            <label>
-                Document Title
-            </label>
-
-            <input
-                id="documentTitle"
-                type="text"
-                placeholder="Example: 2026 Election Research"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Description
-            </label>
-
-            <textarea
-                id="documentDescription"
-                placeholder="Describe this research..."
-            ></textarea>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Document
-            </label>
-
-            <input
-                id="documentFile"
-                type="file"
-                accept=".pdf,.doc,.docx,.txt"
-            >
-
-        </div>
-
-
-        <p class="warning">
-
-            Research documents are stored in this browser.
-            Very large files may exceed browser storage limits.
-
-        </p>
-
-
-        <div class="modal-actions">
-
-            <button
-                class="secondary-button"
-                onclick="closeModal()"
-            >
-                Cancel
-            </button>
-
-            <button
-                class="primary-button"
-                onclick="addResearchDocument()"
-            >
-                Add Document
-            </button>
-
-        </div>
-
-    `);
-
-}
-
-
-
-/* ================================================================
-   ADD RESEARCH DOCUMENT
-================================================================ */
-
-async function addResearchDocument() {
-
-    const title =
-        document
-            .getElementById(
-                "documentTitle"
-            )
-            .value
-            .trim();
-
-
-    const description =
-        document
-            .getElementById(
-                "documentDescription"
-            )
-            .value
-            .trim();
-
-
-    const fileInput =
-        document.getElementById(
-            "documentFile"
-        );
-
-
-    if (
-        !title ||
-        !fileInput.files ||
-        fileInput.files.length === 0
-    ) {
-
-        alert(
-            "Please add a title and choose a document."
-        );
-
-        return;
-
-    }
-
-
-    const file =
-        fileInput.files[0];
-
-
-    try {
-
-        const dataURL =
-            await fileToDataURL(file);
-
-
-        websiteData.documents.push({
-
-            title: title,
-
-            description: description,
-
-            file: dataURL,
-
-            fileName: file.name
-
-        });
-
-
-        saveWebsiteData();
-
-        renderWebsite();
-
-        closeModal();
-
-    } catch (error) {
-
-        alert(
-            "The document could not be added."
-        );
-
-        console.error(error);
-
-    }
-
-}
-
-
-
-/* ================================================================
-   DELETE RESEARCH DOCUMENT
-================================================================ */
-
-function deleteDocument(index) {
-
-    const confirmed =
-        confirm(
-            "Remove this research document?"
-        );
-
-    if (!confirmed) {
-        return;
-    }
-
-
-    websiteData.documents.splice(
-        index,
-        1
-    );
-
-    saveWebsiteData();
-
-    renderWebsite();
-
-}
-
-
-
-/* ================================================================
-   ARTICLE EDITOR
-================================================================ */
-
-function showArticleEditor() {
-
-    openModal(`
-
-        <h3 class="modal-title">
-            Add Newspaper Article
-        </h3>
-
-
-        <div class="form-group">
-
-            <label>
-                Article Title
-            </label>
-
-            <input
-                id="articleTitle"
-                type="text"
-                placeholder="My First Article"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Publication Date
-            </label>
-
-            <input
-                id="articleDate"
-                type="date"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                Article Link
-            </label>
-
-            <input
-                id="articleURL"
-                type="url"
-                placeholder="https://..."
-            >
-
-        </div>
-
-
-        <p class="warning">
-
-            Once you add your first article,
-            the “Coming September 16” message
-            will disappear permanently.
-
-        </p>
-
-
-        <div class="modal-actions">
-
-            <button
-                class="secondary-button"
-                onclick="closeModal()"
-            >
-                Cancel
-            </button>
-
-            <button
-                class="primary-button"
-                onclick="addArticle()"
-            >
-                Add Article
-            </button>
-
-        </div>
-
-    `);
-
-}
-
-
-
-/* ================================================================
-   ADD ARTICLE
-================================================================ */
-
-function addArticle() {
-
-    const title =
-        document
-            .getElementById(
-                "articleTitle"
-            )
-            .value
-            .trim();
-
-
-    const date =
-        document
-            .getElementById(
-                "articleDate"
-            )
-            .value;
-
-
-    let url =
-        document
-            .getElementById(
-                "articleURL"
-            )
-            .value
-            .trim();
-
-
-    if (!title || !url) {
-
-        alert(
-            "Please enter an article title and link."
-        );
-
-        return;
-
-    }
-
-
-    if (
-        !/^https?:\/\//i.test(url)
-    ) {
-
-        url =
-            "https://" + url;
-
-    }
-
-
-    websiteData.articles.push({
-
-        title: title,
-
-        date: date,
-
-        url: url
-
-    });
-
-
-    saveWebsiteData();
-
-    renderWebsite();
-
-    closeModal();
-
-}
-
-
-
-/* ================================================================
-   DELETE ARTICLE
-================================================================ */
-
-function deleteArticle(index) {
-
-    const confirmed =
-        confirm(
-            "Remove this article?"
-        );
-
-    if (!confirmed) {
-        return;
-    }
-
-
-    websiteData.articles.splice(
-        index,
-        1
-    );
-
-
-    saveWebsiteData();
-
-    renderWebsite();
-
-}
-
-
-
-/* ================================================================
-   FILE READER
-================================================================ */
-
-function fileToDataURL(file) {
-
-    return new Promise(
-        (resolve, reject) => {
-
-            const reader =
-                new FileReader();
-
-
-            reader.onload =
-                () => resolve(
-                    reader.result
-                );
-
-
-            reader.onerror =
-                () => reject(
-                    reader.error
-                );
-
-
-            reader.readAsDataURL(
-                file
-            );
-
-        }
-    );
-
-}
-
-
-
-/* ================================================================
-   FORMAT DATE
-================================================================ */
-
-function formatDate(dateString) {
-
-    if (!dateString) {
-        return "";
-    }
-
-
-    const date =
-        new Date(
-            dateString + "T12:00:00"
-        );
-
-
-    if (
-        Number.isNaN(
-            date.getTime()
-        )
-    ) {
-
-        return "";
-
-    }
-
-
-    return date.toLocaleDateString(
-        undefined,
-        {
-            month: "long",
-            day: "numeric",
-            year: "numeric"
-        }
-    );
-
-}
-
-
-
-/* ================================================================
-   RENDER HOMEPAGE
-================================================================ */
-
-function renderHomepage() {
-
-    const name =
-        websiteData.name ||
-        "YOUR NAME";
-
-
-    const bio =
-        websiteData.bio ||
-        defaultData.bio;
-
-
-    document
-        .getElementById(
-            "navigationName"
-        )
-        .textContent =
-        name;
-
-
-    document
-        .getElementById(
-            "footerName"
-        )
-        .textContent =
-        name;
-
-
-    document
-        .getElementById(
-            "homeBio"
-        )
-        .textContent =
-        bio;
-
-
-    const nameParts =
-        name
-            .trim()
-            .split(/\s+/);
-
-
-    let formattedName = "";
-
-
-    if (
-        nameParts.length === 1
-    ) {
-
-        formattedName =
-            escapeHTML(
-                nameParts[0]
-            );
-
-    } else {
-
-        formattedName =
-            escapeHTML(
-                nameParts[0]
-            ) +
-            "<br>" +
-            escapeHTML(
-                nameParts
-                    .slice(1)
-                    .join(" ")
-            );
-
-    }
-
-
-    document
-        .getElementById(
-            "homeName"
-        )
-        .innerHTML =
-        formattedName;
-
-
-    const photoContainer =
-        document.getElementById(
-            "homePhoto"
-        );
-
-
-    if (
-        websiteData.profilePhoto
-    ) {
-
-        photoContainer.innerHTML = `
-
-            <img
-                src="${websiteData.profilePhoto}"
-                alt="${escapeHTML(name)}"
-            >
-
-        `;
-
-    } else {
-
-        photoContainer.innerHTML = `
-
-            <div class="photo-placeholder">
-
-                Your portrait<br>
-                will appear here.
-
-            </div>
-
-        `;
-
-    }
-
-}
-
-
-
-/* ================================================================
-   RENDER PHOTOGRAPHY
-================================================================ */
-
-function renderPhotography() {
-
-    const gallery =
-        document.getElementById(
-            "gallery"
-        );
-
-
-    if (
-        websiteData.photos.length === 0
-    ) {
-
-        gallery.innerHTML = `
-
-            <div class="empty-state">
-
-                Your photography gallery is ready.
-
-                <br><br>
-
-                Click <strong>Edit</strong>
-                to add photographs
-                from your camera roll.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    gallery.innerHTML =
-        websiteData.photos
-            .map(
-                (photo, index) => `
-
-                    <figure
-                        class="gallery-item"
-                    >
-
-                        <img
-                            src="${photo.image}"
-                            alt="${escapeHTML(
-                                photo.name ||
-                                "Photography"
-                            )}"
-                        >
-
-                        <figcaption
-                            class="gallery-caption"
-                        >
-
-                            ${escapeHTML(
-                                photo.name ||
-                                "Untitled photograph"
-                            )}
-
-                            <br>
-
-                            <button
-                                class="delete-button"
-                                onclick="deletePhoto(${index})"
-                            >
-                                Delete
-                            </button>
-
-                        </figcaption>
-
-                    </figure>
-
-                `
-            )
-            .join("");
-
-}
-
-
-
-/* ================================================================
-   RENDER RESEARCH
-================================================================ */
-
-function renderResearch() {
-
-    const grid =
-        document.getElementById(
-            "documentGrid"
-        );
-
-
-    if (
-        websiteData.documents.length === 0
-    ) {
-
-        grid.innerHTML = `
-
-            <div class="empty-state">
-
-                No research documents yet.
-
-                <br><br>
-
-                Click <strong>Edit</strong>
-                to add one.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    grid.innerHTML =
-        websiteData.documents
-            .map(
-                (documentItem, index) => `
-
-                    <article
-                        class="document"
-                    >
-
-                        <h3
-                            class="document-title"
-                        >
-                            ${escapeHTML(
-                                documentItem.title
-                            )}
-                        </h3>
-
-
-                        <p
-                            class="document-description"
-                        >
-                            ${escapeHTML(
-                                documentItem.description
-                            )}
-                        </p>
-
-
-                        <a
-                            class="document-link"
-                            href="${documentItem.file}"
-                            download="${escapeHTML(
-                                documentItem.fileName
-                            )}"
-                        >
-                            Open Document →
-                        </a>
-
-
-                        <br>
-
-
-                        <button
-                            class="delete-button"
-                            onclick="deleteDocument(${index})"
-                        >
-                            Delete
-                        </button>
-
-                    </article>
-
-                `
-            )
-            .join("");
-
-}
-
-
-
-/* ================================================================
-   RENDER ARTICLES
-================================================================ */
-
-function renderArticles() {
-
-    const list =
-        document.getElementById(
-            "articleList"
-        );
-
-
-    /*
-       IMPORTANT:
-
-       We do NOT store a separate "coming soon" variable.
-
-       Therefore:
-
-       0 articles =
-       Coming September 16
-
-       1 or more articles =
-       Coming September 16 disappears.
-
-       It cannot return unless every article is manually deleted,
-       which is why we keep a permanent "has published" flag below.
-    */
-
-
-    if (
-        websiteData.articles.length === 0
-    ) {
-
-        if (
-            localStorage.getItem(
-                "newspaperHasPublishedArticle"
-            ) === "true"
-        ) {
-
-            list.innerHTML = `
-
-                <div class="empty-state">
-
-                    Your published articles will appear here.
-
-                </div>
-
-            `;
-
-        } else {
-
-            list.innerHTML = `
-
-                <div class="coming-soon">
-
-                    Coming September 16 —
-                    school newspaper articles
-                    will appear here.
-
-                </div>
-
-            `;
-
-        }
-
-        return;
-
-    }
-
-
-    /*
-       Once there is an article,
-       permanently remember that publication has started.
-    */
-
-    localStorage.setItem(
-        "newspaperHasPublishedArticle",
-        "true"
-    );
-
-
-    list.innerHTML =
-        websiteData.articles
-            .map(
-                (article, index) => `
-
-                    <article
-                        class="article"
-                    >
-
-                        <div>
-
-                            <h3
-                                class="article-title"
-                            >
-                                ${escapeHTML(
-                                    article.title
-                                )}
-                            </h3>
-
-
-                            <div
-                                class="article-date"
-                            >
-                                ${formatDate(
-                                    article.date
-                                )}
-                            </div>
-
-                        </div>
-
-
-                        <div>
-
-                            <a
-                                class="article-link"
-                                href="${escapeHTML(
-                                    article.url
-                                )}"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                Read Article →
-                            </a>
-
-
-                            <br>
-
-
-                            <button
-                                class="delete-button"
-                                onclick="deleteArticle(${index})"
-                            >
-                                Delete
-                            </button>
-
-                        </div>
-
-                    </article>
-
-                `
-            )
-            .join("");
-
-}
-
-
-
-/* ================================================================
-   RENDER EVERYTHING
-================================================================ */
-
-function renderWebsite() {
-
-    renderHomepage();
-
-    renderPhotography();
-
-    renderResearch();
-
-    renderArticles();
-
-
-    document
-        .getElementById(
-            "currentYear"
-        )
-        .textContent =
-        new Date().getFullYear();
-
-}
-
-
-
-/* ================================================================
-   START WEBSITE
-================================================================ */
-
-renderWebsite();
-
+loadArticles();
 
 </script>
 
-
 </body>
-</html># graysengottman
-My website
+</html>
