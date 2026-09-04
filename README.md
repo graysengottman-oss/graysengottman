@@ -2,2006 +2,2278 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>My Portfolio</title>
-
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+<title>Your Name — Personal Portfolio</title>
+<meta
+    name="description"
+    content="Personal portfolio featuring photography, political research, and newspaper articles."
+>
 <style>
-*{box-sizing:border-box}
-
-:root{
---bg:#f2efe8;
---text:#111;
---muted:#777;
---line:#d4d0c8;
---white:#fff;
+/* =========================================================
+   GLOBAL
+========================================================= */
+:root {
+    --background: #f4f1eb;
+    --paper: #fffdf8;
+    --black: #151515;
+    --gray: #68645e;
+    --light-gray: #d8d3ca;
+    --accent: #9e3027;
+    --white: #ffffff;
+    --max-width: 1250px;
+    --header-height: 78px;
 }
-
-html{scroll-behavior:smooth}
-
-body{
-margin:0;
-background:var(--bg);
-color:var(--text);
-font-family:Arial,Helvetica,sans-serif;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-
-button,input,textarea{font:inherit}
-
-button{cursor:pointer}
-
-header{
-position:sticky;
-top:0;
-z-index:100;
-background:rgba(242,239,232,.94);
-backdrop-filter:blur(18px);
-border-bottom:1px solid var(--line);
+html {
+    scroll-behavior: smooth;
 }
-
-.header{
-max-width:1450px;
-margin:auto;
-padding:18px 30px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:20px;
+body {
+    background: var(--background);
+    color: var(--black);
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+    line-height: 1.5;
 }
-
-.logo{
-font-family:Georgia,serif;
-font-size:25px;
+button,
+input,
+textarea {
+    font-family: inherit;
 }
-
-nav{
-display:flex;
-align-items:center;
-gap:5px;
-flex-wrap:wrap;
+button {
+    cursor: pointer;
 }
-
-nav button{
-background:none;
-border:0;
-padding:9px 11px;
-font-size:10px;
-letter-spacing:1.5px;
-text-transform:uppercase;
+a {
+    color: inherit;
 }
-
-nav button:hover{text-decoration:underline}
-
-.edit-button{
-background:#111!important;
-color:white;
+.container {
+    width:
+        min(
+            var(--max-width),
+            calc(100% - 50px)
+        );
+    margin: auto;
 }
-
-main{
-max-width:1450px;
-margin:auto;
-padding:50px 30px 100px;
+/* =========================================================
+   HEADER
+========================================================= */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    background:
+        rgba(
+            244,
+            241,
+            235,
+            0.95
+        );
+    backdrop-filter: blur(15px);
+    border-bottom:
+        1px solid var(--light-gray);
 }
-
-.page{display:none}
-.page.active{display:block}
-
-.eyebrow{
-font-size:10px;
-letter-spacing:3px;
-text-transform:uppercase;
-color:var(--muted);
-margin-bottom:15px;
+.navbar {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
 }
-
-h1,h2,h3{
-font-family:Georgia,serif;
-font-weight:normal;
+.logo {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    white-space: nowrap;
 }
-
-h1{
-font-size:clamp(60px,10vw,140px);
-line-height:.86;
-letter-spacing:-7px;
-margin:0 0 35px;
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
-
-h2{
-font-size:clamp(50px,8vw,100px);
-line-height:.9;
-letter-spacing:-5px;
-margin:0 0 40px;
+.navigation button {
+    border: none;
+    background: transparent;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: 0.2s;
 }
-
-.hero{
-min-height:76vh;
-display:grid;
-grid-template-columns:1.1fr .9fr;
-gap:70px;
-align-items:center;
+.navigation button:hover {
+    color: var(--accent);
 }
-
-.bio{
-max-width:650px;
-font-size:18px;
-line-height:1.7;
+.mobile-menu-button {
+    display: none;
+    background: transparent;
+    border:
+        1px solid var(--light-gray);
+    padding: 10px 13px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
-
-.profile{
-aspect-ratio:4/5;
-background:#ddd;
-overflow:hidden;
+/* =========================================================
+   HOME
+========================================================= */
+.home {
+    min-height:
+        calc(
+            100vh -
+            var(--header-height)
+        );
+    display: grid;
+    grid-template-columns:
+        1.15fr 0.85fr;
+    gap: 70px;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 100px;
 }
-
-.profile img{
-width:100%;
-height:100%;
-object-fit:cover;
-display:none;
+.eyebrow {
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
 }
-
-.profile-empty{
-height:100%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:10px;
-letter-spacing:2px;
-text-transform:uppercase;
-color:#777;
+.home-title {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size:
+        clamp(
+            60px,
+            9vw,
+            125px
+        );
+    line-height: 0.86;
+    letter-spacing: -7px;
+    margin-bottom: 35px;
 }
-
-.gallery{
-columns:3 280px;
-column-gap:18px;
+.home-bio {
+    max-width: 650px;
+    color: #4e4a44;
+    font-size: 19px;
+    line-height: 1.7;
 }
-
-.photo{
-break-inside:avoid;
-margin-bottom:18px;
-position:relative;
+.home-photo {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: #ded9d0;
+    overflow: hidden;
+    box-shadow:
+        0 25px 60px
+        rgba(0,0,0,0.10);
 }
-
-.photo img{
-width:100%;
-display:block;
+.home-photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
 }
-
-.delete-photo{
-display:none;
-position:absolute;
-right:12px;
-top:12px;
-width:36px;
-height:36px;
-border:0;
-border-radius:50%;
-background:rgba(0,0,0,.8);
-color:#fff;
-font-size:20px;
+.photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    color: #777;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 22px;
 }
-
-.editing .delete-photo{display:block}
-
-.panel{
-display:none;
-border:1px solid #111;
-padding:25px;
-margin-bottom:40px;
+/* =========================================================
+   SECTIONS
+========================================================= */
+section {
+    scroll-margin-top:
+        var(--header-height);
 }
-
-.editing .panel{display:block}
-
-.panel-title{
-font-size:10px;
-text-transform:uppercase;
-letter-spacing:2px;
-margin-bottom:20px;
+.section {
+    border-top:
+        1px solid var(--light-gray);
+    padding: 100px 0;
 }
-
-input,textarea{
-width:100%;
-border:1px solid #aaa;
-background:white;
-padding:13px;
-margin-bottom:15px;
-outline:none;
+.section-header {
+    display: flex;
+    justify-content:
+        space-between;
+    align-items:
+        flex-end;
+    gap: 30px;
+    margin-bottom: 35px;
 }
-
-textarea{
-min-height:130px;
-resize:vertical;
+.section-number {
+    color: var(--gray);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
 }
-
-.primary{
-background:#111;
-color:#fff;
-border:1px solid #111;
-padding:12px 20px;
+.section-title {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size:
+        clamp(
+            45px,
+            6vw,
+            80px
+        );
+    line-height: 0.9;
+    letter-spacing: -4px;
 }
-
-.secondary{
-background:transparent;
-color:#111;
-border:1px solid #111;
-padding:11px 18px;
+.section-description {
+    max-width: 700px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 40px;
 }
-
-.count{
-font-size:11px;
-color:#777;
-margin-top:12px;
+.edit-button {
+    border: none;
+    background: transparent;
+    color: var(--black);
+    padding: 10px 0;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-bottom:
+        1px solid var(--black);
+    transition: 0.2s;
 }
-
-.article{
-display:grid;
-grid-template-columns:150px 1fr auto;
-gap:30px;
-align-items:center;
-border-top:1px solid #111;
-padding:30px 0;
+.edit-button:hover {
+    color: var(--accent);
+    border-color:
+        var(--accent);
 }
-
-.article-date{
-font-size:10px;
-letter-spacing:2px;
-text-transform:uppercase;
-color:#777;
+/* =========================================================
+   PHOTOGRAPHY
+========================================================= */
+.gallery {
+    columns: 3 280px;
+    column-gap: 18px;
 }
-
-.article-title{
-font-family:Georgia,serif;
-font-size:clamp(25px,4vw,45px);
+.gallery-item {
+    break-inside: avoid;
+    margin-bottom: 18px;
+    background: var(--paper);
 }
-
-.article-actions{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
+.gallery-item img {
+    width: 100%;
+    display: block;
+    height: auto;
 }
-
-.coming{
-border-top:1px solid #111;
-border-bottom:1px solid #111;
-padding:70px 0;
+.gallery-caption {
+    padding: 12px 14px;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 14px;
 }
-
-.coming h3{
-font-size:clamp(45px,8vw,100px);
-letter-spacing:-5px;
-margin:0;
+.empty-state {
+    border:
+        1px dashed #bcb6ad;
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            0.3
+        );
+    padding: 60px 30px;
+    text-align: center;
+    color: var(--gray);
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 20px;
 }
-
-.document{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:20px;
-border-top:1px solid #111;
-padding:25px 0;
+/* =========================================================
+   RESEARCH
+========================================================= */
+.document-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, 1fr);
+    gap: 18px;
 }
-
-.document-title{
-font-family:Georgia,serif;
-font-size:25px;
+.document {
+    background: var(--paper);
+    border:
+        1px solid var(--light-gray);
+    padding: 28px;
 }
-
-footer{
-max-width:1450px;
-margin:auto;
-border-top:1px solid #111;
-padding:25px 30px;
-display:flex;
-justify-content:space-between;
-font-size:10px;
-text-transform:uppercase;
-letter-spacing:2px;
+.document-title {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 24px;
+    margin-bottom: 10px;
 }
-
-.modal{
-position:fixed;
-inset:0;
-z-index:500;
-display:none;
-align-items:center;
-justify-content:center;
-padding:20px;
-background:rgba(0,0,0,.65);
+.document-description {
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
-
-.modal.open{display:flex}
-
-.modal-box{
-width:min(600px,100%);
-max-height:90vh;
-overflow:auto;
-background:var(--bg);
-padding:35px;
+.document-link {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    border-bottom:
+        1px solid var(--black);
+    padding-bottom: 3px;
 }
-
-.modal-box h2{
-font-size:55px;
-margin-bottom:25px;
+/* =========================================================
+   ARTICLES
+========================================================= */
+.article-list {
+    display: grid;
+    gap: 15px;
 }
-
-.error{
-display:none;
-color:#a00000;
-font-size:12px;
-margin-bottom:15px;
+.article {
+    background: var(--paper);
+    border:
+        1px solid var(--light-gray);
+    padding: 25px 28px;
+    display: flex;
+    justify-content:
+        space-between;
+    align-items: center;
+    gap: 30px;
 }
-
-@media(max-width:750px){
-
-.header{
-padding:15px;
-flex-wrap:wrap;
+.article-title {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 25px;
+    margin-bottom: 5px;
 }
-
-nav{
-width:100%;
-justify-content:space-between;
+.article-date {
+    color: var(--gray);
+    font-size: 13px;
 }
-
-nav button{
-font-size:8px;
-padding:7px 4px;
+.article-link {
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom:
+        1px solid var(--black);
+    padding-bottom: 4px;
 }
-
-main{
-padding:35px 15px 70px;
+.coming-soon {
+    padding: 35px 0;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 23px;
+    font-style: italic;
+    color: var(--gray);
 }
-
-.hero{
-grid-template-columns:1fr;
-gap:35px;
+/* =========================================================
+   FOOTER
+========================================================= */
+footer {
+    border-top:
+        1px solid var(--light-gray);
+    padding: 45px 0;
+    color: var(--gray);
+    font-size: 12px;
 }
-
-.profile{order:-1}
-
-h1{
-font-size:65px;
-letter-spacing:-4px;
+.footer-content {
+    display: flex;
+    justify-content:
+        space-between;
+    gap: 20px;
 }
-
-h2{
-font-size:55px;
-letter-spacing:-3px;
+/* =========================================================
+   MODAL
+========================================================= */
+.modal-background {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    background:
+        rgba(
+            15,
+            15,
+            15,
+            0.65
+        );
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
-
-.gallery{
-columns:2 130px;
-column-gap:8px;
+.modal-background.active {
+    display: flex;
 }
-
-.photo{
-margin-bottom:8px;
+.modal {
+    width:
+        min(
+            600px,
+            100%
+        );
+    max-height: 90vh;
+    overflow-y: auto;
+    background:
+        var(--background);
+    padding: 35px;
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,0.3);
 }
-
-.article{
-grid-template-columns:1fr;
-gap:12px;
+.modal-title {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    font-size: 36px;
+    margin-bottom: 25px;
 }
-
-.document{
-display:block;
+.form-group {
+    margin-bottom: 20px;
 }
-
-footer{
-padding:20px 15px;
-display:block;
+.form-group label {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
 }
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    border:
+        1px solid var(--light-gray);
+    background: var(--white);
+    padding: 13px;
+    font-size: 15px;
+    outline: none;
+}
+.form-group textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+.modal-actions {
+    display: flex;
+    justify-content:
+        flex-end;
+    gap: 10px;
+    margin-top: 25px;
+}
+.primary-button,
+.secondary-button {
+    padding: 12px 18px;
+    border:
+        1px solid var(--black);
+    font-size: 12px;
+    font-weight: bold;
+}
+.primary-button {
+    background:
+        var(--black);
+    color:
+        var(--white);
+}
+.secondary-button {
+    background:
+        transparent;
+    color:
+        var(--black);
+}
+.warning {
+    color:
+        var(--accent);
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 10px;
+}
+/* =========================================================
+   DELETE
+========================================================= */
+.delete-button {
+    border: none;
+    background: transparent;
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+/* =========================================================
+   STATUS
+========================================================= */
+.save-status {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 6000;
+    background: var(--black);
+    color: white;
+    padding: 10px 15px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    opacity: 0;
+    transform:
+        translateY(10px);
+    pointer-events: none;
+    transition: 0.25s;
+}
+.save-status.show {
+    opacity: 1;
+    transform:
+        translateY(0);
+}
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 850px) {
+    .container {
+        width:
+            min(
+                100% - 35px,
+                var(--max-width)
+            );
+    }
+    .home {
+        grid-template-columns: 1fr;
+        gap: 45px;
+        padding-top: 60px;
+    }
+    .home-photo {
+        max-width: 650px;
+    }
+    .document-grid {
+        grid-template-columns: 1fr;
+    }
+    .navigation {
+        display: none;
+        position: absolute;
+        top:
+            var(--header-height);
+        left: 0;
+        right: 0;
+        background:
+            var(--background);
+        border-bottom:
+            1px solid var(--light-gray);
+        padding: 10px 20px;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .navigation.open {
+        display: flex;
+    }
+    .navigation button {
+        text-align: left;
+        padding: 14px;
+    }
+    .mobile-menu-button {
+        display: block;
+    }
+}
+@media (max-width: 600px) {
+    :root {
+        --header-height: 65px;
+    }
+    .container {
+        width:
+            calc(100% - 28px);
+    }
+    .home {
+        padding-top: 45px;
+        padding-bottom: 70px;
+    }
+    .home-title {
+        font-size: 62px;
+        letter-spacing: -4px;
+    }
+    .home-bio {
+        font-size: 17px;
+    }
+    .section {
+        padding: 70px 0;
+    }
+    .section-header {
+        align-items:
+            flex-start;
+        flex-direction:
+            column;
+        gap: 20px;
+    }
+    .section-title {
+        font-size: 48px;
+        letter-spacing: -3px;
+    }
+    .gallery {
+        columns: 1;
+    }
+    .article {
+        flex-direction:
+            column;
+        align-items:
+            flex-start;
+    }
+    .article-link {
+        white-space:
+            normal;
+    }
+    .footer-content {
+        flex-direction:
+            column;
+    }
+    .modal {
+        padding: 25px;
+    }
 }
 </style>
 </head>
-
 <body>
-
+<!-- =========================================================
+     HEADER
+========================================================= -->
 <header>
-<div class="header">
-
-<div class="logo" id="logo">Portfolio</div>
-
-<nav>
-<button onclick="showPage('home')">Home</button>
-<button onclick="showPage('photography')">Photography</button>
-<button onclick="showPage('research')">Research</button>
-<button onclick="showPage('newspaper')">Newspaper</button>
-<button class="edit-button" onclick="editButton()">Edit</button>
+<div class="container navbar">
+<div
+    class="logo"
+    id="navigationName"
+>
+    YOUR NAME
+</div>
+<button
+    class="mobile-menu-button"
+    onclick="toggleMobileMenu()"
+>
+    MENU
+</button>
+<nav
+    class="navigation"
+    id="navigation"
+>
+<button onclick="goToSection('home')">
+    Home
+</button>
+<button onclick="goToSection('photography')">
+    Photography
+</button>
+<button onclick="goToSection('research')">
+    Political Research
+</button>
+<button onclick="goToSection('articles')">
+    Newspaper
+</button>
 </nav>
-
 </div>
 </header>
-
-
+<!-- =========================================================
+     HOME
+========================================================= -->
 <main>
-
-<!-- HOME -->
-
-<section id="home" class="page active">
-
-<div class="hero">
-
+<section id="home">
+<div class="container home">
 <div>
-
 <div class="eyebrow">
-Photographer · Researcher · Writer
+    Portfolio / Journal / Work
 </div>
-
-<h1 id="name">Your Name</h1>
-
-<p class="bio" id="bio">
-Welcome to my personal portfolio.
+<h1
+    class="home-title"
+    id="homeName"
+>
+    YOUR<br>
+    NAME
+</h1>
+<p
+    class="home-bio"
+    id="homeBio"
+>
+    Write your biography here. Talk about who you are,
+    what you care about, and the work you are creating.
 </p>
-
-</div>
-
-<div class="profile">
-
-<img id="profilePhoto">
-
-<div id="profileEmpty" class="profile-empty">
-Profile Photo
-</div>
-
-</div>
-
-</div>
-
-<div class="panel">
-
-<div class="panel-title">
-Edit Home
-</div>
-
-<input id="nameInput" placeholder="Your name">
-
-<textarea id="bioInput"
-placeholder="Your biography"></textarea>
-
-<input id="profileInput"
-type="file"
-accept="image/*">
-
-<button class="primary" onclick="saveHome()">
-Save Home
+<br>
+<button
+    class="edit-button"
+    onclick="startEditing('home')"
+>
+    Edit
 </button>
-
 </div>
-
+<div
+    class="home-photo"
+    id="homePhoto"
+>
+<div class="photo-placeholder">
+    Your portrait<br>
+    will appear here.
+</div>
+</div>
+</div>
 </section>
-
-
-<!-- PHOTOGRAPHY -->
-
-<section id="photography" class="page">
-
-<div class="eyebrow">01 / Visual Archive</div>
-
-<h2>Photography</h2>
-
-<div class="panel">
-
-<div class="panel-title">
-Add Photography
-</div>
-
-<input
-id="photoInput"
-type="file"
-accept="image/*"
-multiple
+<!-- =========================================================
+     PHOTOGRAPHY
+========================================================= -->
+<section
+    class="section"
+    id="photography"
 >
-
-<button class="primary"
-onclick="uploadPhotos()">
-Upload Photos
+<div class="container">
+<div class="section-header">
+<div>
+<div class="section-number">
+    01 / VISUAL WORK
+</div>
+<h2 class="section-title">
+    Photography
+</h2>
+</div>
+<button
+    class="edit-button"
+    onclick="startEditing('photography')"
+>
+    Edit
 </button>
-
-<div class="count" id="photoCount">
-0 / 25 photos
 </div>
-
-</div>
-
-<div id="gallery" class="gallery"></div>
-
-</section>
-
-
-<!-- RESEARCH -->
-
-<section id="research" class="page">
-
-<div class="eyebrow">
-02 / Political Archive
-</div>
-
-<h2>Research</h2>
-
-<div class="panel">
-
-<div class="panel-title">
-Add Research Document
-</div>
-
-<input
-id="researchTitle"
-placeholder="Document title"
->
-
-<input
-id="researchFile"
-type="file"
-accept=".pdf,.doc,.docx,.txt"
->
-
-<button class="primary"
-onclick="uploadResearch()">
-Add Document
-</button>
-
-</div>
-
-<div id="researchList"></div>
-
-</section>
-
-
-<!-- NEWSPAPER -->
-
-<section id="newspaper" class="page">
-
-<div class="eyebrow">
-03 / School Newspaper
-</div>
-
-<h2>Articles</h2>
-
-<div class="panel">
-
-<div class="panel-title">
-Add Article
-</div>
-
-<input
-id="articleTitle"
-placeholder="Article title"
->
-
-<input
-id="articleDate"
-placeholder="September 20, 2026"
->
-
-<input
-id="articleURL"
-placeholder="https://your-article.com"
->
-
-<button class="primary"
-onclick="addArticle()">
-Publish Article
-</button>
-
-</div>
-
-
-<div id="coming" class="coming">
-
-<div class="eyebrow">
-First edition
-</div>
-
-<h3>Coming September 16</h3>
-
-<p>
-School newspaper articles will appear here.
+<p class="section-description">
+A visual archive of photographs, places, people,
+ideas and moments.
 </p>
-
+<div
+    class="gallery"
+    id="gallery"
+>
+<div class="empty-state">
+Your photography gallery is ready.
+<br><br>
+Click <strong>Edit</strong> to add photographs
+from your camera roll.
 </div>
-
-<div id="articleList"></div>
-
+</div>
+</div>
 </section>
-
+<!-- =========================================================
+     RESEARCH
+========================================================= -->
+<section
+    class="section"
+    id="research"
+>
+<div class="container">
+<div class="section-header">
+<div>
+<div class="section-number">
+    02 / NOTES & SOURCES
+</div>
+<h2 class="section-title">
+    Political<br>
+    Research
+</h2>
+</div>
+<button
+    class="edit-button"
+    onclick="startEditing('research')"
+>
+    Edit
+</button>
+</div>
+<p class="section-description">
+Research documents, notes, sources and projects.
+Use this section as your personal research archive.
+</p>
+<div
+    class="document-grid"
+    id="documentGrid"
+>
+<div class="empty-state">
+No research documents yet.
+<br><br>
+Click <strong>Edit</strong> to add one.
+</div>
+</div>
+</div>
+</section>
+<!-- =========================================================
+     NEWSPAPER
+========================================================= -->
+<section
+    class="section"
+    id="articles"
+>
+<div class="container">
+<div class="section-header">
+<div>
+<div class="section-number">
+    03 / SCHOOL NEWSPAPER
+</div>
+<h2 class="section-title">
+    Articles
+</h2>
+</div>
+<button
+    class="edit-button"
+    onclick="startEditing('articles')"
+>
+    Edit
+</button>
+</div>
+<p class="section-description">
+Published writing and reporting from the school newspaper.
+</p>
+<div
+    class="article-list"
+    id="articleList"
+>
+</div>
+</div>
+</section>
 </main>
-
-
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 <footer>
-
+<div class="container footer-content">
 <span id="footerName">
-Your Name
+    YOUR NAME
 </span>
-
 <span>
-Personal Archive
+©
+<span id="currentYear"></span>
+— Personal Portfolio
 </span>
-
+</div>
 </footer>
-
-
-<!-- EDIT CODE -->
-
-<div id="codeModal" class="modal">
-
-<div class="modal-box">
-
-<div class="eyebrow">
-Private Editor
-</div>
-
-<h2>Enter Code</h2>
-
-<input
-id="codeInput"
-type="password"
-maxlength="4"
-inputmode="numeric"
-placeholder="••••"
+<!-- =========================================================
+     MODAL
+========================================================= -->
+<div
+    class="modal-background"
+    id="modalBackground"
 >
-
-<div id="codeError" class="error">
-Incorrect code.
+<div
+    class="modal"
+    id="modal"
+>
 </div>
-
-<button class="primary"
-onclick="checkCode()">
-Enter
-</button>
-
-<button class="secondary"
-onclick="closeCode()">
-Cancel
-</button>
-
 </div>
-
+<!-- =========================================================
+     SAVE STATUS
+========================================================= -->
+<div
+    class="save-status"
+    id="saveStatus"
+>
+    SAVED
 </div>
-
-
 <script>
-
-/* =====================================================
-   IMPORTANT SETTINGS
-===================================================== */
-
 /*
-   PUT YOUR SUPABASE INFORMATION HERE.
-
-   Do NOT change anything else until these are entered.
+===============================================================
+                  PORTFOLIO SYSTEM
+===============================================================
+EDIT CODE:
+4547
+PHOTO LIMIT:
+25
+STORAGE:
+IndexedDB
+NO OUTSIDE STORAGE SERVICE.
+PHOTOS ARE AUTOMATICALLY COMPRESSED.
+===============================================================
 */
-
-const SUPABASE_URL =
-"PASTE_YOUR_SUPABASE_URL_HERE";
-
-const SUPABASE_KEY =
-"PASTE_YOUR_SUPABASE_ANON_KEY_HERE";
-
-
-/* YOUR EDIT CODE */
-
 const EDIT_CODE = "4547";
-
-
-/* MAXIMUM PHOTOS */
-
-const MAX_PHOTOS = 25;
-
-
-/* =====================================================
-   STATE
-===================================================== */
-
-let editing = false;
-
-
-/* =====================================================
-   PAGE SWITCHING
-===================================================== */
-
-function showPage(id){
-
-document
-.querySelectorAll(".page")
-.forEach(page=>{
-page.classList.remove("active");
-});
-
-document
-.getElementById(id)
-.classList.add("active");
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-/* =====================================================
-   EDIT BUTTON
-===================================================== */
-
-function editButton(){
-
-if(editing){
-
-editing=false;
-
-document.body.classList.remove("editing");
-
-return;
-
-}
-
-document
-.getElementById("codeModal")
-.classList.add("open");
-
-document
-.getElementById("codeInput")
-.focus();
-
-}
-
-
-function checkCode(){
-
-const code =
-document
-.getElementById("codeInput")
-.value;
-
-if(code === EDIT_CODE){
-
-editing=true;
-
-document.body.classList.add("editing");
-
-closeCode();
-
-}else{
-
-document
-.getElementById("codeError")
-.style.display="block";
-
-}
-
-}
-
-
-function closeCode(){
-
-document
-.getElementById("codeModal")
-.classList.remove("open");
-
-document
-.getElementById("codeError")
-.style.display="none";
-
-document
-.getElementById("codeInput")
-.value="";
-
-}
-
-
-/* =====================================================
-   SUPABASE REQUEST
-===================================================== */
-
-async function dbRequest(
-endpoint,
-options={}
-){
-
-if(
-SUPABASE_URL.includes("PASTE_") ||
-SUPABASE_KEY.includes("PASTE_")
-){
-
-throw new Error(
-"Supabase has not been connected yet."
-);
-
-}
-
-const response =
-await fetch(
-SUPABASE_URL +
-"/rest/v1/" +
-endpoint,
-{
-
-...options,
-
-headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":
-"Bearer "+SUPABASE_KEY,
-"Content-Type":
-"application/json",
-...(options.headers||{})
-}
-
-}
-);
-
-if(!response.ok){
-
-const text =
-await response.text();
-
-throw new Error(text);
-
-}
-
-if(response.status===204)
-return null;
-
-return response.json();
-
-}
-
-
-/* =====================================================
-   IMAGE COMPRESSION
-===================================================== */
-
-function compressImage(file){
-
-return new Promise(
-(resolve,reject)=>{
-
-const reader =
-new FileReader();
-
-reader.onload =
-event=>{
-
-const image =
-new Image();
-
-image.onload=()=>{
-
-let width=image.width;
-let height=image.height;
-
-const max=1800;
-
-if(width>max || height>max){
-
-if(width>height){
-
-height =
-height*max/width;
-
-width=max;
-
-}else{
-
-width =
-width*max/height;
-
-height=max;
-
-}
-
-}
-
-const canvas =
-document.createElement("canvas");
-
-canvas.width =
-Math.round(width);
-
-canvas.height =
-Math.round(height);
-
-const ctx =
-canvas.getContext("2d");
-
-ctx.drawImage(
-image,
-0,
-0,
-canvas.width,
-canvas.height
-);
-
-canvas.toBlob(
-blob=>{
-
-if(blob) resolve(blob);
-else reject(
-new Error("Compression failed")
-);
-
-},
-"image/jpeg",
-.82
-);
-
+const PHOTO_LIMIT = 25;
+const DB_NAME =
+    "PersonalPortfolioDatabase";
+const DB_VERSION = 1;
+const STORE_NAME =
+    "portfolio";
+const DATA_KEY =
+    "websiteData";
+const defaultData = {
+    name:
+        "YOUR NAME",
+    bio:
+        "Write your biography here. Talk about who you are, " +
+        "what you care about, and the work you are creating.",
+    profilePhoto:
+        "",
+    photos:
+        [],
+    documents:
+        [],
+    articles:
+        []
 };
-
-image.onerror=reject;
-
-image.src=event.target.result;
-
-};
-
-reader.onerror=reject;
-
-reader.readAsDataURL(file);
-
-});
-
+let websiteData =
+    null;
+/* =========================================================
+   DATABASE
+========================================================= */
+function openDatabase() {
+    return new Promise(
+        (resolve, reject) => {
+            const request =
+                indexedDB.open(
+                    DB_NAME,
+                    DB_VERSION
+                );
+            request.onupgradeneeded =
+                function(event) {
+                    const db =
+                        event.target.result;
+                    if (
+                        !db.objectStoreNames.contains(
+                            STORE_NAME
+                        )
+                    ) {
+                        db.createObjectStore(
+                            STORE_NAME
+                        );
+                    }
+                };
+            request.onsuccess =
+                function() {
+                    resolve(
+                        request.result
+                    );
+                };
+            request.onerror =
+                function() {
+                    reject(
+                        request.error
+                    );
+                };
+        }
+    );
 }
-
-
-/* =====================================================
-   UPLOAD FILE TO SUPABASE STORAGE
-===================================================== */
-
-async function uploadStorage(
-bucket,
-path,
-file
-){
-
-const response =
-await fetch(
-
-SUPABASE_URL +
-"/storage/v1/object/" +
-bucket +
-"/" +
-path,
-
-{
-
-method:"POST",
-
-headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":
-"Bearer "+SUPABASE_KEY,
-"Content-Type":
-file.type || "application/octet-stream"
-},
-
-body:file
-
+/* =========================================================
+   LOAD DATA
+========================================================= */
+async function loadWebsiteData() {
+    try {
+        const db =
+            await openDatabase();
+        return await new Promise(
+            (resolve, reject) => {
+                const transaction =
+                    db.transaction(
+                        STORE_NAME,
+                        "readonly"
+                    );
+                const store =
+                    transaction.objectStore(
+                        STORE_NAME
+                    );
+                const request =
+                    store.get(
+                        DATA_KEY
+                    );
+                request.onsuccess =
+                    function() {
+                        const saved =
+                            request.result;
+                        if (!saved) {
+                            resolve({
+                                ...defaultData
+                            });
+                            return;
+                        }
+                        resolve({
+                            ...defaultData,
+                            ...saved,
+                            photos:
+                                Array.isArray(
+                                    saved.photos
+                                )
+                                    ? saved.photos
+                                    : [],
+                            documents:
+                                Array.isArray(
+                                    saved.documents
+                                )
+                                    ? saved.documents
+                                    : [],
+                            articles:
+                                Array.isArray(
+                                    saved.articles
+                                )
+                                    ? saved.articles
+                                    : []
+                        });
+                    };
+                request.onerror =
+                    function() {
+                        reject(
+                            request.error
+                        );
+                    };
+            }
+        );
+    } catch (error) {
+        console.error(
+            error
+        );
+        return {
+            ...defaultData
+        };
+    }
 }
-
-);
-
-if(!response.ok){
-
-throw new Error(
-await response.text()
-);
-
+/* =========================================================
+   SAVE DATA
+========================================================= */
+async function saveWebsiteData() {
+    try {
+        const db =
+            await openDatabase();
+        await new Promise(
+            (resolve, reject) => {
+                const transaction =
+                    db.transaction(
+                        STORE_NAME,
+                        "readwrite"
+                    );
+                const store =
+                    transaction.objectStore(
+                        STORE_NAME
+                    );
+                const request =
+                    store.put(
+                        websiteData,
+                        DATA_KEY
+                    );
+                request.onsuccess =
+                    () => resolve();
+                request.onerror =
+                    () => reject(
+                        request.error
+                    );
+            }
+        );
+        showSaved();
+    } catch (error) {
+        console.error(
+            "Save failed:",
+            error
+        );
+        alert(
+            "The change could not be saved. " +
+            "Try using smaller files."
+        );
+    }
 }
-
-return response.json();
-
+/* =========================================================
+   SAVED MESSAGE
+========================================================= */
+let saveTimer;
+function showSaved() {
+    const status =
+        document.getElementById(
+            "saveStatus"
+        );
+    status.classList.add(
+        "show"
+    );
+    clearTimeout(
+        saveTimer
+    );
+    saveTimer =
+        setTimeout(
+            function() {
+                status.classList.remove(
+                    "show"
+                );
+            },
+            1800
+        );
 }
-
-
-/* =====================================================
-   PUBLIC FILE URL
-===================================================== */
-
-function publicFile(
-bucket,
-path
-){
-
-return (
-SUPABASE_URL +
-"/storage/v1/object/public/" +
-bucket +
-"/" +
-path
-);
-
+/* =========================================================
+   NAVIGATION
+========================================================= */
+function goToSection(sectionID) {
+    const section =
+        document.getElementById(
+            sectionID
+        );
+    if (!section) {
+        return;
+    }
+    section.scrollIntoView({
+        behavior: "smooth"
+    });
+    document
+        .getElementById(
+            "navigation"
+        )
+        .classList.remove(
+            "open"
+        );
 }
-
-
-/* =====================================================
-   PHOTOGRAPHY
-===================================================== */
-
-async function uploadPhotos(){
-
-if(!editing){
-
-alert("Enter 4547 first.");
-
-return;
-
+function toggleMobileMenu() {
+    document
+        .getElementById(
+            "navigation"
+        )
+        .classList.toggle(
+            "open"
+        );
 }
-
-const input =
-document.getElementById("photoInput");
-
-const files =
-Array.from(input.files);
-
-if(!files.length){
-
-alert("Choose photos first.");
-
-return;
-
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+function escapeHTML(value) {
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
 }
-
-
-const current =
-await dbRequest(
-"photos?select=id"
-);
-
-if(
-current.length + files.length >
-MAX_PHOTOS
-){
-
-alert(
-"You can have a maximum of 25 photos."
-);
-
-return;
-
+/* =========================================================
+   MODAL
+========================================================= */
+function openModal(content) {
+    document
+        .getElementById(
+            "modal"
+        )
+        .innerHTML =
+        content;
+    document
+        .getElementById(
+            "modalBackground"
+        )
+        .classList.add(
+            "active"
+        );
 }
-
-
-try{
-
-for(const file of files){
-
-const compressed =
-await compressImage(file);
-
-const filename =
-Date.now()+"-"+Math.random()
-.toString(36)
-.substring(2)+".jpg";
-
-
-await uploadStorage(
-"photos",
-filename,
-compressed
-);
-
-
-await dbRequest(
-"photos",
-{
-
-method:"POST",
-
-body:JSON.stringify({
-
-filename:filename,
-
-url:publicFile(
-"photos",
-filename
-),
-
-created_at:
-new Date().toISOString()
-
-})
-
+function closeModal() {
+    document
+        .getElementById(
+            "modalBackground"
+        )
+        .classList.remove(
+            "active"
+        );
 }
-);
-
-}
-
-input.value="";
-
-await loadPhotos();
-
-alert("Photos published.");
-
-}catch(error){
-
-console.error(error);
-
-alert(
-"Could not upload photos. Check your storage setup."
-);
-
-}
-
-}
-
-
-/* =====================================================
-   LOAD PHOTOS
-===================================================== */
-
-async function loadPhotos(){
-
-try{
-
-const photos =
-await dbRequest(
-"photos?select=*&order=created_at.desc"
-);
-
-const gallery =
-document.getElementById("gallery");
-
-gallery.innerHTML="";
-
-
-photos.forEach(photo=>{
-
-const card =
-document.createElement("div");
-
-card.className="photo";
-
-
-const image =
-document.createElement("img");
-
-image.src=photo.url;
-
-image.loading="lazy";
-
-
-const deleteButton =
-document.createElement("button");
-
-deleteButton.className=
-"delete-photo";
-
-deleteButton.textContent="×";
-
-deleteButton.onclick=()=>{
-deletePhoto(photo);
-};
-
-
-card.appendChild(image);
-card.appendChild(deleteButton);
-
-gallery.appendChild(card);
-
-});
-
-
 document
-.getElementById("photoCount")
-.textContent=
-photos.length+
-" / "+
-MAX_PHOTOS+
-" photos";
-
-}catch(error){
-
-console.error(error);
-
+    .getElementById(
+        "modalBackground"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+            if (
+                event.target.id ===
+                "modalBackground"
+            ) {
+                closeModal();
+            }
+        }
+    );
+/* =========================================================
+   EDIT LOGIN
+========================================================= */
+function startEditing(page) {
+    const code =
+        prompt(
+            "Enter your 4-digit edit code:"
+        );
+    if (code === null) {
+        return;
+    }
+    if (code !== EDIT_CODE) {
+        alert(
+            "Incorrect edit code."
+        );
+        return;
+    }
+    if (page === "home") {
+        showHomeEditor();
+    }
+    if (page === "photography") {
+        showPhotographyEditor();
+    }
+    if (page === "research") {
+        showResearchEditor();
+    }
+    if (page === "articles") {
+        showArticleEditor();
+    }
 }
-
+/* =========================================================
+   HOME EDITOR
+========================================================= */
+function showHomeEditor() {
+    openModal(`
+        <h3 class="modal-title">
+            Edit Homepage
+        </h3>
+        <div class="form-group">
+            <label>
+                Your Name
+            </label>
+            <input
+                id="editName"
+                type="text"
+                value="${escapeHTML(
+                    websiteData.name
+                )}"
+                placeholder="Your Name"
+            >
+        </div>
+        <div class="form-group">
+            <label>
+                Biography
+            </label>
+            <textarea
+                id="editBio"
+                placeholder="Write your bio..."
+            >${escapeHTML(
+                websiteData.bio
+            )}</textarea>
+        </div>
+        <div class="form-group">
+            <label>
+                Profile Photo
+            </label>
+            <input
+                id="editProfilePhoto"
+                type="file"
+                accept="image/*"
+            >
+        </div>
+        <p class="warning">
+            Photos are automatically compressed
+            before being saved.
+        </p>
+        <div class="modal-actions">
+            <button
+                class="secondary-button"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+            <button
+                class="primary-button"
+                onclick="saveHomepage()"
+            >
+                Save Changes
+            </button>
+        </div>
+    `);
 }
-
-
-/* =====================================================
+/* =========================================================
+   SAVE HOME
+========================================================= */
+async function saveHomepage() {
+    const name =
+        document
+            .getElementById(
+                "editName"
+            )
+            .value
+            .trim();
+    const bio =
+        document
+            .getElementById(
+                "editBio"
+            )
+            .value
+            .trim();
+    const photoInput =
+        document.getElementById(
+            "editProfilePhoto"
+        );
+    websiteData.name =
+        name ||
+        "YOUR NAME";
+    websiteData.bio =
+        bio ||
+        defaultData.bio;
+    if (
+        photoInput.files &&
+        photoInput.files.length > 0
+    ) {
+        try {
+            websiteData.profilePhoto =
+                await compressImage(
+                    photoInput.files[0],
+                    1600,
+                    0.78
+                );
+        } catch (error) {
+            alert(
+                "The profile photo could not be processed."
+            );
+            return;
+        }
+    }
+    await saveWebsiteData();
+    renderWebsite();
+    closeModal();
+}
+/* =========================================================
+   COMPRESS PHOTOS
+========================================================= */
+function compressImage(
+    file,
+    maxSize = 1600,
+    quality = 0.78
+) {
+    return new Promise(
+        (resolve, reject) => {
+            const reader =
+                new FileReader();
+            reader.onload =
+                function(event) {
+                    const image =
+                        new Image();
+                    image.onload =
+                        function() {
+                            let width =
+                                image.width;
+                            let height =
+                                image.height;
+                            if (
+                                width >
+                                maxSize ||
+                                height >
+                                maxSize
+                            ) {
+                                if (
+                                    width >
+                                    height
+                                ) {
+                                    height =
+                                        Math.round(
+                                            height *
+                                            maxSize /
+                                            width
+                                        );
+                                    width =
+                                        maxSize;
+                                } else {
+                                    width =
+                                        Math.round(
+                                            width *
+                                            maxSize /
+                                            height
+                                        );
+                                    height =
+                                        maxSize;
+                                }
+                            }
+                            const canvas =
+                                document.createElement(
+                                    "canvas"
+                                );
+                            canvas.width =
+                                width;
+                            canvas.height =
+                                height;
+                            const context =
+                                canvas.getContext(
+                                    "2d"
+                                );
+                            context.drawImage(
+                                image,
+                                0,
+                                0,
+                                width,
+                                height
+                            );
+                            const compressed =
+                                canvas.toDataURL(
+                                    "image/jpeg",
+                                    quality
+                                );
+                            resolve(
+                                compressed
+                            );
+                        };
+                    image.onerror =
+                        function() {
+                            reject(
+                                new Error(
+                                    "Image failed."
+                                )
+                            );
+                        };
+                    image.src =
+                        event.target.result;
+                };
+            reader.onerror =
+                function() {
+                    reject(
+                        reader.error
+                    );
+                };
+            reader.readAsDataURL(
+                file
+            );
+        }
+    );
+}
+/* =========================================================
+   PHOTOGRAPHY EDITOR
+========================================================= */
+function showPhotographyEditor() {
+    const used =
+        websiteData.photos.length;
+    const remaining =
+        PHOTO_LIMIT -
+        used;
+    openModal(`
+        <h3 class="modal-title">
+            Add Photography
+        </h3>
+        <p style="
+            margin-bottom:20px;
+            color:#68645e;
+        ">
+            ${used}
+            / ${PHOTO_LIMIT}
+            photos used.
+        </p>
+        <div class="form-group">
+            <label>
+                Choose Photos
+            </label>
+            <input
+                id="photoFiles"
+                type="file"
+                accept="image/*"
+                multiple
+                ${remaining <= 0
+                    ? "disabled"
+                    : ""}
+            >
+        </div>
+        <p class="warning">
+            Every photo is automatically resized
+            and compressed before saving.
+        </p>
+        ${
+            remaining <= 0
+            ?
+            `
+            <p class="warning">
+                You have reached the 25-photo limit.
+                Delete a photo to add another.
+            </p>
+            `
+            :
+            `
+            <p style="
+                color:#68645e;
+                font-size:12px;
+            ">
+                You can add
+                ${remaining}
+                more photo${
+                    remaining === 1
+                    ? ""
+                    : "s"
+                }.
+            </p>
+            `
+        }
+        <div class="modal-actions">
+            <button
+                class="secondary-button"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+            <button
+                class="primary-button"
+                onclick="addPhotography()"
+                ${
+                    remaining <= 0
+                    ? "disabled"
+                    : ""
+                }
+            >
+                Add Photos
+            </button>
+        </div>
+    `);
+}
+/* =========================================================
+   ADD PHOTOS
+========================================================= */
+async function addPhotography() {
+    const input =
+        document.getElementById(
+            "photoFiles"
+        );
+    const files =
+        Array.from(
+            input.files || []
+        );
+    if (
+        files.length === 0
+    ) {
+        alert(
+            "Please choose at least one photo."
+        );
+        return;
+    }
+    const available =
+        PHOTO_LIMIT -
+        websiteData.photos.length;
+    if (
+        files.length >
+        available
+    ) {
+        alert(
+            "You can only add " +
+            available +
+            " more photo" +
+            (
+                available === 1
+                ? ""
+                : "s"
+            ) +
+            "."
+        );
+        return;
+    }
+    const button =
+        document.querySelector(
+            "#modal .primary-button"
+        );
+    if (button) {
+        button.disabled = true;
+        button.textContent =
+            "COMPRESSING...";
+    }
+    for (
+        let i = 0;
+        i < files.length;
+        i++
+    ) {
+        try {
+            const compressed =
+                await compressImage(
+                    files[i],
+                    1600,
+                    0.78
+                );
+            websiteData.photos.push({
+                image:
+                    compressed,
+                name:
+                    files[i].name
+            });
+        } catch (error) {
+            console.error(
+                error
+            );
+        }
+    }
+    await saveWebsiteData();
+    renderWebsite();
+    closeModal();
+}
+/* =========================================================
    DELETE PHOTO
-===================================================== */
-
-async function deletePhoto(photo){
-
-if(!editing)return;
-
-if(
-!confirm(
-"Delete this photograph?"
-)
-)return;
-
-
-try{
-
-await dbRequest(
-"photos?id=eq."+photo.id,
-{
-method:"DELETE"
+========================================================= */
+async function deletePhoto(index) {
+    const confirmed =
+        confirm(
+            "Remove this photograph?"
+        );
+    if (!confirmed) {
+        return;
+    }
+    websiteData.photos.splice(
+        index,
+        1
+    );
+    await saveWebsiteData();
+    renderWebsite();
 }
-);
-
-
-await fetch(
-
-SUPABASE_URL+
-"/storage/v1/object/photos/"+
-photo.filename,
-
-{
-
-method:"DELETE",
-
-headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":
-"Bearer "+SUPABASE_KEY
+/* =========================================================
+   RESEARCH EDITOR
+========================================================= */
+function showResearchEditor() {
+    openModal(`
+        <h3 class="modal-title">
+            Add Research
+        </h3>
+        <div class="form-group">
+            <label>
+                Document Title
+            </label>
+            <input
+                id="documentTitle"
+                type="text"
+                placeholder="Example: Research Project"
+            >
+        </div>
+        <div class="form-group">
+            <label>
+                Description
+            </label>
+            <textarea
+                id="documentDescription"
+                placeholder="Describe this research..."
+            ></textarea>
+        </div>
+        <div class="form-group">
+            <label>
+                Document
+            </label>
+            <input
+                id="documentFile"
+                type="file"
+                accept=".pdf,.doc,.docx,.txt"
+            >
+        </div>
+        <p class="warning">
+            Documents are stored directly in this browser.
+            No outside storage service is used.
+        </p>
+        <div class="modal-actions">
+            <button
+                class="secondary-button"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+            <button
+                class="primary-button"
+                onclick="addResearchDocument()"
+            >
+                Add Document
+            </button>
+        </div>
+    `);
 }
-
+/* =========================================================
+   ADD RESEARCH
+========================================================= */
+async function addResearchDocument() {
+    const title =
+        document
+            .getElementById(
+                "documentTitle"
+            )
+            .value
+            .trim();
+    const description =
+        document
+            .getElementById(
+                "documentDescription"
+            )
+            .value
+            .trim();
+    const fileInput =
+        document.getElementById(
+            "documentFile"
+        );
+    if (
+        !title ||
+        !fileInput.files ||
+        fileInput.files.length === 0
+    ) {
+        alert(
+            "Please add a title and choose a document."
+        );
+        return;
+    }
+    const file =
+        fileInput.files[0];
+    try {
+        const dataURL =
+            await fileToDataURL(
+                file
+            );
+        websiteData.documents.push({
+            title:
+                title,
+            description:
+                description,
+            file:
+                dataURL,
+            fileName:
+                file.name
+        });
+        await saveWebsiteData();
+        renderWebsite();
+        closeModal();
+    } catch (error) {
+        alert(
+            "The document could not be added."
+        );
+    }
 }
-);
-
-
-loadPhotos();
-
-}catch(error){
-
-console.error(error);
-
-alert("Could not delete photo.");
-
+/* =========================================================
+   DELETE RESEARCH
+========================================================= */
+async function deleteDocument(index) {
+    const confirmed =
+        confirm(
+            "Remove this research document?"
+        );
+    if (!confirmed) {
+        return;
+    }
+    websiteData.documents.splice(
+        index,
+        1
+    );
+    await saveWebsiteData();
+    renderWebsite();
 }
-
+/* =========================================================
+   ARTICLE EDITOR
+========================================================= */
+function showArticleEditor() {
+    openModal(`
+        <h3 class="modal-title">
+            Add Newspaper Article
+        </h3>
+        <div class="form-group">
+            <label>
+                Article Title
+            </label>
+            <input
+                id="articleTitle"
+                type="text"
+                placeholder="My First Article"
+            >
+        </div>
+        <div class="form-group">
+            <label>
+                Publication Date
+            </label>
+            <input
+                id="articleDate"
+                type="date"
+            >
+        </div>
+        <div class="form-group">
+            <label>
+                Article Link
+            </label>
+            <input
+                id="articleURL"
+                type="url"
+                placeholder="https://..."
+            >
+        </div>
+        <div class="modal-actions">
+            <button
+                class="secondary-button"
+                onclick="closeModal()"
+            >
+                Cancel
+            </button>
+            <button
+                class="primary-button"
+                onclick="addArticle()"
+            >
+                Add Article
+            </button>
+        </div>
+    `);
 }
-
-
-/* =====================================================
-   HOME
-===================================================== */
-
-async function loadHome(){
-
-try{
-
-const data =
-await dbRequest(
-"site_settings?select=*&id=eq.1"
-);
-
-if(!data.length)return;
-
-const settings=data[0];
-
-
-document
-.getElementById("name")
-.textContent=
-settings.name ||
-"Your Name";
-
-
-document
-.getElementById("logo")
-.textContent=
-settings.name ||
-"Portfolio";
-
-
-document
-.getElementById("footerName")
-.textContent=
-settings.name ||
-"Your Name";
-
-
-document
-.getElementById("bio")
-.textContent=
-settings.bio ||
-"Welcome to my personal portfolio.";
-
-
-if(settings.profile_url){
-
-const image =
-document.getElementById(
-"profilePhoto"
-);
-
-image.src=
-settings.profile_url;
-
-image.style.display="block";
-
-document
-.getElementById("profileEmpty")
-.style.display="none";
-
+/* =========================================================
+   ADD ARTICLE
+========================================================= */
+async function addArticle() {
+    const title =
+        document
+            .getElementById(
+                "articleTitle"
+            )
+            .value
+            .trim();
+    const date =
+        document
+            .getElementById(
+                "articleDate"
+            )
+            .value;
+    let url =
+        document
+            .getElementById(
+                "articleURL"
+            )
+            .value
+            .trim();
+    if (
+        !title ||
+        !url
+    ) {
+        alert(
+            "Please enter an article title and link."
+        );
+        return;
+    }
+    if (
+        !/^https?:\/\//i.test(
+            url
+        )
+    ) {
+        url =
+            "https://" +
+            url;
+    }
+    websiteData.articles.push({
+        title:
+            title,
+        date:
+            date,
+        url:
+            url
+    });
+    localStorage.setItem(
+        "newspaperHasPublishedArticle",
+        "true"
+    );
+    await saveWebsiteData();
+    renderWebsite();
+    closeModal();
 }
-
-}catch(error){
-
-console.error(error);
-
+/* =========================================================
+   DELETE ARTICLE
+========================================================= */
+async function deleteArticle(index) {
+    const confirmed =
+        confirm(
+            "Remove this article?"
+        );
+    if (!confirmed) {
+        return;
+    }
+    websiteData.articles.splice(
+        index,
+        1
+    );
+    await saveWebsiteData();
+    renderWebsite();
 }
-
+/* =========================================================
+   FILE READER
+========================================================= */
+function fileToDataURL(file) {
+    return new Promise(
+        (resolve, reject) => {
+            const reader =
+                new FileReader();
+            reader.onload =
+                function() {
+                    resolve(
+                        reader.result
+                    );
+                };
+            reader.onerror =
+                function() {
+                    reject(
+                        reader.error
+                    );
+                };
+            reader.readAsDataURL(
+                file
+            );
+        }
+    );
 }
-
-
-async function saveHome(){
-
-if(!editing)return;
-
-
-const name =
-document
-.getElementById("nameInput")
-.value.trim();
-
-
-const bio =
-document
-.getElementById("bioInput")
-.value.trim();
-
-
-const file =
-document
-.getElementById("profileInput")
-.files[0];
-
-
-try{
-
-let profileURL=null;
-
-
-if(file){
-
-const compressed =
-await compressImage(file);
-
-const filename=
-"profile-"+Date.now()+".jpg";
-
-await uploadStorage(
-"photos",
-filename,
-compressed
-);
-
-profileURL=
-publicFile(
-"photos",
-filename
-);
-
+/* =========================================================
+   DATE
+========================================================= */
+function formatDate(dateString) {
+    if (!dateString) {
+        return "";
+    }
+    const date =
+        new Date(
+            dateString +
+            "T12:00:00"
+        );
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+        return "";
+    }
+    return date.toLocaleDateString(
+        undefined,
+        {
+            month:
+                "long",
+            day:
+                "numeric",
+            year:
+                "numeric"
+        }
+    );
 }
-
-
-const existing =
-await dbRequest(
-"site_settings?select=*&id=eq.1"
-);
-
-
-const object={
-
-id:1,
-
-name:name||"Your Name",
-
-bio:
-bio||
-"Welcome to my personal portfolio."
-
-};
-
-
-if(profileURL)
-object.profile_url=
-profileURL;
-
-
-if(existing.length){
-
-await dbRequest(
-"site_settings?id=eq.1",
-{
-method:"PATCH",
-body:JSON.stringify(object)
+/* =========================================================
+   RENDER HOME
+========================================================= */
+function renderHomepage() {
+    const name =
+        websiteData.name ||
+        "YOUR NAME";
+    const bio =
+        websiteData.bio ||
+        defaultData.bio;
+    document
+        .getElementById(
+            "navigationName"
+        )
+        .textContent =
+        name;
+    document
+        .getElementById(
+            "footerName"
+        )
+        .textContent =
+        name;
+    document
+        .getElementById(
+            "homeBio"
+        )
+        .textContent =
+        bio;
+    const parts =
+        name
+            .trim()
+            .split(
+                /\s+/
+            );
+    let formatted =
+        "";
+    if (
+        parts.length === 1
+    ) {
+        formatted =
+            escapeHTML(
+                parts[0]
+            );
+    } else {
+        formatted =
+            escapeHTML(
+                parts[0]
+            ) +
+            "<br>" +
+            escapeHTML(
+                parts
+                    .slice(1)
+                    .join(" ")
+            );
+    }
+    document
+        .getElementById(
+            "homeName"
+        )
+        .innerHTML =
+        formatted;
+    const photo =
+        document.getElementById(
+            "homePhoto"
+        );
+    if (
+        websiteData.profilePhoto
+    ) {
+        photo.innerHTML = `
+            <img
+                src="${websiteData.profilePhoto}"
+                alt="${escapeHTML(
+                    name
+                )}"
+            >
+        `;
+    } else {
+        photo.innerHTML = `
+            <div
+                class="photo-placeholder"
+            >
+                Your portrait<br>
+                will appear here.
+            </div>
+        `;
+    }
 }
-);
-
-}else{
-
-await dbRequest(
-"site_settings",
-{
-method:"POST",
-body:JSON.stringify(object)
+/* =========================================================
+   RENDER PHOTOS
+========================================================= */
+function renderPhotography() {
+    const gallery =
+        document.getElementById(
+            "gallery"
+        );
+    if (
+        websiteData.photos.length === 0
+    ) {
+        gallery.innerHTML = `
+            <div class="empty-state">
+                Your photography gallery is ready.
+                <br><br>
+                Click <strong>Edit</strong>
+                to add photographs
+                from your camera roll.
+            </div>
+        `;
+        return;
+    }
+    gallery.innerHTML =
+        websiteData.photos
+            .map(
+                function(photo, index) {
+                    return `
+                        <figure
+                            class="gallery-item"
+                        >
+                            <img
+                                src="${photo.image}"
+                                alt="${escapeHTML(
+                                    photo.name ||
+                                    "Photography"
+                                )}"
+                                loading="lazy"
+                            >
+                            <figcaption
+                                class="gallery-caption"
+                            >
+                                ${escapeHTML(
+                                    photo.name ||
+                                    "Untitled photograph"
+                                )}
+                                <br>
+                                <button
+                                    class="delete-button"
+                                    onclick="deletePhoto(${index})"
+                                >
+                                    Delete
+                                </button>
+                            </figcaption>
+                        </figure>
+                    `;
+                }
+            )
+            .join("");
 }
-);
-
+/* =========================================================
+   RENDER RESEARCH
+========================================================= */
+function renderResearch() {
+    const grid =
+        document.getElementById(
+            "documentGrid"
+        );
+    if (
+        websiteData.documents.length === 0
+    ) {
+        grid.innerHTML = `
+            <div class="empty-state">
+                No research documents yet.
+                <br><br>
+                Click <strong>Edit</strong>
+                to add one.
+            </div>
+        `;
+        return;
+    }
+    grid.innerHTML =
+        websiteData.documents
+            .map(
+                function(item, index) {
+                    return `
+                        <article
+                            class="document"
+                        >
+                            <h3
+                                class="document-title"
+                            >
+                                ${escapeHTML(
+                                    item.title
+                                )}
+                            </h3>
+                            <p
+                                class="document-description"
+                            >
+                                ${escapeHTML(
+                                    item.description
+                                )}
+                            </p>
+                            <a
+                                class="document-link"
+                                href="${item.file}"
+                                download="${escapeHTML(
+                                    item.fileName
+                                )}"
+                            >
+                                Open Document →
+                            </a>
+                            <br>
+                            <button
+                                class="delete-button"
+                                onclick="deleteDocument(${index})"
+                            >
+                                Delete
+                            </button>
+                        </article>
+                    `;
+                }
+            )
+            .join("");
 }
-
-
-await loadHome();
-
-alert("Home page updated.");
-
-}catch(error){
-
-console.error(error);
-
-alert(
-"Could not save your changes."
-);
-
+/* =========================================================
+   RENDER ARTICLES
+========================================================= */
+function renderArticles() {
+    const list =
+        document.getElementById(
+            "articleList"
+        );
+    if (
+        websiteData.articles.length === 0
+    ) {
+        if (
+            localStorage.getItem(
+                "newspaperHasPublishedArticle"
+            ) === "true"
+        ) {
+            list.innerHTML = `
+                <div class="empty-state">
+                    Your published articles
+                    will appear here.
+                </div>
+            `;
+        } else {
+            list.innerHTML = `
+                <div class="coming-soon">
+                    Coming September 16 —
+                    school newspaper articles
+                    will appear here.
+                </div>
+            `;
+        }
+        return;
+    }
+    list.innerHTML =
+        websiteData.articles
+            .map(
+                function(article, index) {
+                    return `
+                        <article
+                            class="article"
+                        >
+                            <div>
+                                <h3
+                                    class="article-title"
+                                >
+                                    ${escapeHTML(
+                                        article.title
+                                    )}
+                                </h3>
+                                <div
+                                    class="article-date"
+                                >
+                                    ${formatDate(
+                                        article.date
+                                    )}
+                                </div>
+                            </div>
+                            <div>
+                                <a
+                                    class="article-link"
+                                    href="${escapeHTML(
+                                        article.url
+                                    )}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Read Article →
+                                </a>
+                                <br>
+                                <button
+                                    class="delete-button"
+                                    onclick="deleteArticle(${index})"
+                                >
+                                    Delete
+                                </button>
+                            </div>
+                        </article>
+                    `;
+                }
+            )
+            .join("");
 }
-
+/* =========================================================
+   RENDER EVERYTHING
+========================================================= */
+function renderWebsite() {
+    renderHomepage();
+    renderPhotography();
+    renderResearch();
+    renderArticles();
+    document
+        .getElementById(
+            "currentYear"
+        )
+        .textContent =
+        new Date().getFullYear();
 }
-
-
-/* =====================================================
-   ARTICLE SYSTEM
-===================================================== */
-
-async function addArticle(){
-
-if(!editing){
-
-alert("Enter 4547 first.");
-
-return;
-
-}
-
-
-const title =
-document
-.getElementById("articleTitle")
-.value.trim();
-
-
-const date =
-document
-.getElementById("articleDate")
-.value.trim();
-
-
-const url =
-document
-.getElementById("articleURL")
-.value.trim();
-
-
-if(!title || !url){
-
-alert(
-"Enter an article title and link."
-);
-
-return;
-
-}
-
-
-try{
-
-await dbRequest(
-"articles",
-{
-
-method:"POST",
-
-body:JSON.stringify({
-
-title:title,
-
-date:
-date||"Published",
-
-url:url,
-
-created_at:
-new Date().toISOString()
-
-})
-
-}
-);
-
-
-document
-.getElementById("articleTitle")
-.value="";
-
-document
-.getElementById("articleDate")
-.value="";
-
-document
-.getElementById("articleURL")
-.value="";
-
-
-await loadArticles();
-
-alert("Article published.");
-
-}catch(error){
-
-console.error(error);
-
-alert(
-"Could not publish article."
-);
-
-}
-
-}
-
-
-/* =====================================================
-   LOAD ARTICLES
-===================================================== */
-
-async function loadArticles(){
-
-try{
-
-const articles =
-await dbRequest(
-"articles?select=*&order=created_at.desc"
-);
-
-
-const list =
-document
-.getElementById("articleList");
-
-list.innerHTML="";
-
-
-if(articles.length){
-
-document
-.getElementById("coming")
-.style.display="none";
-
-}else{
-
-document
-.getElementById("coming")
-.style.display="block";
-
-}
-
-
-articles.forEach(article=>{
-
-const row =
-document.createElement("div");
-
-row.className="article";
-
-
-const date =
-document.createElement("div");
-
-date.className="article-date";
-
-date.textContent=
-article.date;
-
-
-const title =
-document.createElement("div");
-
-title.className="article-title";
-
-title.textContent=
-article.title;
-
-
-const actions =
-document.createElement("div");
-
-actions.className=
-"article-actions";
-
-
-const read =
-document.createElement("a");
-
-read.className=
-"secondary";
-
-read.textContent=
-"Read Article";
-
-read.href=
-safeURL(article.url);
-
-read.target="_blank";
-
-read.rel=
-"noopener noreferrer";
-
-
-actions.appendChild(read);
-
-
-if(editing){
-
-const remove =
-document.createElement("button");
-
-remove.className=
-"secondary";
-
-remove.textContent=
-"Delete";
-
-remove.onclick=
-()=>deleteArticle(article);
-
-actions.appendChild(remove);
-
-}
-
-
-row.appendChild(date);
-row.appendChild(title);
-row.appendChild(actions);
-
-list.appendChild(row);
-
-});
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-
-async function deleteArticle(article){
-
-if(
-!confirm(
-"Delete this article?"
-)
-)return;
-
-
-await dbRequest(
-"articles?id=eq."+article.id,
-{
-method:"DELETE"
-}
-);
-
-loadArticles();
-
-}
-
-
-/* =====================================================
-   RESEARCH
-===================================================== */
-
-async function uploadResearch(){
-
-if(!editing){
-
-alert("Enter 4547 first.");
-
-return;
-
-}
-
-
-const title =
-document
-.getElementById("researchTitle")
-.value.trim();
-
-
-const file =
-document
-.getElementById("researchFile")
-.files[0];
-
-
-if(!title || !file){
-
-alert(
-"Enter a title and choose a file."
-);
-
-return;
-
-}
-
-
-try{
-
-const filename=
-Date.now()+"-"+file.name;
-
-
-await uploadStorage(
-"research",
-filename,
-file
-);
-
-
-await dbRequest(
-"research",
-{
-
-method:"POST",
-
-body:JSON.stringify({
-
-title:title,
-
-filename:filename,
-
-created_at:
-new Date().toISOString()
-
-})
-
-}
-);
-
-
-document
-.getElementById("researchTitle")
-.value="";
-
-document
-.getElementById("researchFile")
-.value="";
-
-
-loadResearch();
-
-alert("Research document added.");
-
-}catch(error){
-
-console.error(error);
-
-alert(
-"Could not upload research."
-);
-
-}
-
-}
-
-
-/* =====================================================
-   LOAD RESEARCH
-===================================================== */
-
-async function loadResearch(){
-
-try{
-
-const data =
-await dbRequest(
-"research?select=*&order=created_at.desc"
-);
-
-
-const list =
-document
-.getElementById("researchList");
-
-list.innerHTML="";
-
-
-data.forEach(item=>{
-
-const row =
-document.createElement("div");
-
-row.className="document";
-
-
-const title =
-document.createElement("div");
-
-title.className="document-title";
-
-title.textContent=
-item.title;
-
-
-const actions =
-document.createElement("div");
-
-
-const open =
-document.createElement("a");
-
-open.className="secondary";
-
-open.textContent="Open";
-
-open.href=
-publicFile(
-"research",
-item.filename
-);
-
-open.target="_blank";
-
-
-actions.appendChild(open);
-
-
-if(editing){
-
-const del =
-document.createElement("button");
-
-del.className="secondary";
-
-del.textContent="Delete";
-
-del.onclick=
-()=>deleteResearch(item);
-
-actions.appendChild(del);
-
-}
-
-
-row.appendChild(title);
-row.appendChild(actions);
-
-list.appendChild(row);
-
-});
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-
-async function deleteResearch(item){
-
-if(
-!confirm(
-"Delete this document?"
-)
-)return;
-
-
-await dbRequest(
-"research?id=eq."+item.id,
-{
-method:"DELETE"
-}
-);
-
-
-await fetch(
-
-SUPABASE_URL+
-"/storage/v1/object/research/"+
-item.filename,
-
-{
-
-method:"DELETE",
-
-headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":
-"Bearer "+SUPABASE_KEY
-}
-
-}
-);
-
-
-loadResearch();
-
-}
-
-
-/* =====================================================
-   SAFE ARTICLE LINKS
-===================================================== */
-
-function safeURL(url){
-
-try{
-
-const u=new URL(url);
-
-if(
-u.protocol!=="https:" &&
-u.protocol!=="http:"
-){
-
-return "#";
-
-}
-
-return u.href;
-
-}catch{
-
-return "#";
-
-}
-
-}
-
-
-/* =====================================================
-   REFRESH EDITABLE LISTS
-===================================================== */
-
-function refresh(){
-
-loadHome();
-
-loadPhotos();
-
-loadArticles();
-
-loadResearch();
-
-}
-
-
-/* =====================================================
-   START WEBSITE
-===================================================== */
-
-window.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-refresh();
-
-}
-);
-
-
-/* =====================================================
-   ENTER KEY FOR CODE
-===================================================== */
-
-document
-.getElementById("codeInput")
-.addEventListener(
-"keydown",
-event=>{
-
-if(event.key==="Enter")
-checkCode();
-
-}
-);
-
+/* =========================================================
+   START
+========================================================= */
+(async function() {
+    websiteData =
+        await loadWebsiteData();
+    renderWebsite();
+})();
 </script>
-
 </body>
 </html>
