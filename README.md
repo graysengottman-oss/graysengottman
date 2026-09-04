@@ -2,2278 +2,1637 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-<title>Your Name — Personal Portfolio</title>
-<meta
-    name="description"
-    content="Personal portfolio featuring photography, political research, and newspaper articles."
->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
 <style>
-/* =========================================================
-   GLOBAL
-========================================================= */
-:root {
-    --background: #f4f1eb;
-    --paper: #fffdf8;
-    --black: #151515;
-    --gray: #68645e;
-    --light-gray: #d8d3ca;
-    --accent: #9e3027;
-    --white: #ffffff;
-    --max-width: 1250px;
-    --header-height: 78px;
+:root{
+    --bg:#0b0b0d;
+    --card:#141416;
+    --card2:#1b1b1f;
+    --text:#f5f5f5;
+    --muted:#a7a7ad;
+    --line:#29292e;
+    --accent:#ffffff;
+    --danger:#ff5f56;
 }
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
-body {
-    background: var(--background);
-    color: var(--black);
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-    line-height: 1.5;
+body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
 }
 button,
 input,
-textarea {
-    font-family: inherit;
+textarea{
+    font:inherit;
 }
-button {
-    cursor: pointer;
+button{
+    cursor:pointer;
 }
-a {
-    color: inherit;
+img{
+    max-width:100%;
+    display:block;
 }
-.container {
-    width:
-        min(
-            var(--max-width),
-            calc(100% - 50px)
-        );
-    margin: auto;
+/* =========================
+   NAVIGATION
+========================= */
+header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    background:rgba(11,11,13,.82);
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
-/* =========================================================
-   HEADER
-========================================================= */
-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    height: var(--header-height);
-    background:
-        rgba(
-            244,
-            241,
-            235,
-            0.95
-        );
-    backdrop-filter: blur(15px);
-    border-bottom:
-        1px solid var(--light-gray);
+.nav{
+    max-width:1150px;
+    margin:auto;
+    min-height:70px;
+    padding:0 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
-.navbar {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 30px;
+.logo{
+    color:white;
+    text-decoration:none;
+    font-size:22px;
+    font-weight:750;
+    letter-spacing:-.6px;
 }
-.logo {
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-    font-size: 25px;
-    font-weight: bold;
-    letter-spacing: -1px;
-    white-space: nowrap;
+.nav-links{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    justify-content:center;
 }
-.navigation {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+.nav-links a{
+    color:#bdbdc3;
+    text-decoration:none;
+    padding:9px 13px;
+    border-radius:10px;
+    font-size:14px;
+    transition:.2s ease;
 }
-.navigation button {
-    border: none;
-    background: transparent;
-    padding: 10px 14px;
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    transition: 0.2s;
+.nav-links a:hover{
+    color:white;
+    background:#1c1c20;
 }
-.navigation button:hover {
-    color: var(--accent);
+/* =========================
+   GENERAL
+========================= */
+.container{
+    max-width:1150px;
+    margin:auto;
+    padding:0 22px;
 }
-.mobile-menu-button {
-    display: none;
-    background: transparent;
-    border:
-        1px solid var(--light-gray);
-    padding: 10px 13px;
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 1px;
+section{
+    padding:90px 0;
 }
-/* =========================================================
-   HOME
-========================================================= */
-.home {
-    min-height:
-        calc(
-            100vh -
-            var(--header-height)
-        );
-    display: grid;
-    grid-template-columns:
-        1.15fr 0.85fr;
-    gap: 70px;
-    align-items: center;
-    padding-top: 80px;
-    padding-bottom: 100px;
+.section-heading{
+    margin-bottom:35px;
 }
-.eyebrow {
-    color: var(--accent);
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 22px;
+.section-heading h2{
+    font-size:38px;
+    line-height:1.1;
+    letter-spacing:-1.5px;
+    margin-bottom:10px;
 }
-.home-title {
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-    font-size:
-        clamp(
-            60px,
-            9vw,
-            125px
-        );
-    line-height: 0.86;
-    letter-spacing: -7px;
-    margin-bottom: 35px;
+.section-heading p{
+    color:var(--muted);
+    max-width:650px;
 }
-.home-bio {
-    max-width: 650px;
-    color: #4e4a44;
-    font-size: 19px;
-    line-height: 1.7;
+/* =========================
+   HERO
+========================= */
+.hero{
+    min-height:calc(100vh - 70px);
+    display:flex;
+    align-items:center;
 }
-.home-photo {
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    background: #ded9d0;
-    overflow: hidden;
-    box-shadow:
-        0 25px 60px
-        rgba(0,0,0,0.10);
+.hero-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns:1.25fr .75fr;
+    align-items:center;
+    gap:70px;
 }
-.home-photo img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
+.eyebrow{
+    color:#9d9da5;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:18px;
 }
-.photo-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
-    color: #777;
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-    font-size: 22px;
+.hero h1{
+    font-size:clamp(48px,8vw,92px);
+    line-height:.95;
+    letter-spacing:-5px;
+    margin-bottom:25px;
 }
-/* =========================================================
-   SECTIONS
-========================================================= */
-section {
-    scroll-margin-top:
-        var(--header-height);
+.hero h1 span{
+    color:#85858c;
 }
-.section {
-    border-top:
-        1px solid var(--light-gray);
-    padding: 100px 0;
+.bio{
+    max-width:650px;
+    color:#b9b9bf;
+    font-size:18px;
+    line-height:1.75;
 }
-.section-header {
-    display: flex;
-    justify-content:
-        space-between;
-    align-items:
-        flex-end;
-    gap: 30px;
-    margin-bottom: 35px;
+.hero-buttons{
+    margin-top:30px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
 }
-.section-number {
-    color: var(--gray);
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    margin-bottom: 10px;
+.primary-btn,
+.secondary-btn{
+    border-radius:12px;
+    padding:12px 18px;
+    border:1px solid var(--line);
+    transition:.2s ease;
 }
-.section-title {
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-    font-size:
-        clamp(
-            45px,
-            6vw,
-            80px
-        );
-    line-height: 0.9;
-    letter-spacing: -4px;
+.primary-btn{
+    background:white;
+    color:#080808;
+    border-color:white;
+    font-weight:700;
 }
-.section-description {
-    max-width: 700px;
-    color: var(--gray);
-    line-height: 1.7;
-    margin-bottom: 40px;
+.primary-btn:hover{
+    transform:translateY(-2px);
+    opacity:.9;
 }
-.edit-button {
-    border: none;
-    background: transparent;
-    color: var(--black);
-    padding: 10px 0;
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border-bottom:
-        1px solid var(--black);
-    transition: 0.2s;
+.secondary-btn{
+    background:#171719;
+    color:white;
 }
-.edit-button:hover {
-    color: var(--accent);
-    border-color:
-        var(--accent);
+.secondary-btn:hover{
+    background:#222226;
 }
-/* =========================================================
+.profile-wrap{
+    display:flex;
+    justify-content:center;
+}
+.profile-photo{
+    width:min(340px,75vw);
+    aspect-ratio:1;
+    object-fit:cover;
+    border-radius:28px;
+    border:1px solid #303035;
+    background:#161619;
+    box-shadow:0 30px 80px rgba(0,0,0,.45);
+}
+.profile-placeholder{
+    width:min(340px,75vw);
+    aspect-ratio:1;
+    border-radius:28px;
+    border:1px solid #303035;
+    background:linear-gradient(145deg,#19191d,#101012);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#6e6e75;
+    text-align:center;
+    padding:30px;
+}
+/* =========================
+   CARDS
+========================= */
+.card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:25px;
+}
+.card:hover{
+    border-color:#38383e;
+}
+/* =========================
    PHOTOGRAPHY
-========================================================= */
-.gallery {
-    columns: 3 280px;
-    column-gap: 18px;
+========================= */
+.photo-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
 }
-.gallery-item {
-    break-inside: avoid;
-    margin-bottom: 18px;
-    background: var(--paper);
+.photo-card{
+    position:relative;
+    overflow:hidden;
+    border-radius:18px;
+    background:#151518;
+    border:1px solid #27272c;
+    aspect-ratio:4/3;
 }
-.gallery-item img {
-    width: 100%;
-    display: block;
-    height: auto;
+.photo-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:transform .45s ease;
 }
-.gallery-caption {
-    padding: 12px 14px;
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-    font-size: 14px;
+.photo-card:hover img{
+    transform:scale(1.04);
 }
-.empty-state {
-    border:
-        1px dashed #bcb6ad;
-    background:
-        rgba(
-            255,
-            255,
-            255,
-            0.3
-        );
-    padding: 60px 30px;
-    text-align: center;
-    color: var(--gray);
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-    font-size: 20px;
-}
-/* =========================================================
+/* =========================
    RESEARCH
-========================================================= */
-.document-grid {
-    display: grid;
-    grid-template-columns:
-        repeat(2, 1fr);
-    gap: 18px;
+========================= */
+.research-list{
+    display:grid;
+    gap:15px;
 }
-.document {
-    background: var(--paper);
-    border:
-        1px solid var(--light-gray);
-    padding: 28px;
+.research-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    padding:20px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
 }
-.document-title {
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-    font-size: 24px;
-    margin-bottom: 10px;
+.research-info h3{
+    margin-bottom:4px;
+    font-size:18px;
 }
-.document-description {
-    color: var(--gray);
-    line-height: 1.6;
-    margin-bottom: 20px;
+.research-info p{
+    color:var(--muted);
+    font-size:14px;
 }
-.document-link {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: bold;
-    text-decoration: none;
-    border-bottom:
-        1px solid var(--black);
-    padding-bottom: 3px;
+.research-link{
+    flex-shrink:0;
+    color:white;
+    text-decoration:none;
+    padding:9px 13px;
+    border:1px solid #36363b;
+    border-radius:9px;
+    font-size:13px;
 }
-/* =========================================================
-   ARTICLES
-========================================================= */
-.article-list {
-    display: grid;
-    gap: 15px;
+.research-link:hover{
+    background:#202024;
 }
-.article {
-    background: var(--paper);
-    border:
-        1px solid var(--light-gray);
-    padding: 25px 28px;
-    display: flex;
-    justify-content:
-        space-between;
-    align-items: center;
-    gap: 30px;
+/* =========================
+   NEWSPAPER
+========================= */
+.news-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
 }
-.article-title {
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-    font-size: 25px;
-    margin-bottom: 5px;
+.news-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:25px;
 }
-.article-date {
-    color: var(--gray);
-    font-size: 13px;
+.news-date{
+    color:#818189;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    margin-bottom:10px;
 }
-.article-link {
-    font-size: 12px;
-    font-weight: bold;
-    text-decoration: none;
-    white-space: nowrap;
-    border-bottom:
-        1px solid var(--black);
-    padding-bottom: 4px;
+.news-card h3{
+    font-size:23px;
+    margin-bottom:12px;
 }
-.coming-soon {
-    padding: 35px 0;
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-    font-size: 23px;
-    font-style: italic;
-    color: var(--gray);
+.news-card a{
+    display:inline-block;
+    margin-top:15px;
+    color:white;
+    text-decoration:none;
+    border-bottom:1px solid #777;
 }
-/* =========================================================
+/* =========================
+   EMPTY STATE
+========================= */
+.empty{
+    padding:45px 25px;
+    text-align:center;
+    border:1px dashed #333339;
+    border-radius:18px;
+    color:#77777f;
+}
+/* =========================
    FOOTER
-========================================================= */
-footer {
-    border-top:
-        1px solid var(--light-gray);
-    padding: 45px 0;
-    color: var(--gray);
-    font-size: 12px;
+========================= */
+footer{
+    border-top:1px solid var(--line);
+    padding:30px 0;
+    color:#707078;
+    font-size:13px;
 }
-.footer-content {
-    display: flex;
-    justify-content:
-        space-between;
-    gap: 20px;
+.footer-inner{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
 }
-/* =========================================================
+/* =========================
+   EDIT BUTTON
+========================= */
+.edit-trigger{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:150;
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    border:1px solid #3b3b40;
+    background:#18181b;
+    color:white;
+    box-shadow:0 10px 35px rgba(0,0,0,.4);
+    font-size:19px;
+}
+.edit-trigger:hover{
+    background:#25252a;
+}
+/* =========================
    MODAL
-========================================================= */
-.modal-background {
-    position: fixed;
-    inset: 0;
-    z-index: 5000;
-    background:
-        rgba(
-            15,
-            15,
-            15,
-            0.65
-        );
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+========================= */
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
-.modal-background.active {
-    display: flex;
+.modal.active{
+    display:flex;
 }
-.modal {
-    width:
-        min(
-            600px,
-            100%
-        );
-    max-height: 90vh;
-    overflow-y: auto;
-    background:
-        var(--background);
-    padding: 35px;
-    box-shadow:
-        0 30px 100px
-        rgba(0,0,0,0.3);
+.modal-box{
+    width:min(700px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:#111113;
+    border:1px solid #303035;
+    border-radius:22px;
+    padding:28px;
+    box-shadow:0 30px 100px rgba(0,0,0,.65);
 }
-.modal-title {
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-    font-size: 36px;
-    margin-bottom: 25px;
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    margin-bottom:25px;
 }
-.form-group {
-    margin-bottom: 20px;
+.modal-header h2{
+    font-size:24px;
 }
-.form-group label {
-    display: block;
-    font-size: 11px;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 8px;
+.close{
+    width:36px;
+    height:36px;
+    border-radius:9px;
+    border:1px solid #303035;
+    background:#1b1b1e;
+    color:white;
 }
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    border:
-        1px solid var(--light-gray);
-    background: var(--white);
-    padding: 13px;
-    font-size: 15px;
-    outline: none;
+.close:hover{
+    background:#27272c;
 }
-.form-group textarea {
-    min-height: 130px;
-    resize: vertical;
+/* =========================
+   TABS
+========================= */
+.tabs{
+    display:flex;
+    gap:7px;
+    overflow:auto;
+    padding-bottom:3px;
+    margin-bottom:25px;
 }
-.modal-actions {
-    display: flex;
-    justify-content:
-        flex-end;
-    gap: 10px;
-    margin-top: 25px;
+.tab{
+    white-space:nowrap;
+    padding:9px 13px;
+    border-radius:9px;
+    border:1px solid #303035;
+    background:#171719;
+    color:#aaaab0;
 }
-.primary-button,
-.secondary-button {
-    padding: 12px 18px;
-    border:
-        1px solid var(--black);
-    font-size: 12px;
-    font-weight: bold;
+.tab.active{
+    background:white;
+    color:black;
+    border-color:white;
 }
-.primary-button {
-    background:
-        var(--black);
-    color:
-        var(--white);
+/* =========================
+   FORMS
+========================= */
+.form-group{
+    margin-bottom:18px;
 }
-.secondary-button {
-    background:
-        transparent;
-    color:
-        var(--black);
+.form-group label{
+    display:block;
+    font-size:13px;
+    font-weight:650;
+    color:#d0d0d4;
+    margin-bottom:8px;
 }
-.warning {
-    color:
-        var(--accent);
-    font-size: 12px;
-    line-height: 1.5;
-    margin-top: 10px;
+input,
+textarea{
+    width:100%;
+    border:1px solid #303035;
+    background:#18181b;
+    color:white;
+    border-radius:11px;
+    padding:12px 13px;
+    outline:none;
 }
-/* =========================================================
-   DELETE
-========================================================= */
-.delete-button {
-    border: none;
-    background: transparent;
-    color: var(--accent);
-    font-size: 10px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    margin-top: 10px;
+input:focus,
+textarea:focus{
+    border-color:#65656d;
 }
-/* =========================================================
-   STATUS
-========================================================= */
-.save-status {
-    position: fixed;
-    right: 18px;
-    bottom: 18px;
-    z-index: 6000;
-    background: var(--black);
-    color: white;
-    padding: 10px 15px;
-    font-size: 11px;
-    letter-spacing: 1px;
-    opacity: 0;
-    transform:
-        translateY(10px);
-    pointer-events: none;
-    transition: 0.25s;
+textarea{
+    min-height:130px;
+    resize:vertical;
 }
-.save-status.show {
-    opacity: 1;
-    transform:
-        translateY(0);
+input[type="file"]{
+    padding:10px;
 }
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-@media (max-width: 850px) {
-    .container {
-        width:
-            min(
-                100% - 35px,
-                var(--max-width)
-            );
+.form-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:24px;
+    flex-wrap:wrap;
+}
+.save-btn{
+    background:white;
+    color:black;
+    border:0;
+    border-radius:10px;
+    padding:11px 17px;
+    font-weight:700;
+}
+.cancel-btn{
+    background:#1a1a1d;
+    color:white;
+    border:1px solid #303035;
+    border-radius:10px;
+    padding:11px 17px;
+}
+.status{
+    color:#85858c;
+    font-size:13px;
+    margin-top:10px;
+}
+.warning{
+    padding:13px;
+    background:#1b1712;
+    border:1px solid #493b27;
+    color:#c8b28a;
+    border-radius:10px;
+    font-size:13px;
+    margin-bottom:18px;
+}
+/* =========================
+   MOBILE
+========================= */
+@media(max-width:800px){
+    .nav{
+        min-height:auto;
+        padding:15px 18px;
+        flex-direction:column;
     }
-    .home {
-        grid-template-columns: 1fr;
-        gap: 45px;
-        padding-top: 60px;
+    .nav-links{
+        width:100%;
+        overflow-x:auto;
+        justify-content:flex-start;
     }
-    .home-photo {
-        max-width: 650px;
+    section{
+        padding:65px 0;
     }
-    .document-grid {
-        grid-template-columns: 1fr;
+    .hero{
+        min-height:auto;
+        padding-top:70px;
     }
-    .navigation {
-        display: none;
-        position: absolute;
-        top:
-            var(--header-height);
-        left: 0;
-        right: 0;
-        background:
-            var(--background);
-        border-bottom:
-            1px solid var(--light-gray);
-        padding: 10px 20px;
-        flex-direction: column;
-        align-items: stretch;
+    .hero-grid{
+        grid-template-columns:1fr;
+        gap:45px;
     }
-    .navigation.open {
-        display: flex;
+    .hero h1{
+        letter-spacing:-3px;
     }
-    .navigation button {
-        text-align: left;
-        padding: 14px;
+    .profile-wrap{
+        order:-1;
     }
-    .mobile-menu-button {
-        display: block;
+    .photo-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+    .news-grid{
+        grid-template-columns:1fr;
+    }
+    .research-item{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+    .footer-inner{
+        flex-direction:column;
     }
 }
-@media (max-width: 600px) {
-    :root {
-        --header-height: 65px;
+@media(max-width:480px){
+    .photo-grid{
+        grid-template-columns:1fr;
     }
-    .container {
-        width:
-            calc(100% - 28px);
+    .section-heading h2{
+        font-size:31px;
     }
-    .home {
-        padding-top: 45px;
-        padding-bottom: 70px;
-    }
-    .home-title {
-        font-size: 62px;
-        letter-spacing: -4px;
-    }
-    .home-bio {
-        font-size: 17px;
-    }
-    .section {
-        padding: 70px 0;
-    }
-    .section-header {
-        align-items:
-            flex-start;
-        flex-direction:
-            column;
-        gap: 20px;
-    }
-    .section-title {
-        font-size: 48px;
-        letter-spacing: -3px;
-    }
-    .gallery {
-        columns: 1;
-    }
-    .article {
-        flex-direction:
-            column;
-        align-items:
-            flex-start;
-    }
-    .article-link {
-        white-space:
-            normal;
-    }
-    .footer-content {
-        flex-direction:
-            column;
-    }
-    .modal {
-        padding: 25px;
+    .hero h1{
+        font-size:50px;
     }
 }
 </style>
 </head>
 <body>
-<!-- =========================================================
-     HEADER
-========================================================= -->
 <header>
-<div class="container navbar">
-<div
-    class="logo"
-    id="navigationName"
->
-    YOUR NAME
-</div>
-<button
-    class="mobile-menu-button"
-    onclick="toggleMobileMenu()"
->
-    MENU
-</button>
-<nav
-    class="navigation"
-    id="navigation"
->
-<button onclick="goToSection('home')">
-    Home
-</button>
-<button onclick="goToSection('photography')">
-    Photography
-</button>
-<button onclick="goToSection('research')">
-    Political Research
-</button>
-<button onclick="goToSection('articles')">
-    Newspaper
-</button>
-</nav>
-</div>
+    <nav class="nav">
+        <a href="#home" class="logo" id="navLogo">Portfolio</a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#photography">Photography</a>
+            <a href="#research">Political Research</a>
+            <a href="#newspaper">Newspaper</a>
+        </div>
+    </nav>
 </header>
-<!-- =========================================================
-     HOME
-========================================================= -->
 <main>
-<section id="home">
-<div class="container home">
-<div>
-<div class="eyebrow">
-    Portfolio / Journal / Work
-</div>
-<h1
-    class="home-title"
-    id="homeName"
->
-    YOUR<br>
-    NAME
-</h1>
-<p
-    class="home-bio"
-    id="homeBio"
->
-    Write your biography here. Talk about who you are,
-    what you care about, and the work you are creating.
-</p>
-<br>
-<button
-    class="edit-button"
-    onclick="startEditing('home')"
->
-    Edit
-</button>
-</div>
-<div
-    class="home-photo"
-    id="homePhoto"
->
-<div class="photo-placeholder">
-    Your portrait<br>
-    will appear here.
-</div>
-</div>
-</div>
+<!-- HOME -->
+<section id="home" class="hero">
+    <div class="container">
+        <div class="hero-grid">
+            <div>
+                <div class="eyebrow">Portfolio</div>
+                <h1 id="heroName">
+                    Your Name
+                </h1>
+                <p class="bio" id="heroBio">
+                    Welcome to my portfolio. This is where I share my photography,
+                    research, writing, and projects.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#photography" class="primary-btn">
+                        View Photography
+                    </a>
+                    <a href="#newspaper" class="secondary-btn">
+                        Newspaper
+                    </a>
+                </div>
+            </div>
+            <div class="profile-wrap">
+                <div id="profileContainer"></div>
+            </div>
+        </div>
+    </div>
 </section>
-<!-- =========================================================
-     PHOTOGRAPHY
-========================================================= -->
-<section
-    class="section"
-    id="photography"
->
-<div class="container">
-<div class="section-header">
-<div>
-<div class="section-number">
-    01 / VISUAL WORK
-</div>
-<h2 class="section-title">
-    Photography
-</h2>
-</div>
-<button
-    class="edit-button"
-    onclick="startEditing('photography')"
->
-    Edit
-</button>
-</div>
-<p class="section-description">
-A visual archive of photographs, places, people,
-ideas and moments.
-</p>
-<div
-    class="gallery"
-    id="gallery"
->
-<div class="empty-state">
-Your photography gallery is ready.
-<br><br>
-Click <strong>Edit</strong> to add photographs
-from your camera roll.
-</div>
-</div>
-</div>
+<!-- PHOTOGRAPHY -->
+<section id="photography">
+    <div class="container">
+        <div class="section-heading">
+            <div class="eyebrow">Visual Work</div>
+            <h2>Photography</h2>
+            <p>
+                A collection of photographs and visual work.
+            </p>
+        </div>
+        <div id="photoGallery" class="photo-grid"></div>
+    </div>
 </section>
-<!-- =========================================================
-     RESEARCH
-========================================================= -->
-<section
-    class="section"
-    id="research"
->
-<div class="container">
-<div class="section-header">
-<div>
-<div class="section-number">
-    02 / NOTES & SOURCES
-</div>
-<h2 class="section-title">
-    Political<br>
-    Research
-</h2>
-</div>
-<button
-    class="edit-button"
-    onclick="startEditing('research')"
->
-    Edit
-</button>
-</div>
-<p class="section-description">
-Research documents, notes, sources and projects.
-Use this section as your personal research archive.
-</p>
-<div
-    class="document-grid"
-    id="documentGrid"
->
-<div class="empty-state">
-No research documents yet.
-<br><br>
-Click <strong>Edit</strong> to add one.
-</div>
-</div>
-</div>
+<!-- RESEARCH -->
+<section id="research">
+    <div class="container">
+        <div class="section-heading">
+            <div class="eyebrow">Research</div>
+            <h2>Political Research</h2>
+            <p>
+                Research papers, documents, and projects.
+            </p>
+        </div>
+        <div id="researchList" class="research-list"></div>
+    </div>
 </section>
-<!-- =========================================================
-     NEWSPAPER
-========================================================= -->
-<section
-    class="section"
-    id="articles"
->
-<div class="container">
-<div class="section-header">
-<div>
-<div class="section-number">
-    03 / SCHOOL NEWSPAPER
-</div>
-<h2 class="section-title">
-    Articles
-</h2>
-</div>
-<button
-    class="edit-button"
-    onclick="startEditing('articles')"
->
-    Edit
-</button>
-</div>
-<p class="section-description">
-Published writing and reporting from the school newspaper.
-</p>
-<div
-    class="article-list"
-    id="articleList"
->
-</div>
-</div>
+<!-- NEWSPAPER -->
+<section id="newspaper">
+    <div class="container">
+        <div class="section-heading">
+            <div class="eyebrow">Writing</div>
+            <h2>Newspaper</h2>
+            <p>
+                Articles and writing published through my newspaper work.
+            </p>
+        </div>
+        <div id="newsList" class="news-grid"></div>
+    </div>
 </section>
 </main>
-<!-- =========================================================
-     FOOTER
-========================================================= -->
 <footer>
-<div class="container footer-content">
-<span id="footerName">
-    YOUR NAME
-</span>
-<span>
-©
-<span id="currentYear"></span>
-— Personal Portfolio
-</span>
-</div>
+    <div class="container footer-inner">
+        <div>© <span id="footerName">Portfolio</span></div>
+        <div>Photography · Research · Writing</div>
+    </div>
 </footer>
-<!-- =========================================================
-     MODAL
-========================================================= -->
-<div
-    class="modal-background"
-    id="modalBackground"
->
-<div
-    class="modal"
-    id="modal"
->
-</div>
-</div>
-<!-- =========================================================
-     SAVE STATUS
-========================================================= -->
-<div
-    class="save-status"
-    id="saveStatus"
->
-    SAVED
-</div>
-<script>
-/*
-===============================================================
-                  PORTFOLIO SYSTEM
-===============================================================
-EDIT CODE:
-4547
-PHOTO LIMIT:
-25
-STORAGE:
-IndexedDB
-NO OUTSIDE STORAGE SERVICE.
-PHOTOS ARE AUTOMATICALLY COMPRESSED.
-===============================================================
-*/
-const EDIT_CODE = "4547";
-const PHOTO_LIMIT = 25;
-const DB_NAME =
-    "PersonalPortfolioDatabase";
-const DB_VERSION = 1;
-const STORE_NAME =
-    "portfolio";
-const DATA_KEY =
-    "websiteData";
-const defaultData = {
-    name:
-        "YOUR NAME",
-    bio:
-        "Write your biography here. Talk about who you are, " +
-        "what you care about, and the work you are creating.",
-    profilePhoto:
-        "",
-    photos:
-        [],
-    documents:
-        [],
-    articles:
-        []
-};
-let websiteData =
-    null;
-/* =========================================================
-   DATABASE
-========================================================= */
-function openDatabase() {
-    return new Promise(
-        (resolve, reject) => {
-            const request =
-                indexedDB.open(
-                    DB_NAME,
-                    DB_VERSION
-                );
-            request.onupgradeneeded =
-                function(event) {
-                    const db =
-                        event.target.result;
-                    if (
-                        !db.objectStoreNames.contains(
-                            STORE_NAME
-                        )
-                    ) {
-                        db.createObjectStore(
-                            STORE_NAME
-                        );
-                    }
-                };
-            request.onsuccess =
-                function() {
-                    resolve(
-                        request.result
-                    );
-                };
-            request.onerror =
-                function() {
-                    reject(
-                        request.error
-                    );
-                };
-        }
-    );
-}
-/* =========================================================
-   LOAD DATA
-========================================================= */
-async function loadWebsiteData() {
-    try {
-        const db =
-            await openDatabase();
-        return await new Promise(
-            (resolve, reject) => {
-                const transaction =
-                    db.transaction(
-                        STORE_NAME,
-                        "readonly"
-                    );
-                const store =
-                    transaction.objectStore(
-                        STORE_NAME
-                    );
-                const request =
-                    store.get(
-                        DATA_KEY
-                    );
-                request.onsuccess =
-                    function() {
-                        const saved =
-                            request.result;
-                        if (!saved) {
-                            resolve({
-                                ...defaultData
-                            });
-                            return;
-                        }
-                        resolve({
-                            ...defaultData,
-                            ...saved,
-                            photos:
-                                Array.isArray(
-                                    saved.photos
-                                )
-                                    ? saved.photos
-                                    : [],
-                            documents:
-                                Array.isArray(
-                                    saved.documents
-                                )
-                                    ? saved.documents
-                                    : [],
-                            articles:
-                                Array.isArray(
-                                    saved.articles
-                                )
-                                    ? saved.articles
-                                    : []
-                        });
-                    };
-                request.onerror =
-                    function() {
-                        reject(
-                            request.error
-                        );
-                    };
-            }
-        );
-    } catch (error) {
-        console.error(
-            error
-        );
-        return {
-            ...defaultData
-        };
-    }
-}
-/* =========================================================
-   SAVE DATA
-========================================================= */
-async function saveWebsiteData() {
-    try {
-        const db =
-            await openDatabase();
-        await new Promise(
-            (resolve, reject) => {
-                const transaction =
-                    db.transaction(
-                        STORE_NAME,
-                        "readwrite"
-                    );
-                const store =
-                    transaction.objectStore(
-                        STORE_NAME
-                    );
-                const request =
-                    store.put(
-                        websiteData,
-                        DATA_KEY
-                    );
-                request.onsuccess =
-                    () => resolve();
-                request.onerror =
-                    () => reject(
-                        request.error
-                    );
-            }
-        );
-        showSaved();
-    } catch (error) {
-        console.error(
-            "Save failed:",
-            error
-        );
-        alert(
-            "The change could not be saved. " +
-            "Try using smaller files."
-        );
-    }
-}
-/* =========================================================
-   SAVED MESSAGE
-========================================================= */
-let saveTimer;
-function showSaved() {
-    const status =
-        document.getElementById(
-            "saveStatus"
-        );
-    status.classList.add(
-        "show"
-    );
-    clearTimeout(
-        saveTimer
-    );
-    saveTimer =
-        setTimeout(
-            function() {
-                status.classList.remove(
-                    "show"
-                );
-            },
-            1800
-        );
-}
-/* =========================================================
-   NAVIGATION
-========================================================= */
-function goToSection(sectionID) {
-    const section =
-        document.getElementById(
-            sectionID
-        );
-    if (!section) {
-        return;
-    }
-    section.scrollIntoView({
-        behavior: "smooth"
-    });
-    document
-        .getElementById(
-            "navigation"
-        )
-        .classList.remove(
-            "open"
-        );
-}
-function toggleMobileMenu() {
-    document
-        .getElementById(
-            "navigation"
-        )
-        .classList.toggle(
-            "open"
-        );
-}
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-function escapeHTML(value) {
-    return String(
-        value ?? ""
-    )
-    .replace(
-        /&/g,
-        "&amp;"
-    )
-    .replace(
-        /</g,
-        "&lt;"
-    )
-    .replace(
-        />/g,
-        "&gt;"
-    )
-    .replace(
-        /"/g,
-        "&quot;"
-    )
-    .replace(
-        /'/g,
-        "&#039;"
-    );
-}
-/* =========================================================
-   MODAL
-========================================================= */
-function openModal(content) {
-    document
-        .getElementById(
-            "modal"
-        )
-        .innerHTML =
-        content;
-    document
-        .getElementById(
-            "modalBackground"
-        )
-        .classList.add(
-            "active"
-        );
-}
-function closeModal() {
-    document
-        .getElementById(
-            "modalBackground"
-        )
-        .classList.remove(
-            "active"
-        );
-}
-document
-    .getElementById(
-        "modalBackground"
-    )
-    .addEventListener(
-        "click",
-        function(event) {
-            if (
-                event.target.id ===
-                "modalBackground"
-            ) {
-                closeModal();
-            }
-        }
-    );
-/* =========================================================
-   EDIT LOGIN
-========================================================= */
-function startEditing(page) {
-    const code =
-        prompt(
-            "Enter your 4-digit edit code:"
-        );
-    if (code === null) {
-        return;
-    }
-    if (code !== EDIT_CODE) {
-        alert(
-            "Incorrect edit code."
-        );
-        return;
-    }
-    if (page === "home") {
-        showHomeEditor();
-    }
-    if (page === "photography") {
-        showPhotographyEditor();
-    }
-    if (page === "research") {
-        showResearchEditor();
-    }
-    if (page === "articles") {
-        showArticleEditor();
-    }
-}
-/* =========================================================
-   HOME EDITOR
-========================================================= */
-function showHomeEditor() {
-    openModal(`
-        <h3 class="modal-title">
-            Edit Homepage
-        </h3>
+<!-- EDIT BUTTON -->
+<button class="edit-trigger" onclick="openCodeModal()" aria-label="Edit website">
+    ✎
+</button>
+<!-- CODE MODAL -->
+<div class="modal" id="codeModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h2>Enter Edit Code</h2>
+            <button class="close" onclick="closeModal('codeModal')">×</button>
+        </div>
         <div class="form-group">
-            <label>
-                Your Name
-            </label>
+            <label for="editCode">Edit Code</label>
             <input
-                id="editName"
-                type="text"
-                value="${escapeHTML(
-                    websiteData.name
-                )}"
-                placeholder="Your Name"
+                id="editCode"
+                type="password"
+                inputmode="numeric"
+                placeholder="Enter code"
             >
         </div>
-        <div class="form-group">
-            <label>
-                Biography
-            </label>
-            <textarea
-                id="editBio"
-                placeholder="Write your bio..."
-            >${escapeHTML(
-                websiteData.bio
-            )}</textarea>
-        </div>
-        <div class="form-group">
-            <label>
-                Profile Photo
-            </label>
-            <input
-                id="editProfilePhoto"
-                type="file"
-                accept="image/*"
-            >
-        </div>
-        <p class="warning">
-            Photos are automatically compressed
-            before being saved.
-        </p>
-        <div class="modal-actions">
-            <button
-                class="secondary-button"
-                onclick="closeModal()"
-            >
+        <div id="codeError" class="status"></div>
+        <div class="form-actions">
+            <button class="cancel-btn" onclick="closeModal('codeModal')">
                 Cancel
             </button>
-            <button
-                class="primary-button"
-                onclick="saveHomepage()"
-            >
-                Save Changes
+            <button class="save-btn" onclick="checkCode()">
+                Continue
             </button>
         </div>
-    `);
+    </div>
+</div>
+<!-- EDITOR MODAL -->
+<div class="modal" id="editorModal">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h2>Edit Portfolio</h2>
+            <button class="close" onclick="closeModal('editorModal')">×</button>
+        </div>
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('homeTab',this)">
+                Home
+            </button>
+            <button class="tab" onclick="showTab('photoTab',this)">
+                Photography
+            </button>
+            <button class="tab" onclick="showTab('researchTab',this)">
+                Research
+            </button>
+            <button class="tab" onclick="showTab('newsTab',this)">
+                Newspaper
+            </button>
+        </div>
+        <!-- HOME EDITOR -->
+        <div id="homeTab" class="editor-tab">
+            <div class="form-group">
+                <label for="editName">Name</label>
+                <input id="editName" type="text">
+            </div>
+            <div class="form-group">
+                <label for="editBio">Bio</label>
+                <textarea id="editBio"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="profileInput">Profile Photo</label>
+                <input
+                    id="profileInput"
+                    type="file"
+                    accept="image/*"
+                >
+                <div class="status">
+                    Your profile photo will automatically be compressed.
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="save-btn" onclick="saveHome()">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+        <!-- PHOTO EDITOR -->
+        <div id="photoTab" class="editor-tab" style="display:none;">
+            <div class="warning">
+                You can store up to <strong>25 photos</strong>.
+                Photos are automatically compressed before being stored on this device.
+            </div>
+            <div class="form-group">
+                <label for="photoInput">
+                    Add Photos
+                </label>
+                <input
+                    id="photoInput"
+                    type="file"
+                    accept="image/*"
+                    multiple
+                >
+                <div id="photoStatus" class="status">
+                    0 / 25 photos
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="save-btn" onclick="addPhotos()">
+                    Add Photos
+                </button>
+            </div>
+        </div>
+        <!-- RESEARCH EDITOR -->
+        <div id="researchTab" class="editor-tab" style="display:none;">
+            <div class="form-group">
+                <label for="researchTitle">
+                    Document Title
+                </label>
+                <input
+                    id="researchTitle"
+                    type="text"
+                    placeholder="Research paper title"
+                >
+            </div>
+            <div class="form-group">
+                <label for="researchDescription">
+                    Description
+                </label>
+                <textarea
+                    id="researchDescription"
+                    placeholder="Short description"
+                ></textarea>
+            </div>
+            <div class="form-group">
+                <label for="researchFile">
+                    Document
+                </label>
+                <input
+                    id="researchFile"
+                    type="file"
+                    accept=".pdf,.doc,.docx,.txt"
+                >
+            </div>
+            <div class="form-actions">
+                <button class="save-btn" onclick="addResearch()">
+                    Add Document
+                </button>
+            </div>
+        </div>
+        <!-- NEWSPAPER EDITOR -->
+        <div id="newsTab" class="editor-tab" style="display:none;">
+            <div class="form-group">
+                <label for="articleTitle">
+                    Article Title
+                </label>
+                <input
+                    id="articleTitle"
+                    type="text"
+                    placeholder="Article title"
+                >
+            </div>
+            <div class="form-group">
+                <label for="articleDate">
+                    Date
+                </label>
+                <input
+                    id="articleDate"
+                    type="text"
+                    placeholder="September 16, 2026"
+                >
+            </div>
+            <div class="form-group">
+                <label for="articleURL">
+                    Article Link
+                </label>
+                <input
+                    id="articleURL"
+                    type="text"
+                    placeholder="https://example.com"
+                >
+            </div>
+            <div class="form-actions">
+                <button class="save-btn" onclick="addArticle()">
+                    Publish Article
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+/* ============================================================
+   SETTINGS
+============================================================ */
+const EDIT_CODE = "4547";
+const MAX_PHOTOS = 25;
+const DB_NAME = "portfolioDatabase";
+const DB_VERSION = 1;
+let db;
+let data = {
+    name: "Your Name",
+    bio: "Welcome to my portfolio. This is where I share my photography, research, writing, and projects.",
+    profilePhoto: null,
+    photos: [],
+    documents: [],
+    articles: [],
+    newspaperHasPublishedArticle: false
+};
+let activeObjectURLs = [];
+/* ============================================================
+   INDEXED DB
+============================================================ */
+function openDatabase(){
+    return new Promise((resolve,reject)=>{
+        const request = indexedDB.open(DB_NAME,DB_VERSION);
+        request.onupgradeneeded = function(event){
+            const database = event.target.result;
+            if(!database.objectStoreNames.contains("settings")){
+                database.createObjectStore("settings",{keyPath:"key"});
+            }
+            if(!database.objectStoreNames.contains("photos")){
+                database.createObjectStore("photos",{keyPath:"id",autoIncrement:true});
+            }
+            if(!database.objectStoreNames.contains("documents")){
+                database.createObjectStore("documents",{keyPath:"id",autoIncrement:true});
+            }
+            if(!database.objectStoreNames.contains("articles")){
+                database.createObjectStore("articles",{keyPath:"id",autoIncrement:true});
+            }
+        };
+        request.onsuccess = function(event){
+            db = event.target.result;
+            resolve(db);
+        };
+        request.onerror = function(){
+            reject(request.error);
+        };
+    });
 }
-/* =========================================================
+function getStore(storeName,mode="readonly"){
+    return db.transaction(storeName,mode).objectStore(storeName);
+}
+function getAll(storeName){
+    return new Promise((resolve,reject)=>{
+        const request = getStore(storeName).getAll();
+        request.onsuccess = ()=>resolve(request.result);
+        request.onerror = ()=>reject(request.error);
+    });
+}
+function put(storeName,value){
+    return new Promise((resolve,reject)=>{
+        const request = getStore(storeName,"readwrite").put(value);
+        request.onsuccess = ()=>resolve(request.result);
+        request.onerror = ()=>reject(request.error);
+    });
+}
+function add(storeName,value){
+    return new Promise((resolve,reject)=>{
+        const request = getStore(storeName,"readwrite").add(value);
+        request.onsuccess = ()=>resolve(request.result);
+        request.onerror = ()=>reject(request.error);
+    });
+}
+function removeItem(storeName,id){
+    return new Promise((resolve,reject)=>{
+        const request = getStore(storeName,"readwrite").delete(id);
+        request.onsuccess = ()=>resolve();
+        request.onerror = ()=>reject(request.error);
+    });
+}
+/* ============================================================
+   LOAD DATA
+============================================================ */
+async function loadData(){
+    await openDatabase();
+    const settings = await getAll("settings");
+    const savedPhotos = await getAll("photos");
+    const savedDocuments = await getAll("documents");
+    const savedArticles = await getAll("articles");
+    for(const setting of settings){
+        if(setting.key === "name"){
+            data.name = setting.value;
+        }
+        if(setting.key === "bio"){
+            data.bio = setting.value;
+        }
+        if(setting.key === "profilePhoto"){
+            data.profilePhoto = setting.value;
+        }
+        if(setting.key === "newspaperHasPublishedArticle"){
+            data.newspaperHasPublishedArticle = setting.value;
+        }
+    }
+    data.photos = savedPhotos;
+    data.documents = savedDocuments;
+    data.articles = savedArticles;
+    /*
+        Automatically migrate the old localStorage version
+        if it exists.
+    */
+    await migrateOldStorage();
+    renderEverything();
+}
+/* ============================================================
+   OLD STORAGE MIGRATION
+============================================================ */
+async function migrateOldStorage(){
+    const old = localStorage.getItem("myMagazinePortfolio_v2");
+    if(!old){
+        return;
+    }
+    const alreadyMigrated = localStorage.getItem(
+        "portfolioIndexedDBMigrated"
+    );
+    if(alreadyMigrated){
+        return;
+    }
+    try{
+        const oldData = JSON.parse(old);
+        if(oldData.name){
+            data.name = oldData.name;
+            await put("settings",{
+                key:"name",
+                value:data.name
+            });
+        }
+        if(oldData.bio){
+            data.bio = oldData.bio;
+            await put("settings",{
+                key:"bio",
+                value:data.bio
+            });
+        }
+        if(oldData.newspaperHasPublishedArticle){
+            data.newspaperHasPublishedArticle = true;
+            await put("settings",{
+                key:"newspaperHasPublishedArticle",
+                value:true
+            });
+        }
+        if(Array.isArray(oldData.photos)){
+            for(const oldPhoto of oldData.photos){
+                if(data.photos.length >= MAX_PHOTOS){
+                    break;
+                }
+                if(oldPhoto.data){
+                    try{
+                        const blob = await compressDataURL(
+                            oldPhoto.data
+                        );
+                        const id = await add("photos",{
+                            image:blob,
+                            name:oldPhoto.name || "Photo"
+                        });
+                        data.photos.push({
+                            id,
+                            image:blob,
+                            name:oldPhoto.name || "Photo"
+                        });
+                    }catch(error){
+                        console.log("Could not migrate photo.",error);
+                    }
+                }
+            }
+        }
+        if(Array.isArray(oldData.documents)){
+            for(const doc of oldData.documents){
+                if(doc.data){
+                    try{
+                        const blob = dataURLToBlob(doc.data);
+                        const id = await add("documents",{
+                            title:doc.title || "Research Document",
+                            description:doc.description || "",
+                            file:blob,
+                            fileName:doc.fileName || "document"
+                        });
+                        data.documents.push({
+                            id,
+                            title:doc.title || "Research Document",
+                            description:doc.description || "",
+                            file:blob,
+                            fileName:doc.fileName || "document"
+                        });
+                    }catch(error){
+                        console.log("Could not migrate document.",error);
+                    }
+                }
+            }
+        }
+        if(Array.isArray(oldData.articles)){
+            for(const article of oldData.articles){
+                const id = await add("articles",{
+                    title:article.title || "Article",
+                    date:article.date || "",
+                    url:article.url || ""
+                });
+                data.articles.push({
+                    id,
+                    title:article.title || "Article",
+                    date:article.date || "",
+                    url:article.url || ""
+                });
+            }
+        }
+        if(oldData.profilePhoto){
+            try{
+                const blob = await compressDataURL(
+                    oldData.profilePhoto
+                );
+                data.profilePhoto = blob;
+                await put("settings",{
+                    key:"profilePhoto",
+                    value:blob
+                });
+            }catch(error){
+                console.log("Could not migrate profile photo.",error);
+            }
+        }
+        localStorage.setItem(
+            "portfolioIndexedDBMigrated",
+            "true"
+        );
+    }catch(error){
+        console.log("Migration failed:",error);
+    }
+}
+/* ============================================================
+   IMAGE COMPRESSION
+============================================================ */
+function dataURLToBlob(dataURL){
+    const parts = dataURL.split(",");
+    const mime = parts[0]
+        .match(/:(.*?);/)[1];
+    const binary = atob(parts[1]);
+    const length = binary.length;
+    const bytes = new Uint8Array(length);
+    for(let i=0;i<length;i++){
+        bytes[i] = binary.charCodeAt(i);
+    }
+    return new Blob([bytes],{type:mime});
+}
+async function compressDataURL(dataURL){
+    const blob = dataURLToBlob(dataURL);
+    return compressBlob(blob);
+}
+async function compressBlob(blob){
+    return new Promise((resolve,reject)=>{
+        const url = URL.createObjectURL(blob);
+        const img = new Image();
+        img.onload = function(){
+            const maxDimension = 1200;
+            let width = img.naturalWidth;
+            let height = img.naturalHeight;
+            if(width > maxDimension || height > maxDimension){
+                if(width > height){
+                    height =
+                        Math.round(
+                            height * maxDimension / width
+                        );
+                    width = maxDimension;
+                }else{
+                    width =
+                        Math.round(
+                            width * maxDimension / height
+                        );
+                    height = maxDimension;
+                }
+            }
+            const canvas = document.createElement("canvas");
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(
+                img,
+                0,
+                0,
+                width,
+                height
+            );
+            canvas.toBlob(
+                function(compressed){
+                    URL.revokeObjectURL(url);
+                    if(!compressed){
+                        reject(new Error("Compression failed."));
+                        return;
+                    }
+                    resolve(compressed);
+                },
+                "image/jpeg",
+                .55
+            );
+        };
+        img.onerror = function(){
+            URL.revokeObjectURL(url);
+            reject(new Error("Image could not be read."));
+        };
+        img.src = url;
+    });
+}
+/* ============================================================
+   RENDER EVERYTHING
+============================================================ */
+function clearObjectURLs(){
+    activeObjectURLs.forEach(url=>{
+        URL.revokeObjectURL(url);
+    });
+    activeObjectURLs = [];
+}
+function renderEverything(){
+    clearObjectURLs();
+    document.getElementById("heroName").textContent =
+        data.name;
+    document.getElementById("navLogo").textContent =
+        data.name || "Portfolio";
+    document.getElementById("footerName").textContent =
+        data.name || "Portfolio";
+    document.getElementById("heroBio").textContent =
+        data.bio;
+    renderProfile();
+    renderPhotos();
+    renderResearch();
+    renderNews();
+    updatePhotoStatus();
+}
+/* ============================================================
+   PROFILE
+============================================================ */
+function renderProfile(){
+    const container =
+        document.getElementById("profileContainer");
+    container.innerHTML = "";
+    if(data.profilePhoto){
+        const img =
+            document.createElement("img");
+        const url =
+            URL.createObjectURL(data.profilePhoto);
+        activeObjectURLs.push(url);
+        img.src = url;
+        img.className = "profile-photo";
+        img.alt = data.name + " profile photo";
+        container.appendChild(img);
+    }else{
+        const placeholder =
+            document.createElement("div");
+        placeholder.className =
+            "profile-placeholder";
+        placeholder.textContent =
+            "Add a profile photo from the Edit button.";
+        container.appendChild(placeholder);
+    }
+}
+/* ============================================================
+   PHOTOS
+============================================================ */
+function renderPhotos(){
+    const gallery =
+        document.getElementById("photoGallery");
+    gallery.innerHTML = "";
+    if(data.photos.length === 0){
+        gallery.innerHTML = `
+            <div class="empty" style="grid-column:1/-1;">
+                No photography has been added yet.
+            </div>
+        `;
+        return;
+    }
+    data.photos.forEach(photo=>{
+        const card =
+            document.createElement("div");
+        card.className = "photo-card";
+        const img =
+            document.createElement("img");
+        const url =
+            URL.createObjectURL(photo.image);
+        activeObjectURLs.push(url);
+        img.src = url;
+        img.alt = "Photography";
+        img.loading = "lazy";
+        card.appendChild(img);
+        /*
+            No filename.
+            No delete button.
+            Just the photograph.
+        */
+        gallery.appendChild(card);
+    });
+}
+/* ============================================================
+   RESEARCH
+============================================================ */
+function renderResearch(){
+    const list =
+        document.getElementById("researchList");
+    list.innerHTML = "";
+    if(data.documents.length === 0){
+        list.innerHTML = `
+            <div class="empty">
+                No research documents have been added yet.
+            </div>
+        `;
+        return;
+    }
+    data.documents.forEach(doc=>{
+        const item =
+            document.createElement("div");
+        item.className =
+            "research-item";
+        const info =
+            document.createElement("div");
+        info.className =
+            "research-info";
+        const title =
+            document.createElement("h3");
+        title.textContent =
+            doc.title;
+        const description =
+            document.createElement("p");
+        description.textContent =
+            doc.description || "Research document";
+        info.appendChild(title);
+        info.appendChild(description);
+        const link =
+            document.createElement("a");
+        const url =
+            URL.createObjectURL(doc.file);
+        activeObjectURLs.push(url);
+        link.href = url;
+        link.target = "_blank";
+        link.className =
+            "research-link";
+        link.textContent =
+            "Open Document";
+        item.appendChild(info);
+        item.appendChild(link);
+        list.appendChild(item);
+    });
+}
+/* ============================================================
+   NEWSPAPER
+============================================================ */
+function renderNews(){
+    const list =
+        document.getElementById("newsList");
+    list.innerHTML = "";
+    if(data.articles.length === 0){
+        list.innerHTML = `
+            <div class="empty" style="grid-column:1/-1;">
+                ${
+                    data.newspaperHasPublishedArticle
+                    ? "No articles are currently published."
+                    : "Coming September 16"
+                }
+            </div>
+        `;
+        return;
+    }
+    data.articles.forEach(article=>{
+        const card =
+            document.createElement("article");
+        card.className =
+            "news-card";
+        const date =
+            document.createElement("div");
+        date.className =
+            "news-date";
+        date.textContent =
+            article.date;
+        const title =
+            document.createElement("h3");
+        title.textContent =
+            article.title;
+        card.appendChild(date);
+        card.appendChild(title);
+        if(article.url){
+            const link =
+                document.createElement("a");
+            link.href =
+                article.url;
+            link.target =
+                "_blank";
+            link.rel =
+                "noopener noreferrer";
+            link.textContent =
+                "Read Article →";
+            card.appendChild(link);
+        }
+        list.appendChild(card);
+    });
+}
+/* ============================================================
+   EDIT CODE
+============================================================ */
+function openCodeModal(){
+    document
+        .getElementById("codeModal")
+        .classList.add("active");
+    document
+        .getElementById("editCode")
+        .focus();
+}
+function checkCode(){
+    const entered =
+        document
+        .getElementById("editCode")
+        .value
+        .trim();
+    if(entered === EDIT_CODE){
+        document
+            .getElementById("codeModal")
+            .classList.remove("active");
+        document
+            .getElementById("editorModal")
+            .classList.add("active");
+        populateEditor();
+        document
+            .getElementById("codeError")
+            .textContent = "";
+    }else{
+        document
+            .getElementById("codeError")
+            .textContent =
+            "Incorrect code.";
+        document
+            .getElementById("editCode")
+            .select();
+    }
+}
+/* ============================================================
+   EDITOR
+============================================================ */
+function populateEditor(){
+    document.getElementById("editName").value =
+        data.name;
+    document.getElementById("editBio").value =
+        data.bio;
+    updatePhotoStatus();
+}
+function showTab(tabId,button){
+    document
+        .querySelectorAll(".editor-tab")
+        .forEach(tab=>{
+            tab.style.display = "none";
+        });
+    document.getElementById(tabId).style.display =
+        "block";
+    document
+        .querySelectorAll(".tab")
+        .forEach(tab=>{
+            tab.classList.remove("active");
+        });
+    button.classList.add("active");
+}
+/* ============================================================
    SAVE HOME
-========================================================= */
-async function saveHomepage() {
+============================================================ */
+async function saveHome(){
     const name =
         document
-            .getElementById(
-                "editName"
-            )
-            .value
-            .trim();
+        .getElementById("editName")
+        .value
+        .trim();
     const bio =
         document
-            .getElementById(
-                "editBio"
-            )
-            .value
-            .trim();
-    const photoInput =
-        document.getElementById(
-            "editProfilePhoto"
-        );
-    websiteData.name =
-        name ||
-        "YOUR NAME";
-    websiteData.bio =
-        bio ||
-        defaultData.bio;
-    if (
-        photoInput.files &&
-        photoInput.files.length > 0
-    ) {
-        try {
-            websiteData.profilePhoto =
-                await compressImage(
-                    photoInput.files[0],
-                    1600,
-                    0.78
-                );
-        } catch (error) {
+        .getElementById("editBio")
+        .value
+        .trim();
+    if(name){
+        data.name = name;
+        await put("settings",{
+            key:"name",
+            value:name
+        });
+    }
+    data.bio = bio;
+    await put("settings",{
+        key:"bio",
+        value:bio
+    });
+    const file =
+        document
+        .getElementById("profileInput")
+        .files[0];
+    if(file){
+        try{
+            const compressed =
+                await compressBlob(file);
+            data.profilePhoto =
+                compressed;
+            await put("settings",{
+                key:"profilePhoto",
+                value:compressed
+            });
+        }catch(error){
             alert(
                 "The profile photo could not be processed."
             );
             return;
         }
     }
-    await saveWebsiteData();
-    renderWebsite();
-    closeModal();
+    renderEverything();
+    alert("Changes saved.");
+    document
+        .getElementById("profileInput")
+        .value = "";
 }
-/* =========================================================
-   COMPRESS PHOTOS
-========================================================= */
-function compressImage(
-    file,
-    maxSize = 1600,
-    quality = 0.78
-) {
-    return new Promise(
-        (resolve, reject) => {
-            const reader =
-                new FileReader();
-            reader.onload =
-                function(event) {
-                    const image =
-                        new Image();
-                    image.onload =
-                        function() {
-                            let width =
-                                image.width;
-                            let height =
-                                image.height;
-                            if (
-                                width >
-                                maxSize ||
-                                height >
-                                maxSize
-                            ) {
-                                if (
-                                    width >
-                                    height
-                                ) {
-                                    height =
-                                        Math.round(
-                                            height *
-                                            maxSize /
-                                            width
-                                        );
-                                    width =
-                                        maxSize;
-                                } else {
-                                    width =
-                                        Math.round(
-                                            width *
-                                            maxSize /
-                                            height
-                                        );
-                                    height =
-                                        maxSize;
-                                }
-                            }
-                            const canvas =
-                                document.createElement(
-                                    "canvas"
-                                );
-                            canvas.width =
-                                width;
-                            canvas.height =
-                                height;
-                            const context =
-                                canvas.getContext(
-                                    "2d"
-                                );
-                            context.drawImage(
-                                image,
-                                0,
-                                0,
-                                width,
-                                height
-                            );
-                            const compressed =
-                                canvas.toDataURL(
-                                    "image/jpeg",
-                                    quality
-                                );
-                            resolve(
-                                compressed
-                            );
-                        };
-                    image.onerror =
-                        function() {
-                            reject(
-                                new Error(
-                                    "Image failed."
-                                )
-                            );
-                        };
-                    image.src =
-                        event.target.result;
-                };
-            reader.onerror =
-                function() {
-                    reject(
-                        reader.error
-                    );
-                };
-            reader.readAsDataURL(
-                file
-            );
-        }
-    );
-}
-/* =========================================================
-   PHOTOGRAPHY EDITOR
-========================================================= */
-function showPhotographyEditor() {
-    const used =
-        websiteData.photos.length;
-    const remaining =
-        PHOTO_LIMIT -
-        used;
-    openModal(`
-        <h3 class="modal-title">
-            Add Photography
-        </h3>
-        <p style="
-            margin-bottom:20px;
-            color:#68645e;
-        ">
-            ${used}
-            / ${PHOTO_LIMIT}
-            photos used.
-        </p>
-        <div class="form-group">
-            <label>
-                Choose Photos
-            </label>
-            <input
-                id="photoFiles"
-                type="file"
-                accept="image/*"
-                multiple
-                ${remaining <= 0
-                    ? "disabled"
-                    : ""}
-            >
-        </div>
-        <p class="warning">
-            Every photo is automatically resized
-            and compressed before saving.
-        </p>
-        ${
-            remaining <= 0
-            ?
-            `
-            <p class="warning">
-                You have reached the 25-photo limit.
-                Delete a photo to add another.
-            </p>
-            `
-            :
-            `
-            <p style="
-                color:#68645e;
-                font-size:12px;
-            ">
-                You can add
-                ${remaining}
-                more photo${
-                    remaining === 1
-                    ? ""
-                    : "s"
-                }.
-            </p>
-            `
-        }
-        <div class="modal-actions">
-            <button
-                class="secondary-button"
-                onclick="closeModal()"
-            >
-                Cancel
-            </button>
-            <button
-                class="primary-button"
-                onclick="addPhotography()"
-                ${
-                    remaining <= 0
-                    ? "disabled"
-                    : ""
-                }
-            >
-                Add Photos
-            </button>
-        </div>
-    `);
-}
-/* =========================================================
-   ADD PHOTOS
-========================================================= */
-async function addPhotography() {
+/* ============================================================
+   PHOTOS
+============================================================ */
+async function addPhotos(){
     const input =
-        document.getElementById(
-            "photoFiles"
-        );
+        document.getElementById("photoInput");
     const files =
-        Array.from(
-            input.files || []
-        );
-    if (
-        files.length === 0
-    ) {
+        Array.from(input.files);
+    if(files.length === 0){
+        alert("Choose at least one photo.");
+        return;
+    }
+    if(data.photos.length + files.length > MAX_PHOTOS){
         alert(
-            "Please choose at least one photo."
+            `You can only have ${MAX_PHOTOS} photos. ` +
+            `You currently have ${data.photos.length}.`
         );
         return;
     }
-    const available =
-        PHOTO_LIMIT -
-        websiteData.photos.length;
-    if (
-        files.length >
-        available
-    ) {
-        alert(
-            "You can only add " +
-            available +
-            " more photo" +
-            (
-                available === 1
-                ? ""
-                : "s"
-            ) +
-            "."
-        );
-        return;
-    }
-    const button =
-        document.querySelector(
-            "#modal .primary-button"
-        );
-    if (button) {
-        button.disabled = true;
-        button.textContent =
-            "COMPRESSING...";
-    }
-    for (
-        let i = 0;
-        i < files.length;
-        i++
-    ) {
-        try {
+    const status =
+        document.getElementById("photoStatus");
+    for(let i=0;i<files.length;i++){
+        status.textContent =
+            `Compressing photo ${i+1} of ${files.length}...`;
+        try{
             const compressed =
-                await compressImage(
-                    files[i],
-                    1600,
-                    0.78
-                );
-            websiteData.photos.push({
-                image:
-                    compressed,
-                name:
-                    files[i].name
+                await compressBlob(files[i]);
+            const id =
+                await add("photos",{
+                    image:compressed,
+                    name:files[i].name
+                });
+            data.photos.push({
+                id:id,
+                image:compressed,
+                name:files[i].name
             });
-        } catch (error) {
-            console.error(
-                error
+        }catch(error){
+            console.log(error);
+            alert(
+                `Could not process ${files[i].name}.`
             );
         }
     }
-    await saveWebsiteData();
-    renderWebsite();
-    closeModal();
+    input.value = "";
+    renderEverything();
+    status.textContent =
+        `${data.photos.length} / ${MAX_PHOTOS} photos`;
+    alert("Photos added.");
 }
-/* =========================================================
-   DELETE PHOTO
-========================================================= */
-async function deletePhoto(index) {
-    const confirmed =
-        confirm(
-            "Remove this photograph?"
-        );
-    if (!confirmed) {
-        return;
+function updatePhotoStatus(){
+    const status =
+        document.getElementById("photoStatus");
+    if(status){
+        status.textContent =
+            `${data.photos.length} / ${MAX_PHOTOS} photos`;
     }
-    websiteData.photos.splice(
-        index,
-        1
-    );
-    await saveWebsiteData();
-    renderWebsite();
 }
-/* =========================================================
-   RESEARCH EDITOR
-========================================================= */
-function showResearchEditor() {
-    openModal(`
-        <h3 class="modal-title">
-            Add Research
-        </h3>
-        <div class="form-group">
-            <label>
-                Document Title
-            </label>
-            <input
-                id="documentTitle"
-                type="text"
-                placeholder="Example: Research Project"
-            >
-        </div>
-        <div class="form-group">
-            <label>
-                Description
-            </label>
-            <textarea
-                id="documentDescription"
-                placeholder="Describe this research..."
-            ></textarea>
-        </div>
-        <div class="form-group">
-            <label>
-                Document
-            </label>
-            <input
-                id="documentFile"
-                type="file"
-                accept=".pdf,.doc,.docx,.txt"
-            >
-        </div>
-        <p class="warning">
-            Documents are stored directly in this browser.
-            No outside storage service is used.
-        </p>
-        <div class="modal-actions">
-            <button
-                class="secondary-button"
-                onclick="closeModal()"
-            >
-                Cancel
-            </button>
-            <button
-                class="primary-button"
-                onclick="addResearchDocument()"
-            >
-                Add Document
-            </button>
-        </div>
-    `);
-}
-/* =========================================================
-   ADD RESEARCH
-========================================================= */
-async function addResearchDocument() {
+/* ============================================================
+   RESEARCH
+============================================================ */
+async function addResearch(){
     const title =
         document
-            .getElementById(
-                "documentTitle"
-            )
-            .value
-            .trim();
+        .getElementById("researchTitle")
+        .value
+        .trim();
     const description =
         document
-            .getElementById(
-                "documentDescription"
-            )
-            .value
-            .trim();
-    const fileInput =
-        document.getElementById(
-            "documentFile"
-        );
-    if (
-        !title ||
-        !fileInput.files ||
-        fileInput.files.length === 0
-    ) {
-        alert(
-            "Please add a title and choose a document."
-        );
-        return;
-    }
+        .getElementById("researchDescription")
+        .value
+        .trim();
     const file =
-        fileInput.files[0];
-    try {
-        const dataURL =
-            await fileToDataURL(
-                file
-            );
-        websiteData.documents.push({
-            title:
-                title,
-            description:
-                description,
-            file:
-                dataURL,
-            fileName:
-                file.name
-        });
-        await saveWebsiteData();
-        renderWebsite();
-        closeModal();
-    } catch (error) {
+        document
+        .getElementById("researchFile")
+        .files[0];
+    if(!title || !file){
         alert(
-            "The document could not be added."
+            "Please enter a title and choose a document."
         );
-    }
-}
-/* =========================================================
-   DELETE RESEARCH
-========================================================= */
-async function deleteDocument(index) {
-    const confirmed =
-        confirm(
-            "Remove this research document?"
-        );
-    if (!confirmed) {
         return;
     }
-    websiteData.documents.splice(
-        index,
-        1
-    );
-    await saveWebsiteData();
-    renderWebsite();
+    const id =
+        await add("documents",{
+            title:title,
+            description:description,
+            file:file,
+            fileName:file.name
+        });
+    data.documents.push({
+        id:id,
+        title:title,
+        description:description,
+        file:file,
+        fileName:file.name
+    });
+    document.getElementById("researchTitle").value =
+        "";
+    document.getElementById("researchDescription").value =
+        "";
+    document.getElementById("researchFile").value =
+        "";
+    renderEverything();
+    alert("Research document added.");
 }
-/* =========================================================
-   ARTICLE EDITOR
-========================================================= */
-function showArticleEditor() {
-    openModal(`
-        <h3 class="modal-title">
-            Add Newspaper Article
-        </h3>
-        <div class="form-group">
-            <label>
-                Article Title
-            </label>
-            <input
-                id="articleTitle"
-                type="text"
-                placeholder="My First Article"
-            >
-        </div>
-        <div class="form-group">
-            <label>
-                Publication Date
-            </label>
-            <input
-                id="articleDate"
-                type="date"
-            >
-        </div>
-        <div class="form-group">
-            <label>
-                Article Link
-            </label>
-            <input
-                id="articleURL"
-                type="url"
-                placeholder="https://..."
-            >
-        </div>
-        <div class="modal-actions">
-            <button
-                class="secondary-button"
-                onclick="closeModal()"
-            >
-                Cancel
-            </button>
-            <button
-                class="primary-button"
-                onclick="addArticle()"
-            >
-                Add Article
-            </button>
-        </div>
-    `);
-}
-/* =========================================================
-   ADD ARTICLE
-========================================================= */
-async function addArticle() {
-    const title =
+/* ============================================================
+   NEWSPAPER
+============================================================ */
+async function addArticle(){
+    let title =
         document
-            .getElementById(
-                "articleTitle"
-            )
-            .value
-            .trim();
+        .getElementById("articleTitle")
+        .value
+        .trim();
     const date =
         document
-            .getElementById(
-                "articleDate"
-            )
-            .value;
+        .getElementById("articleDate")
+        .value
+        .trim();
     let url =
         document
-            .getElementById(
-                "articleURL"
-            )
-            .value
-            .trim();
-    if (
-        !title ||
-        !url
-    ) {
+        .getElementById("articleURL")
+        .value
+        .trim();
+    if(!title || !url){
         alert(
             "Please enter an article title and link."
         );
         return;
     }
-    if (
-        !/^https?:\/\//i.test(
-            url
-        )
-    ) {
+    if(!/^https?:\/\//i.test(url)){
         url =
-            "https://" +
-            url;
+            "https://" + url;
     }
-    websiteData.articles.push({
-        title:
-            title,
-        date:
-            date,
-        url:
-            url
+    const id =
+        await add("articles",{
+            title:title,
+            date:date,
+            url:url
+        });
+    data.articles.push({
+        id:id,
+        title:title,
+        date:date,
+        url:url
     });
-    localStorage.setItem(
-        "newspaperHasPublishedArticle",
-        "true"
-    );
-    await saveWebsiteData();
-    renderWebsite();
-    closeModal();
-}
-/* =========================================================
-   DELETE ARTICLE
-========================================================= */
-async function deleteArticle(index) {
-    const confirmed =
-        confirm(
-            "Remove this article?"
-        );
-    if (!confirmed) {
-        return;
-    }
-    websiteData.articles.splice(
-        index,
-        1
-    );
-    await saveWebsiteData();
-    renderWebsite();
-}
-/* =========================================================
-   FILE READER
-========================================================= */
-function fileToDataURL(file) {
-    return new Promise(
-        (resolve, reject) => {
-            const reader =
-                new FileReader();
-            reader.onload =
-                function() {
-                    resolve(
-                        reader.result
-                    );
-                };
-            reader.onerror =
-                function() {
-                    reject(
-                        reader.error
-                    );
-                };
-            reader.readAsDataURL(
-                file
-            );
-        }
-    );
-}
-/* =========================================================
-   DATE
-========================================================= */
-function formatDate(dateString) {
-    if (!dateString) {
-        return "";
-    }
-    const date =
-        new Date(
-            dateString +
-            "T12:00:00"
-        );
-    if (
-        Number.isNaN(
-            date.getTime()
-        )
-    ) {
-        return "";
-    }
-    return date.toLocaleDateString(
-        undefined,
-        {
-            month:
-                "long",
-            day:
-                "numeric",
-            year:
-                "numeric"
-        }
-    );
-}
-/* =========================================================
-   RENDER HOME
-========================================================= */
-function renderHomepage() {
-    const name =
-        websiteData.name ||
-        "YOUR NAME";
-    const bio =
-        websiteData.bio ||
-        defaultData.bio;
-    document
-        .getElementById(
-            "navigationName"
-        )
-        .textContent =
-        name;
-    document
-        .getElementById(
-            "footerName"
-        )
-        .textContent =
-        name;
-    document
-        .getElementById(
-            "homeBio"
-        )
-        .textContent =
-        bio;
-    const parts =
-        name
-            .trim()
-            .split(
-                /\s+/
-            );
-    let formatted =
+    data.newspaperHasPublishedArticle =
+        true;
+    await put("settings",{
+        key:"newspaperHasPublishedArticle",
+        value:true
+    });
+    document.getElementById("articleTitle").value =
         "";
-    if (
-        parts.length === 1
-    ) {
-        formatted =
-            escapeHTML(
-                parts[0]
-            );
-    } else {
-        formatted =
-            escapeHTML(
-                parts[0]
-            ) +
-            "<br>" +
-            escapeHTML(
-                parts
-                    .slice(1)
-                    .join(" ")
-            );
-    }
+    document.getElementById("articleDate").value =
+        "";
+    document.getElementById("articleURL").value =
+        "";
+    renderEverything();
+    alert("Article published.");
+}
+/* ============================================================
+   MODALS
+============================================================ */
+function closeModal(id){
     document
-        .getElementById(
-            "homeName"
-        )
-        .innerHTML =
-        formatted;
-    const photo =
-        document.getElementById(
-            "homePhoto"
-        );
-    if (
-        websiteData.profilePhoto
-    ) {
-        photo.innerHTML = `
-            <img
-                src="${websiteData.profilePhoto}"
-                alt="${escapeHTML(
-                    name
-                )}"
-            >
-        `;
-    } else {
-        photo.innerHTML = `
-            <div
-                class="photo-placeholder"
-            >
-                Your portrait<br>
-                will appear here.
-            </div>
-        `;
-    }
+        .getElementById(id)
+        .classList.remove("active");
 }
-/* =========================================================
-   RENDER PHOTOS
-========================================================= */
-function renderPhotography() {
-    const gallery =
-        document.getElementById(
-            "gallery"
-        );
-    if (
-        websiteData.photos.length === 0
-    ) {
-        gallery.innerHTML = `
-            <div class="empty-state">
-                Your photography gallery is ready.
-                <br><br>
-                Click <strong>Edit</strong>
-                to add photographs
-                from your camera roll.
-            </div>
-        `;
-        return;
-    }
-    gallery.innerHTML =
-        websiteData.photos
-            .map(
-                function(photo, index) {
-                    return `
-                        <figure
-                            class="gallery-item"
-                        >
-                            <img
-                                src="${photo.image}"
-                                alt="${escapeHTML(
-                                    photo.name ||
-                                    "Photography"
-                                )}"
-                                loading="lazy"
-                            >
-                            <figcaption
-                                class="gallery-caption"
-                            >
-                                ${escapeHTML(
-                                    photo.name ||
-                                    "Untitled photograph"
-                                )}
-                                <br>
-                                <button
-                                    class="delete-button"
-                                    onclick="deletePhoto(${index})"
-                                >
-                                    Delete
-                                </button>
-                            </figcaption>
-                        </figure>
-                    `;
-                }
-            )
-            .join("");
-}
-/* =========================================================
-   RENDER RESEARCH
-========================================================= */
-function renderResearch() {
-    const grid =
-        document.getElementById(
-            "documentGrid"
-        );
-    if (
-        websiteData.documents.length === 0
-    ) {
-        grid.innerHTML = `
-            <div class="empty-state">
-                No research documents yet.
-                <br><br>
-                Click <strong>Edit</strong>
-                to add one.
-            </div>
-        `;
-        return;
-    }
-    grid.innerHTML =
-        websiteData.documents
-            .map(
-                function(item, index) {
-                    return `
-                        <article
-                            class="document"
-                        >
-                            <h3
-                                class="document-title"
-                            >
-                                ${escapeHTML(
-                                    item.title
-                                )}
-                            </h3>
-                            <p
-                                class="document-description"
-                            >
-                                ${escapeHTML(
-                                    item.description
-                                )}
-                            </p>
-                            <a
-                                class="document-link"
-                                href="${item.file}"
-                                download="${escapeHTML(
-                                    item.fileName
-                                )}"
-                            >
-                                Open Document →
-                            </a>
-                            <br>
-                            <button
-                                class="delete-button"
-                                onclick="deleteDocument(${index})"
-                            >
-                                Delete
-                            </button>
-                        </article>
-                    `;
-                }
-            )
-            .join("");
-}
-/* =========================================================
-   RENDER ARTICLES
-========================================================= */
-function renderArticles() {
-    const list =
-        document.getElementById(
-            "articleList"
-        );
-    if (
-        websiteData.articles.length === 0
-    ) {
-        if (
-            localStorage.getItem(
-                "newspaperHasPublishedArticle"
-            ) === "true"
-        ) {
-            list.innerHTML = `
-                <div class="empty-state">
-                    Your published articles
-                    will appear here.
-                </div>
-            `;
-        } else {
-            list.innerHTML = `
-                <div class="coming-soon">
-                    Coming September 16 —
-                    school newspaper articles
-                    will appear here.
-                </div>
-            `;
+document.querySelectorAll(".modal").forEach(modal=>{
+    modal.addEventListener("click",function(event){
+        if(event.target === modal){
+            modal.classList.remove("active");
         }
-        return;
-    }
-    list.innerHTML =
-        websiteData.articles
-            .map(
-                function(article, index) {
-                    return `
-                        <article
-                            class="article"
-                        >
-                            <div>
-                                <h3
-                                    class="article-title"
-                                >
-                                    ${escapeHTML(
-                                        article.title
-                                    )}
-                                </h3>
-                                <div
-                                    class="article-date"
-                                >
-                                    ${formatDate(
-                                        article.date
-                                    )}
-                                </div>
-                            </div>
-                            <div>
-                                <a
-                                    class="article-link"
-                                    href="${escapeHTML(
-                                        article.url
-                                    )}"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Read Article →
-                                </a>
-                                <br>
-                                <button
-                                    class="delete-button"
-                                    onclick="deleteArticle(${index})"
-                                >
-                                    Delete
-                                </button>
-                            </div>
-                        </article>
-                    `;
-                }
-            )
-            .join("");
-}
-/* =========================================================
-   RENDER EVERYTHING
-========================================================= */
-function renderWebsite() {
-    renderHomepage();
-    renderPhotography();
-    renderResearch();
-    renderArticles();
-    document
-        .getElementById(
-            "currentYear"
-        )
-        .textContent =
-        new Date().getFullYear();
-}
-/* =========================================================
+    });
+});
+document
+    .getElementById("editCode")
+    .addEventListener("keydown",function(event){
+        if(event.key === "Enter"){
+            checkCode();
+        }
+    });
+/* ============================================================
    START
-========================================================= */
-(async function() {
-    websiteData =
-        await loadWebsiteData();
-    renderWebsite();
-})();
+============================================================ */
+loadData().catch(error=>{
+    console.error(error);
+    alert(
+        "The portfolio could not load its saved data. " +
+        "Try refreshing the page."
+    );
+});
 </script>
 </body>
 </html>
