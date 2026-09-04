@@ -2,18 +2,17 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Portfolio</title>
 <style>
 :root{
-    --bg:#0b0b0d;
-    --card:#141416;
-    --card2:#1b1b1f;
-    --text:#f5f5f5;
-    --muted:#a7a7ad;
-    --line:#29292e;
-    --accent:#ffffff;
-    --danger:#ff5f56;
+    --bg:#09090b;
+    --surface:#111113;
+    --surface2:#18181b;
+    --border:#27272a;
+    --text:#fafafa;
+    --muted:#a1a1aa;
+    --soft:#71717a;
 }
 *{
     box-sizing:border-box;
@@ -24,10 +23,18 @@ html{
     scroll-behavior:smooth;
 }
 body{
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
     background:var(--bg);
     color:var(--text);
-    line-height:1.6;
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
 }
 button,
 input,
@@ -37,521 +44,582 @@ textarea{
 button{
     cursor:pointer;
 }
+a{
+    color:inherit;
+}
 img{
     max-width:100%;
-    display:block;
 }
-/* =========================
-   NAVIGATION
-========================= */
+/* ========================================
+   HEADER
+======================================== */
 header{
     position:sticky;
     top:0;
     z-index:100;
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    background:rgba(11,11,13,.82);
+    background:rgba(9,9,11,.88);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
     border-bottom:1px solid rgba(255,255,255,.08);
 }
 .nav{
+    width:100%;
     max-width:1150px;
     margin:auto;
-    min-height:70px;
-    padding:0 22px;
+    padding:
+        max(12px, env(safe-area-inset-top))
+        16px
+        12px;
+}
+.nav-top{
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    gap:20px;
+    align-items:center;
+    gap:15px;
 }
 .logo{
-    color:white;
-    text-decoration:none;
-    font-size:22px;
+    font-size:19px;
     font-weight:750;
-    letter-spacing:-.6px;
-}
-.nav-links{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
-    justify-content:center;
-}
-.nav-links a{
-    color:#bdbdc3;
+    letter-spacing:-.5px;
     text-decoration:none;
-    padding:9px 13px;
-    border-radius:10px;
-    font-size:14px;
-    transition:.2s ease;
+    white-space:nowrap;
 }
-.nav-links a:hover{
+.menu{
+    display:flex;
+    gap:5px;
+    overflow-x:auto;
+    padding-top:10px;
+    scrollbar-width:none;
+}
+.menu::-webkit-scrollbar{
+    display:none;
+}
+.menu a{
+    flex:0 0 auto;
+    text-decoration:none;
+    color:#a1a1aa;
+    font-size:13px;
+    padding:8px 11px;
+    border-radius:9px;
+}
+.menu a:hover,
+.menu a:active{
     color:white;
-    background:#1c1c20;
+    background:#1c1c1f;
 }
-/* =========================
-   GENERAL
-========================= */
+/* ========================================
+   CONTAINER
+======================================== */
 .container{
+    width:100%;
     max-width:1150px;
     margin:auto;
-    padding:0 22px;
+    padding:0 17px;
 }
 section{
-    padding:90px 0;
+    padding:70px 0;
 }
-.section-heading{
-    margin-bottom:35px;
+.eyebrow{
+    color:#71717a;
+    font-size:11px;
+    font-weight:750;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-bottom:12px;
 }
-.section-heading h2{
-    font-size:38px;
-    line-height:1.1;
+.section-title{
+    font-size:34px;
+    line-height:1.05;
     letter-spacing:-1.5px;
     margin-bottom:10px;
 }
-.section-heading p{
+.section-description{
     color:var(--muted);
+    font-size:15px;
     max-width:650px;
 }
-/* =========================
+/* ========================================
    HERO
-========================= */
+======================================== */
 .hero{
-    min-height:calc(100vh - 70px);
+    min-height:calc(100svh - 105px);
     display:flex;
     align-items:center;
+    padding:55px 0 70px;
 }
 .hero-grid{
-    width:100%;
-    display:grid;
-    grid-template-columns:1.25fr .75fr;
-    align-items:center;
-    gap:70px;
-}
-.eyebrow{
-    color:#9d9da5;
-    text-transform:uppercase;
-    letter-spacing:2px;
-    font-size:12px;
-    font-weight:700;
-    margin-bottom:18px;
-}
-.hero h1{
-    font-size:clamp(48px,8vw,92px);
-    line-height:.95;
-    letter-spacing:-5px;
-    margin-bottom:25px;
-}
-.hero h1 span{
-    color:#85858c;
-}
-.bio{
-    max-width:650px;
-    color:#b9b9bf;
-    font-size:18px;
-    line-height:1.75;
-}
-.hero-buttons{
-    margin-top:30px;
     display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-}
-.primary-btn,
-.secondary-btn{
-    border-radius:12px;
-    padding:12px 18px;
-    border:1px solid var(--line);
-    transition:.2s ease;
-}
-.primary-btn{
-    background:white;
-    color:#080808;
-    border-color:white;
-    font-weight:700;
-}
-.primary-btn:hover{
-    transform:translateY(-2px);
-    opacity:.9;
-}
-.secondary-btn{
-    background:#171719;
-    color:white;
-}
-.secondary-btn:hover{
-    background:#222226;
+    flex-direction:column;
+    gap:38px;
 }
 .profile-wrap{
     display:flex;
     justify-content:center;
+    order:-1;
+}
+.profile-photo,
+.profile-placeholder{
+    width:min(270px,78vw);
+    aspect-ratio:1;
+    border-radius:26px;
 }
 .profile-photo{
-    width:min(340px,75vw);
-    aspect-ratio:1;
     object-fit:cover;
-    border-radius:28px;
     border:1px solid #303035;
-    background:#161619;
-    box-shadow:0 30px 80px rgba(0,0,0,.45);
+    box-shadow:0 25px 70px rgba(0,0,0,.45);
 }
 .profile-placeholder{
-    width:min(340px,75vw);
-    aspect-ratio:1;
-    border-radius:28px;
-    border:1px solid #303035;
-    background:linear-gradient(145deg,#19191d,#101012);
     display:flex;
     align-items:center;
     justify-content:center;
-    color:#6e6e75;
     text-align:center;
-    padding:30px;
-}
-/* =========================
-   CARDS
-========================= */
-.card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:20px;
     padding:25px;
+    color:#71717a;
+    border:1px solid var(--border);
+    background:linear-gradient(
+        145deg,
+        #18181b,
+        #0f0f11
+    );
 }
-.card:hover{
-    border-color:#38383e;
+.hero h1{
+    font-size:clamp(52px,15vw,90px);
+    line-height:.91;
+    letter-spacing:-5px;
+    margin-bottom:22px;
+    word-break:break-word;
 }
-/* =========================
+.hero-bio{
+    color:#b9b9bf;
+    font-size:16px;
+    line-height:1.7;
+    max-width:650px;
+}
+.hero-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:25px;
+}
+.primary-button,
+.secondary-button{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:48px;
+    padding:12px 18px;
+    border-radius:12px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:700;
+}
+.primary-button{
+    background:white;
+    color:#080808;
+}
+.secondary-button{
+    background:#18181b;
+    border:1px solid var(--border);
+}
+/* ========================================
    PHOTOGRAPHY
-========================= */
+======================================== */
 .photo-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+    margin-top:30px;
 }
 .photo-card{
-    position:relative;
+    width:100%;
+    aspect-ratio:1/1;
     overflow:hidden;
-    border-radius:18px;
-    background:#151518;
-    border:1px solid #27272c;
-    aspect-ratio:4/3;
+    background:#141416;
+    border-radius:10px;
 }
 .photo-card img{
     width:100%;
     height:100%;
     object-fit:cover;
-    transition:transform .45s ease;
+    transition:transform .4s ease;
 }
+.photo-card:active img,
 .photo-card:hover img{
-    transform:scale(1.04);
+    transform:scale(1.035);
 }
-/* =========================
+/* ========================================
    RESEARCH
-========================= */
+======================================== */
 .research-list{
-    display:grid;
-    gap:15px;
+    display:flex;
+    flex-direction:column;
+    gap:11px;
+    margin-top:30px;
 }
 .research-item{
     display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    padding:20px;
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:16px;
+    flex-direction:column;
+    gap:15px;
+    padding:18px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    border-radius:15px;
 }
 .research-info h3{
-    margin-bottom:4px;
-    font-size:18px;
+    font-size:17px;
+    margin-bottom:5px;
 }
 .research-info p{
     color:var(--muted);
-    font-size:14px;
-}
-.research-link{
-    flex-shrink:0;
-    color:white;
-    text-decoration:none;
-    padding:9px 13px;
-    border:1px solid #36363b;
-    border-radius:9px;
     font-size:13px;
 }
-.research-link:hover{
-    background:#202024;
+.research-link{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width:100%;
+    min-height:43px;
+    border:1px solid #35353a;
+    border-radius:10px;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:650;
+    background:#18181b;
 }
-/* =========================
+/* ========================================
    NEWSPAPER
-========================= */
+======================================== */
 .news-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:18px;
+    grid-template-columns:1fr;
+    gap:12px;
+    margin-top:30px;
 }
 .news-card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:20px;
-    padding:25px;
+    padding:21px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:17px;
 }
 .news-date{
-    color:#818189;
-    font-size:12px;
+    color:#71717a;
+    font-size:10px;
+    font-weight:750;
+    letter-spacing:1.3px;
     text-transform:uppercase;
-    letter-spacing:1px;
-    margin-bottom:10px;
+    margin-bottom:9px;
 }
 .news-card h3{
-    font-size:23px;
-    margin-bottom:12px;
+    font-size:20px;
+    line-height:1.25;
 }
 .news-card a{
     display:inline-block;
     margin-top:15px;
     color:white;
     text-decoration:none;
-    border-bottom:1px solid #777;
-}
-/* =========================
-   EMPTY STATE
-========================= */
-.empty{
-    padding:45px 25px;
-    text-align:center;
-    border:1px dashed #333339;
-    border-radius:18px;
-    color:#77777f;
-}
-/* =========================
-   FOOTER
-========================= */
-footer{
-    border-top:1px solid var(--line);
-    padding:30px 0;
-    color:#707078;
     font-size:13px;
+    font-weight:650;
+}
+/* ========================================
+   EMPTY
+======================================== */
+.empty{
+    padding:40px 20px;
+    border:1px dashed #303035;
+    border-radius:15px;
+    text-align:center;
+    color:#71717a;
+    font-size:14px;
+}
+/* ========================================
+   FOOTER
+======================================== */
+footer{
+    border-top:1px solid var(--border);
+    padding:
+        25px
+        0
+        calc(30px + env(safe-area-inset-bottom));
+    color:#71717a;
+    font-size:12px;
 }
 .footer-inner{
     display:flex;
-    justify-content:space-between;
-    gap:20px;
+    flex-direction:column;
+    gap:5px;
 }
-/* =========================
-   EDIT BUTTON
-========================= */
-.edit-trigger{
+/* ========================================
+   BIG EDIT BUTTON
+======================================== */
+.edit-button{
     position:fixed;
-    right:20px;
-    bottom:20px;
     z-index:150;
-    width:52px;
-    height:52px;
-    border-radius:50%;
-    border:1px solid #3b3b40;
-    background:#18181b;
-    color:white;
-    box-shadow:0 10px 35px rgba(0,0,0,.4);
-    font-size:19px;
+    right:18px;
+    bottom:
+        calc(18px + env(safe-area-inset-bottom));
+    min-width:75px;
+    height:48px;
+    padding:0 18px;
+    border:1px solid #4a4a50;
+    border-radius:14px;
+    background:#ffffff;
+    color:#080808;
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:.4px;
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.5);
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
 }
-.edit-trigger:hover{
-    background:#25252a;
+.edit-button:active{
+    transform:scale(.96);
 }
-/* =========================
-   MODAL
-========================= */
+.edit-button:hover{
+    transform:translateY(-2px);
+}
+/* ========================================
+   MODALS
+======================================== */
 .modal{
     position:fixed;
     inset:0;
-    z-index:200;
-    background:rgba(0,0,0,.72);
+    z-index:500;
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    background:rgba(0,0,0,.7);
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
 }
 .modal.active{
     display:flex;
 }
 .modal-box{
-    width:min(700px,100%);
-    max-height:90vh;
+    width:100%;
+    max-height:92svh;
     overflow:auto;
     background:#111113;
-    border:1px solid #303035;
-    border-radius:22px;
-    padding:28px;
-    box-shadow:0 30px 100px rgba(0,0,0,.65);
+    border:
+        1px solid
+        #303035;
+    border-radius:
+        22px
+        22px
+        0
+        0;
+    padding:
+        24px
+        18px
+        calc(24px + env(safe-area-inset-bottom));
+    box-shadow:
+        0 -20px 70px rgba(0,0,0,.5);
 }
 .modal-header{
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:20px;
-    margin-bottom:25px;
+    justify-content:space-between;
+    margin-bottom:22px;
 }
 .modal-header h2{
-    font-size:24px;
+    font-size:22px;
+    letter-spacing:-.5px;
 }
 .close{
-    width:36px;
-    height:36px;
-    border-radius:9px;
+    width:38px;
+    height:38px;
     border:1px solid #303035;
-    background:#1b1b1e;
+    border-radius:10px;
+    background:#1a1a1d;
     color:white;
+    font-size:22px;
 }
-.close:hover{
-    background:#27272c;
-}
-/* =========================
+/* ========================================
    TABS
-========================= */
+======================================== */
 .tabs{
     display:flex;
-    gap:7px;
-    overflow:auto;
-    padding-bottom:3px;
-    margin-bottom:25px;
+    gap:6px;
+    overflow-x:auto;
+    margin-bottom:23px;
+    scrollbar-width:none;
+}
+.tabs::-webkit-scrollbar{
+    display:none;
 }
 .tab{
-    white-space:nowrap;
-    padding:9px 13px;
-    border-radius:9px;
+    flex:0 0 auto;
+    padding:9px 12px;
     border:1px solid #303035;
-    background:#171719;
-    color:#aaaab0;
+    border-radius:9px;
+    background:#18181b;
+    color:#a1a1aa;
+    font-size:12px;
 }
 .tab.active{
+    color:#050505;
     background:white;
-    color:black;
     border-color:white;
 }
-/* =========================
+/* ========================================
    FORMS
-========================= */
+======================================== */
 .form-group{
-    margin-bottom:18px;
+    margin-bottom:17px;
 }
 .form-group label{
     display:block;
-    font-size:13px;
-    font-weight:650;
-    color:#d0d0d4;
-    margin-bottom:8px;
+    color:#d4d4d8;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:7px;
 }
 input,
 textarea{
     width:100%;
     border:1px solid #303035;
+    border-radius:11px;
     background:#18181b;
     color:white;
-    border-radius:11px;
-    padding:12px 13px;
+    padding:13px;
     outline:none;
+    font-size:15px;
+}
+textarea{
+    min-height:125px;
+    resize:vertical;
 }
 input:focus,
 textarea:focus{
-    border-color:#65656d;
-}
-textarea{
-    min-height:130px;
-    resize:vertical;
+    border-color:#65656b;
 }
 input[type="file"]{
+    font-size:13px;
     padding:10px;
 }
-.form-actions{
-    display:flex;
-    justify-content:flex-end;
-    gap:10px;
-    margin-top:24px;
-    flex-wrap:wrap;
-}
-.save-btn{
-    background:white;
-    color:black;
-    border:0;
-    border-radius:10px;
-    padding:11px 17px;
-    font-weight:700;
-}
-.cancel-btn{
-    background:#1a1a1d;
-    color:white;
-    border:1px solid #303035;
-    border-radius:10px;
-    padding:11px 17px;
-}
 .status{
-    color:#85858c;
-    font-size:13px;
-    margin-top:10px;
+    margin-top:7px;
+    color:#71717a;
+    font-size:11px;
+    line-height:1.5;
 }
 .warning{
     padding:13px;
-    background:#1b1712;
-    border:1px solid #493b27;
-    color:#c8b28a;
-    border-radius:10px;
-    font-size:13px;
     margin-bottom:18px;
+    border:1px solid #3d3526;
+    border-radius:11px;
+    background:#1b1813;
+    color:#b9aa8e;
+    font-size:12px;
 }
-/* =========================
-   MOBILE
-========================= */
-@media(max-width:800px){
+.form-actions{
+    display:flex;
+    gap:8px;
+    margin-top:22px;
+}
+.save-button,
+.cancel-button{
+    flex:1;
+    min-height:46px;
+    border-radius:11px;
+    font-weight:750;
+    font-size:13px;
+}
+.save-button{
+    background:white;
+    color:black;
+    border:0;
+}
+.cancel-button{
+    background:#18181b;
+    color:white;
+    border:1px solid #303035;
+}
+/* ========================================
+   DESKTOP
+======================================== */
+@media(min-width:700px){
     .nav{
-        min-height:auto;
-        padding:15px 18px;
-        flex-direction:column;
+        padding:16px 25px;
     }
-    .nav-links{
-        width:100%;
-        overflow-x:auto;
-        justify-content:flex-start;
+    .nav-top{
+        display:block;
+    }
+    .menu{
+        position:absolute;
+        right:25px;
+        top:14px;
+        padding:0;
+    }
+    .logo{
+        font-size:21px;
+    }
+    .container{
+        padding:0 25px;
     }
     section{
-        padding:65px 0;
+        padding:105px 0;
     }
     .hero{
-        min-height:auto;
-        padding-top:70px;
+        min-height:calc(100vh - 70px);
+        padding:70px 0;
     }
     .hero-grid{
-        grid-template-columns:1fr;
-        gap:45px;
-    }
-    .hero h1{
-        letter-spacing:-3px;
+        display:grid;
+        grid-template-columns:1.2fr .8fr;
+        align-items:center;
+        gap:80px;
     }
     .profile-wrap{
-        order:-1;
+        order:0;
+    }
+    .profile-photo,
+    .profile-placeholder{
+        width:min(380px,100%);
+        border-radius:30px;
+    }
+    .hero-buttons{
+        flex-direction:row;
+    }
+    .primary-button,
+    .secondary-button{
+        min-height:45px;
+        width:auto;
     }
     .photo-grid{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:repeat(3,1fr);
+        gap:14px;
     }
-    .news-grid{
-        grid-template-columns:1fr;
+    .photo-card{
+        border-radius:15px;
     }
     .research-item{
-        align-items:flex-start;
-        flex-direction:column;
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+    }
+    .research-link{
+        width:auto;
+        padding:0 17px;
+    }
+    .news-grid{
+        grid-template-columns:1fr 1fr;
     }
     .footer-inner{
-        flex-direction:column;
+        flex-direction:row;
+        justify-content:space-between;
     }
-}
-@media(max-width:480px){
-    .photo-grid{
-        grid-template-columns:1fr;
+    .modal{
+        align-items:center;
+        padding:20px;
     }
-    .section-heading h2{
-        font-size:31px;
-    }
-    .hero h1{
-        font-size:50px;
+    .modal-box{
+        width:min(700px,100%);
+        max-height:90vh;
+        border-radius:22px;
+        padding:28px;
     }
 }
 </style>
@@ -559,34 +627,50 @@ input[type="file"]{
 <body>
 <header>
     <nav class="nav">
-        <a href="#home" class="logo" id="navLogo">Portfolio</a>
-        <div class="nav-links">
+        <div class="nav-top">
+            <a href="#home" class="logo" id="navLogo">
+                Portfolio
+            </a>
+        </div>
+        <div class="menu">
             <a href="#home">Home</a>
             <a href="#photography">Photography</a>
-            <a href="#research">Political Research</a>
+            <a href="#research">Research</a>
             <a href="#newspaper">Newspaper</a>
         </div>
     </nav>
 </header>
 <main>
-<!-- HOME -->
+<!-- ================= HOME ================= -->
 <section id="home" class="hero">
     <div class="container">
         <div class="hero-grid">
-            <div>
-                <div class="eyebrow">Portfolio</div>
+            <div class="hero-content">
+                <div class="eyebrow">
+                    Portfolio
+                </div>
                 <h1 id="heroName">
                     Your Name
                 </h1>
-                <p class="bio" id="heroBio">
-                    Welcome to my portfolio. This is where I share my photography,
+                <p
+                    id="heroBio"
+                    class="hero-bio"
+                >
+                    Welcome to my portfolio.
+                    This is where I share my photography,
                     research, writing, and projects.
                 </p>
                 <div class="hero-buttons">
-                    <a href="#photography" class="primary-btn">
+                    <a
+                        href="#photography"
+                        class="primary-button"
+                    >
                         View Photography
                     </a>
-                    <a href="#newspaper" class="secondary-btn">
+                    <a
+                        href="#newspaper"
+                        class="secondary-button"
+                    >
                         Newspaper
                     </a>
                 </div>
@@ -597,139 +681,228 @@ input[type="file"]{
         </div>
     </div>
 </section>
-<!-- PHOTOGRAPHY -->
+<!-- ================= PHOTOGRAPHY ================= -->
 <section id="photography">
     <div class="container">
-        <div class="section-heading">
-            <div class="eyebrow">Visual Work</div>
-            <h2>Photography</h2>
-            <p>
-                A collection of photographs and visual work.
-            </p>
+        <div class="eyebrow">
+            Visual Work
         </div>
-        <div id="photoGallery" class="photo-grid"></div>
+        <h2 class="section-title">
+            Photography
+        </h2>
+        <p class="section-description">
+            A collection of my photography and visual work.
+        </p>
+        <div
+            id="photoGallery"
+            class="photo-grid"
+        ></div>
     </div>
 </section>
-<!-- RESEARCH -->
+<!-- ================= RESEARCH ================= -->
 <section id="research">
     <div class="container">
-        <div class="section-heading">
-            <div class="eyebrow">Research</div>
-            <h2>Political Research</h2>
-            <p>
-                Research papers, documents, and projects.
-            </p>
+        <div class="eyebrow">
+            Research
         </div>
-        <div id="researchList" class="research-list"></div>
+        <h2 class="section-title">
+            Political Research
+        </h2>
+        <p class="section-description">
+            Research papers, documents, and projects.
+        </p>
+        <div
+            id="researchList"
+            class="research-list"
+        ></div>
     </div>
 </section>
-<!-- NEWSPAPER -->
+<!-- ================= NEWSPAPER ================= -->
 <section id="newspaper">
     <div class="container">
-        <div class="section-heading">
-            <div class="eyebrow">Writing</div>
-            <h2>Newspaper</h2>
-            <p>
-                Articles and writing published through my newspaper work.
-            </p>
+        <div class="eyebrow">
+            Writing
         </div>
-        <div id="newsList" class="news-grid"></div>
+        <h2 class="section-title">
+            Newspaper
+        </h2>
+        <p class="section-description">
+            Articles and writing from my newspaper work.
+        </p>
+        <div
+            id="newsList"
+            class="news-grid"
+        ></div>
     </div>
 </section>
 </main>
 <footer>
     <div class="container footer-inner">
-        <div>© <span id="footerName">Portfolio</span></div>
-        <div>Photography · Research · Writing</div>
+        <div>
+            © <span id="footerName">Portfolio</span>
+        </div>
+        <div>
+            Photography · Research · Writing
+        </div>
     </div>
 </footer>
-<!-- EDIT BUTTON -->
-<button class="edit-trigger" onclick="openCodeModal()" aria-label="Edit website">
-    ✎
+<!-- ================= EDIT BUTTON ================= -->
+<button
+    class="edit-button"
+    onclick="openCodeModal()"
+>
+    EDIT
 </button>
-<!-- CODE MODAL -->
-<div class="modal" id="codeModal">
+<!-- ================= CODE MODAL ================= -->
+<div
+    class="modal"
+    id="codeModal"
+>
     <div class="modal-box">
         <div class="modal-header">
-            <h2>Enter Edit Code</h2>
-            <button class="close" onclick="closeModal('codeModal')">×</button>
+            <h2>
+                Edit Portfolio
+            </h2>
+            <button
+                class="close"
+                onclick="closeModal('codeModal')"
+            >
+                ×
+            </button>
         </div>
         <div class="form-group">
-            <label for="editCode">Edit Code</label>
+            <label>
+                Enter Edit Code
+            </label>
             <input
                 id="editCode"
                 type="password"
                 inputmode="numeric"
+                autocomplete="off"
                 placeholder="Enter code"
             >
+            <div
+                id="codeError"
+                class="status"
+            ></div>
         </div>
-        <div id="codeError" class="status"></div>
         <div class="form-actions">
-            <button class="cancel-btn" onclick="closeModal('codeModal')">
+            <button
+                class="cancel-button"
+                onclick="closeModal('codeModal')"
+            >
                 Cancel
             </button>
-            <button class="save-btn" onclick="checkCode()">
+            <button
+                class="save-button"
+                onclick="checkCode()"
+            >
                 Continue
             </button>
         </div>
     </div>
 </div>
-<!-- EDITOR MODAL -->
-<div class="modal" id="editorModal">
+<!-- ================= EDITOR ================= -->
+<div
+    class="modal"
+    id="editorModal"
+>
     <div class="modal-box">
         <div class="modal-header">
-            <h2>Edit Portfolio</h2>
-            <button class="close" onclick="closeModal('editorModal')">×</button>
+            <h2>
+                Edit Portfolio
+            </h2>
+            <button
+                class="close"
+                onclick="closeModal('editorModal')"
+            >
+                ×
+            </button>
         </div>
         <div class="tabs">
-            <button class="tab active" onclick="showTab('homeTab',this)">
+            <button
+                class="tab active"
+                onclick="showTab('homeTab',this)"
+            >
                 Home
             </button>
-            <button class="tab" onclick="showTab('photoTab',this)">
-                Photography
+            <button
+                class="tab"
+                onclick="showTab('photoTab',this)"
+            >
+                Photos
             </button>
-            <button class="tab" onclick="showTab('researchTab',this)">
+            <button
+                class="tab"
+                onclick="showTab('researchTab',this)"
+            >
                 Research
             </button>
-            <button class="tab" onclick="showTab('newsTab',this)">
+            <button
+                class="tab"
+                onclick="showTab('newsTab',this)"
+            >
                 Newspaper
             </button>
         </div>
-        <!-- HOME EDITOR -->
-        <div id="homeTab" class="editor-tab">
+        <!-- HOME -->
+        <div
+            id="homeTab"
+            class="editor-tab"
+        >
             <div class="form-group">
-                <label for="editName">Name</label>
-                <input id="editName" type="text">
+                <label>
+                    Name
+                </label>
+                <input
+                    id="editName"
+                    type="text"
+                >
             </div>
             <div class="form-group">
-                <label for="editBio">Bio</label>
-                <textarea id="editBio"></textarea>
+                <label>
+                    Bio
+                </label>
+                <textarea
+                    id="editBio"
+                ></textarea>
             </div>
             <div class="form-group">
-                <label for="profileInput">Profile Photo</label>
+                <label>
+                    Profile Photo
+                </label>
                 <input
                     id="profileInput"
                     type="file"
                     accept="image/*"
                 >
                 <div class="status">
-                    Your profile photo will automatically be compressed.
+                    Photos are automatically compressed
+                    before being stored.
                 </div>
             </div>
             <div class="form-actions">
-                <button class="save-btn" onclick="saveHome()">
+                <button
+                    class="save-button"
+                    onclick="saveHome()"
+                >
                     Save Changes
                 </button>
             </div>
         </div>
-        <!-- PHOTO EDITOR -->
-        <div id="photoTab" class="editor-tab" style="display:none;">
+        <!-- PHOTOS -->
+        <div
+            id="photoTab"
+            class="editor-tab"
+            style="display:none;"
+        >
             <div class="warning">
-                You can store up to <strong>25 photos</strong>.
-                Photos are automatically compressed before being stored on this device.
+                <strong>25-photo maximum.</strong>
+                Your photos are automatically compressed
+                to keep storage use low.
             </div>
             <div class="form-group">
-                <label for="photoInput">
+                <label>
                     Add Photos
                 </label>
                 <input
@@ -738,30 +911,40 @@ input[type="file"]{
                     accept="image/*"
                     multiple
                 >
-                <div id="photoStatus" class="status">
+                <div
+                    id="photoStatus"
+                    class="status"
+                >
                     0 / 25 photos
                 </div>
             </div>
             <div class="form-actions">
-                <button class="save-btn" onclick="addPhotos()">
+                <button
+                    class="save-button"
+                    onclick="addPhotos()"
+                >
                     Add Photos
                 </button>
             </div>
         </div>
-        <!-- RESEARCH EDITOR -->
-        <div id="researchTab" class="editor-tab" style="display:none;">
+        <!-- RESEARCH -->
+        <div
+            id="researchTab"
+            class="editor-tab"
+            style="display:none;"
+        >
             <div class="form-group">
-                <label for="researchTitle">
+                <label>
                     Document Title
                 </label>
                 <input
                     id="researchTitle"
                     type="text"
-                    placeholder="Research paper title"
+                    placeholder="Research title"
                 >
             </div>
             <div class="form-group">
-                <label for="researchDescription">
+                <label>
                     Description
                 </label>
                 <textarea
@@ -770,7 +953,7 @@ input[type="file"]{
                 ></textarea>
             </div>
             <div class="form-group">
-                <label for="researchFile">
+                <label>
                     Document
                 </label>
                 <input
@@ -780,15 +963,22 @@ input[type="file"]{
                 >
             </div>
             <div class="form-actions">
-                <button class="save-btn" onclick="addResearch()">
+                <button
+                    class="save-button"
+                    onclick="addResearch()"
+                >
                     Add Document
                 </button>
             </div>
         </div>
-        <!-- NEWSPAPER EDITOR -->
-        <div id="newsTab" class="editor-tab" style="display:none;">
+        <!-- NEWSPAPER -->
+        <div
+            id="newsTab"
+            class="editor-tab"
+            style="display:none;"
+        >
             <div class="form-group">
-                <label for="articleTitle">
+                <label>
                     Article Title
                 </label>
                 <input
@@ -798,7 +988,7 @@ input[type="file"]{
                 >
             </div>
             <div class="form-group">
-                <label for="articleDate">
+                <label>
                     Date
                 </label>
                 <input
@@ -808,7 +998,7 @@ input[type="file"]{
                 >
             </div>
             <div class="form-group">
-                <label for="articleURL">
+                <label>
                     Article Link
                 </label>
                 <input
@@ -818,7 +1008,10 @@ input[type="file"]{
                 >
             </div>
             <div class="form-actions">
-                <button class="save-btn" onclick="addArticle()">
+                <button
+                    class="save-button"
+                    onclick="addArticle()"
+                >
                     Publish Article
                 </button>
             </div>
@@ -826,355 +1019,224 @@ input[type="file"]{
     </div>
 </div>
 <script>
-/* ============================================================
-   SETTINGS
-============================================================ */
-const EDIT_CODE = "4547";
-const MAX_PHOTOS = 25;
+/* =========================================================
+   DATABASE
+========================================================= */
 const DB_NAME = "portfolioDatabase";
 const DB_VERSION = 1;
+const EDIT_CODE = "4547";
+const MAX_PHOTOS = 25;
 let db;
 let data = {
-    name: "Your Name",
-    bio: "Welcome to my portfolio. This is where I share my photography, research, writing, and projects.",
-    profilePhoto: null,
-    photos: [],
-    documents: [],
-    articles: [],
-    newspaperHasPublishedArticle: false
+    name:"Your Name",
+    bio:
+        "Welcome to my portfolio. " +
+        "This is where I share my photography, " +
+        "research, writing, and projects.",
+    profilePhoto:null,
+    photos:[],
+    documents:[],
+    articles:[],
+    newspaperHasPublishedArticle:false
 };
-let activeObjectURLs = [];
-/* ============================================================
-   INDEXED DB
-============================================================ */
+let objectURLs = [];
+/* =========================================================
+   OPEN DATABASE
+========================================================= */
 function openDatabase(){
     return new Promise((resolve,reject)=>{
-        const request = indexedDB.open(DB_NAME,DB_VERSION);
-        request.onupgradeneeded = function(event){
-            const database = event.target.result;
+        const request =
+            indexedDB.open(
+                DB_NAME,
+                DB_VERSION
+            );
+        request.onupgradeneeded = event => {
+            const database =
+                event.target.result;
             if(!database.objectStoreNames.contains("settings")){
-                database.createObjectStore("settings",{keyPath:"key"});
+                database.createObjectStore(
+                    "settings",
+                    {keyPath:"key"}
+                );
             }
             if(!database.objectStoreNames.contains("photos")){
-                database.createObjectStore("photos",{keyPath:"id",autoIncrement:true});
+                database.createObjectStore(
+                    "photos",
+                    {
+                        keyPath:"id",
+                        autoIncrement:true
+                    }
+                );
             }
             if(!database.objectStoreNames.contains("documents")){
-                database.createObjectStore("documents",{keyPath:"id",autoIncrement:true});
+                database.createObjectStore(
+                    "documents",
+                    {
+                        keyPath:"id",
+                        autoIncrement:true
+                    }
+                );
             }
             if(!database.objectStoreNames.contains("articles")){
-                database.createObjectStore("articles",{keyPath:"id",autoIncrement:true});
+                database.createObjectStore(
+                    "articles",
+                    {
+                        keyPath:"id",
+                        autoIncrement:true
+                    }
+                );
             }
         };
-        request.onsuccess = function(event){
+        request.onsuccess = event => {
             db = event.target.result;
             resolve(db);
         };
-        request.onerror = function(){
+        request.onerror = () => {
             reject(request.error);
         };
     });
 }
-function getStore(storeName,mode="readonly"){
-    return db.transaction(storeName,mode).objectStore(storeName);
-}
+/* =========================================================
+   DATABASE HELPERS
+========================================================= */
 function getAll(storeName){
     return new Promise((resolve,reject)=>{
-        const request = getStore(storeName).getAll();
-        request.onsuccess = ()=>resolve(request.result);
-        request.onerror = ()=>reject(request.error);
+        const transaction =
+            db.transaction(
+                storeName,
+                "readonly"
+            );
+        const store =
+            transaction.objectStore(
+                storeName
+            );
+        const request =
+            store.getAll();
+        request.onsuccess = () => {
+            resolve(request.result);
+        };
+        request.onerror = () => {
+            reject(request.error);
+        };
     });
 }
 function put(storeName,value){
     return new Promise((resolve,reject)=>{
-        const request = getStore(storeName,"readwrite").put(value);
-        request.onsuccess = ()=>resolve(request.result);
-        request.onerror = ()=>reject(request.error);
+        const transaction =
+            db.transaction(
+                storeName,
+                "readwrite"
+            );
+        const request =
+            transaction
+                .objectStore(storeName)
+                .put(value);
+        request.onsuccess = () => {
+            resolve(request.result);
+        };
+        request.onerror = () => {
+            reject(request.error);
+        };
     });
 }
 function add(storeName,value){
     return new Promise((resolve,reject)=>{
-        const request = getStore(storeName,"readwrite").add(value);
-        request.onsuccess = ()=>resolve(request.result);
-        request.onerror = ()=>reject(request.error);
+        const transaction =
+            db.transaction(
+                storeName,
+                "readwrite"
+            );
+        const request =
+            transaction
+                .objectStore(storeName)
+                .add(value);
+        request.onsuccess = () => {
+            resolve(request.result);
+        };
+        request.onerror = () => {
+            reject(request.error);
+        };
     });
 }
-function removeItem(storeName,id){
-    return new Promise((resolve,reject)=>{
-        const request = getStore(storeName,"readwrite").delete(id);
-        request.onsuccess = ()=>resolve();
-        request.onerror = ()=>reject(request.error);
-    });
-}
-/* ============================================================
-   LOAD DATA
-============================================================ */
+/* =========================================================
+   LOAD
+========================================================= */
 async function loadData(){
     await openDatabase();
-    const settings = await getAll("settings");
-    const savedPhotos = await getAll("photos");
-    const savedDocuments = await getAll("documents");
-    const savedArticles = await getAll("articles");
-    for(const setting of settings){
-        if(setting.key === "name"){
+    const settings =
+        await getAll("settings");
+    const photos =
+        await getAll("photos");
+    const documents =
+        await getAll("documents");
+    const articles =
+        await getAll("articles");
+    settings.forEach(setting=>{
+        if(setting.key === "name")
             data.name = setting.value;
-        }
-        if(setting.key === "bio"){
+        if(setting.key === "bio")
             data.bio = setting.value;
-        }
-        if(setting.key === "profilePhoto"){
+        if(setting.key === "profilePhoto")
             data.profilePhoto = setting.value;
-        }
-        if(setting.key === "newspaperHasPublishedArticle"){
-            data.newspaperHasPublishedArticle = setting.value;
-        }
-    }
-    data.photos = savedPhotos;
-    data.documents = savedDocuments;
-    data.articles = savedArticles;
-    /*
-        Automatically migrate the old localStorage version
-        if it exists.
-    */
-    await migrateOldStorage();
+        if(setting.key === "newspaperHasPublishedArticle")
+            data.newspaperHasPublishedArticle =
+                setting.value;
+    });
+    data.photos = photos;
+    data.documents = documents;
+    data.articles = articles;
     renderEverything();
 }
-/* ============================================================
-   OLD STORAGE MIGRATION
-============================================================ */
-async function migrateOldStorage(){
-    const old = localStorage.getItem("myMagazinePortfolio_v2");
-    if(!old){
-        return;
-    }
-    const alreadyMigrated = localStorage.getItem(
-        "portfolioIndexedDBMigrated"
-    );
-    if(alreadyMigrated){
-        return;
-    }
-    try{
-        const oldData = JSON.parse(old);
-        if(oldData.name){
-            data.name = oldData.name;
-            await put("settings",{
-                key:"name",
-                value:data.name
-            });
-        }
-        if(oldData.bio){
-            data.bio = oldData.bio;
-            await put("settings",{
-                key:"bio",
-                value:data.bio
-            });
-        }
-        if(oldData.newspaperHasPublishedArticle){
-            data.newspaperHasPublishedArticle = true;
-            await put("settings",{
-                key:"newspaperHasPublishedArticle",
-                value:true
-            });
-        }
-        if(Array.isArray(oldData.photos)){
-            for(const oldPhoto of oldData.photos){
-                if(data.photos.length >= MAX_PHOTOS){
-                    break;
-                }
-                if(oldPhoto.data){
-                    try{
-                        const blob = await compressDataURL(
-                            oldPhoto.data
-                        );
-                        const id = await add("photos",{
-                            image:blob,
-                            name:oldPhoto.name || "Photo"
-                        });
-                        data.photos.push({
-                            id,
-                            image:blob,
-                            name:oldPhoto.name || "Photo"
-                        });
-                    }catch(error){
-                        console.log("Could not migrate photo.",error);
-                    }
-                }
-            }
-        }
-        if(Array.isArray(oldData.documents)){
-            for(const doc of oldData.documents){
-                if(doc.data){
-                    try{
-                        const blob = dataURLToBlob(doc.data);
-                        const id = await add("documents",{
-                            title:doc.title || "Research Document",
-                            description:doc.description || "",
-                            file:blob,
-                            fileName:doc.fileName || "document"
-                        });
-                        data.documents.push({
-                            id,
-                            title:doc.title || "Research Document",
-                            description:doc.description || "",
-                            file:blob,
-                            fileName:doc.fileName || "document"
-                        });
-                    }catch(error){
-                        console.log("Could not migrate document.",error);
-                    }
-                }
-            }
-        }
-        if(Array.isArray(oldData.articles)){
-            for(const article of oldData.articles){
-                const id = await add("articles",{
-                    title:article.title || "Article",
-                    date:article.date || "",
-                    url:article.url || ""
-                });
-                data.articles.push({
-                    id,
-                    title:article.title || "Article",
-                    date:article.date || "",
-                    url:article.url || ""
-                });
-            }
-        }
-        if(oldData.profilePhoto){
-            try{
-                const blob = await compressDataURL(
-                    oldData.profilePhoto
-                );
-                data.profilePhoto = blob;
-                await put("settings",{
-                    key:"profilePhoto",
-                    value:blob
-                });
-            }catch(error){
-                console.log("Could not migrate profile photo.",error);
-            }
-        }
-        localStorage.setItem(
-            "portfolioIndexedDBMigrated",
-            "true"
-        );
-    }catch(error){
-        console.log("Migration failed:",error);
-    }
-}
-/* ============================================================
-   IMAGE COMPRESSION
-============================================================ */
-function dataURLToBlob(dataURL){
-    const parts = dataURL.split(",");
-    const mime = parts[0]
-        .match(/:(.*?);/)[1];
-    const binary = atob(parts[1]);
-    const length = binary.length;
-    const bytes = new Uint8Array(length);
-    for(let i=0;i<length;i++){
-        bytes[i] = binary.charCodeAt(i);
-    }
-    return new Blob([bytes],{type:mime});
-}
-async function compressDataURL(dataURL){
-    const blob = dataURLToBlob(dataURL);
-    return compressBlob(blob);
-}
-async function compressBlob(blob){
-    return new Promise((resolve,reject)=>{
-        const url = URL.createObjectURL(blob);
-        const img = new Image();
-        img.onload = function(){
-            const maxDimension = 1200;
-            let width = img.naturalWidth;
-            let height = img.naturalHeight;
-            if(width > maxDimension || height > maxDimension){
-                if(width > height){
-                    height =
-                        Math.round(
-                            height * maxDimension / width
-                        );
-                    width = maxDimension;
-                }else{
-                    width =
-                        Math.round(
-                            width * maxDimension / height
-                        );
-                    height = maxDimension;
-                }
-            }
-            const canvas = document.createElement("canvas");
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext("2d");
-            ctx.drawImage(
-                img,
-                0,
-                0,
-                width,
-                height
-            );
-            canvas.toBlob(
-                function(compressed){
-                    URL.revokeObjectURL(url);
-                    if(!compressed){
-                        reject(new Error("Compression failed."));
-                        return;
-                    }
-                    resolve(compressed);
-                },
-                "image/jpeg",
-                .55
-            );
-        };
-        img.onerror = function(){
-            URL.revokeObjectURL(url);
-            reject(new Error("Image could not be read."));
-        };
-        img.src = url;
-    });
-}
-/* ============================================================
-   RENDER EVERYTHING
-============================================================ */
+/* =========================================================
+   OBJECT URL CLEANUP
+========================================================= */
 function clearObjectURLs(){
-    activeObjectURLs.forEach(url=>{
+    objectURLs.forEach(url=>{
         URL.revokeObjectURL(url);
     });
-    activeObjectURLs = [];
+    objectURLs = [];
 }
+/* =========================================================
+   RENDER
+========================================================= */
 function renderEverything(){
     clearObjectURLs();
     document.getElementById("heroName").textContent =
         data.name;
+    document.getElementById("heroBio").textContent =
+        data.bio;
     document.getElementById("navLogo").textContent =
         data.name || "Portfolio";
     document.getElementById("footerName").textContent =
         data.name || "Portfolio";
-    document.getElementById("heroBio").textContent =
-        data.bio;
     renderProfile();
     renderPhotos();
     renderResearch();
     renderNews();
     updatePhotoStatus();
 }
-/* ============================================================
+/* =========================================================
    PROFILE
-============================================================ */
+========================================================= */
 function renderProfile(){
     const container =
-        document.getElementById("profileContainer");
+        document.getElementById(
+            "profileContainer"
+        );
     container.innerHTML = "";
     if(data.profilePhoto){
         const img =
             document.createElement("img");
         const url =
-            URL.createObjectURL(data.profilePhoto);
-        activeObjectURLs.push(url);
+            URL.createObjectURL(
+                data.profilePhoto
+            );
+        objectURLs.push(url);
         img.src = url;
-        img.className = "profile-photo";
-        img.alt = data.name + " profile photo";
+        img.className =
+            "profile-photo";
+        img.alt =
+            "Profile photo";
         container.appendChild(img);
     }else{
         const placeholder =
@@ -1182,21 +1244,28 @@ function renderProfile(){
         placeholder.className =
             "profile-placeholder";
         placeholder.textContent =
-            "Add a profile photo from the Edit button.";
-        container.appendChild(placeholder);
+            "Add your profile photo using EDIT.";
+        container.appendChild(
+            placeholder
+        );
     }
 }
-/* ============================================================
-   PHOTOS
-============================================================ */
+/* =========================================================
+   PHOTOGRAPHY
+========================================================= */
 function renderPhotos(){
     const gallery =
-        document.getElementById("photoGallery");
+        document.getElementById(
+            "photoGallery"
+        );
     gallery.innerHTML = "";
     if(data.photos.length === 0){
         gallery.innerHTML = `
-            <div class="empty" style="grid-column:1/-1;">
-                No photography has been added yet.
+            <div
+                class="empty"
+                style="grid-column:1/-1;"
+            >
+                No photography added yet.
             </div>
         `;
         return;
@@ -1204,35 +1273,36 @@ function renderPhotos(){
     data.photos.forEach(photo=>{
         const card =
             document.createElement("div");
-        card.className = "photo-card";
+        card.className =
+            "photo-card";
         const img =
             document.createElement("img");
         const url =
-            URL.createObjectURL(photo.image);
-        activeObjectURLs.push(url);
+            URL.createObjectURL(
+                photo.image
+            );
+        objectURLs.push(url);
         img.src = url;
-        img.alt = "Photography";
         img.loading = "lazy";
+        img.alt =
+            "Photography";
         card.appendChild(img);
-        /*
-            No filename.
-            No delete button.
-            Just the photograph.
-        */
         gallery.appendChild(card);
     });
 }
-/* ============================================================
+/* =========================================================
    RESEARCH
-============================================================ */
+========================================================= */
 function renderResearch(){
     const list =
-        document.getElementById("researchList");
+        document.getElementById(
+            "researchList"
+        );
     list.innerHTML = "";
     if(data.documents.length === 0){
         list.innerHTML = `
             <div class="empty">
-                No research documents have been added yet.
+                No research documents added yet.
             </div>
         `;
         return;
@@ -1253,14 +1323,17 @@ function renderResearch(){
         const description =
             document.createElement("p");
         description.textContent =
-            doc.description || "Research document";
+            doc.description ||
+            "Research document";
         info.appendChild(title);
         info.appendChild(description);
         const link =
             document.createElement("a");
         const url =
-            URL.createObjectURL(doc.file);
-        activeObjectURLs.push(url);
+            URL.createObjectURL(
+                doc.file
+            );
+        objectURLs.push(url);
         link.href = url;
         link.target = "_blank";
         link.className =
@@ -1272,16 +1345,21 @@ function renderResearch(){
         list.appendChild(item);
     });
 }
-/* ============================================================
+/* =========================================================
    NEWSPAPER
-============================================================ */
+========================================================= */
 function renderNews(){
     const list =
-        document.getElementById("newsList");
+        document.getElementById(
+            "newsList"
+        );
     list.innerHTML = "";
     if(data.articles.length === 0){
         list.innerHTML = `
-            <div class="empty" style="grid-column:1/-1;">
+            <div
+                class="empty"
+                style="grid-column:1/-1;"
+            >
                 ${
                     data.newspaperHasPublishedArticle
                     ? "No articles are currently published."
@@ -1324,51 +1402,63 @@ function renderNews(){
         list.appendChild(card);
     });
 }
-/* ============================================================
+/* =========================================================
    EDIT CODE
-============================================================ */
+========================================================= */
 function openCodeModal(){
     document
         .getElementById("codeModal")
         .classList.add("active");
+    const input =
+        document.getElementById(
+            "editCode"
+        );
+    input.value = "";
     document
-        .getElementById("editCode")
-        .focus();
+        .getElementById(
+            "codeError"
+        )
+        .textContent = "";
+    setTimeout(()=>{
+        input.focus();
+    },100);
 }
 function checkCode(){
     const entered =
         document
-        .getElementById("editCode")
+        .getElementById(
+            "editCode"
+        )
         .value
         .trim();
     if(entered === EDIT_CODE){
+        closeModal("codeModal");
         document
-            .getElementById("codeModal")
-            .classList.remove("active");
-        document
-            .getElementById("editorModal")
+            .getElementById(
+                "editorModal"
+            )
             .classList.add("active");
         populateEditor();
-        document
-            .getElementById("codeError")
-            .textContent = "";
     }else{
         document
-            .getElementById("codeError")
+            .getElementById(
+                "codeError"
+            )
             .textContent =
-            "Incorrect code.";
-        document
-            .getElementById("editCode")
-            .select();
+                "Incorrect code. Try again.";
     }
 }
-/* ============================================================
+/* =========================================================
    EDITOR
-============================================================ */
+========================================================= */
 function populateEditor(){
-    document.getElementById("editName").value =
+    document.getElementById(
+        "editName"
+    ).value =
         data.name;
-    document.getElementById("editBio").value =
+    document.getElementById(
+        "editBio"
+    ).value =
         data.bio;
     updatePhotoStatus();
 }
@@ -1376,57 +1466,81 @@ function showTab(tabId,button){
     document
         .querySelectorAll(".editor-tab")
         .forEach(tab=>{
-            tab.style.display = "none";
+            tab.style.display =
+                "none";
         });
-    document.getElementById(tabId).style.display =
+    document.getElementById(
+        tabId
+    ).style.display =
         "block";
     document
         .querySelectorAll(".tab")
         .forEach(tab=>{
-            tab.classList.remove("active");
+            tab.classList.remove(
+                "active"
+            );
         });
-    button.classList.add("active");
+    button.classList.add(
+        "active"
+    );
 }
-/* ============================================================
+/* =========================================================
    SAVE HOME
-============================================================ */
+========================================================= */
 async function saveHome(){
     const name =
         document
-        .getElementById("editName")
+        .getElementById(
+            "editName"
+        )
         .value
         .trim();
     const bio =
         document
-        .getElementById("editBio")
+        .getElementById(
+            "editBio"
+        )
         .value
         .trim();
     if(name){
         data.name = name;
-        await put("settings",{
-            key:"name",
-            value:name
-        });
+        await put(
+            "settings",
+            {
+                key:"name",
+                value:name
+            }
+        );
     }
     data.bio = bio;
-    await put("settings",{
-        key:"bio",
-        value:bio
-    });
+    await put(
+        "settings",
+        {
+            key:"bio",
+            value:bio
+        }
+    );
     const file =
         document
-        .getElementById("profileInput")
+        .getElementById(
+            "profileInput"
+        )
         .files[0];
     if(file){
         try{
             const compressed =
-                await compressBlob(file);
+                await compressImage(
+                    file
+                );
             data.profilePhoto =
                 compressed;
-            await put("settings",{
-                key:"profilePhoto",
-                value:compressed
-            });
+            await put(
+                "settings",
+                {
+                    key:"profilePhoto",
+                    value:compressed
+                }
+            );
         }catch(error){
             alert(
                 "The profile photo could not be processed."
@@ -1434,53 +1548,168 @@ async function saveHome(){
             return;
         }
     }
+    document.getElementById(
+        "profileInput"
+    ).value = "";
     renderEverything();
-    alert("Changes saved.");
-    document
-        .getElementById("profileInput")
-        .value = "";
+    alert(
+        "Your changes are now live."
+    );
 }
-/* ============================================================
-   PHOTOS
-============================================================ */
+/* =========================================================
+   COMPRESS IMAGE
+========================================================= */
+function compressImage(file){
+    return new Promise(
+        (resolve,reject)=>{
+            const url =
+                URL.createObjectURL(
+                    file
+                );
+            const img =
+                new Image();
+            img.onload = ()=>{
+                URL.revokeObjectURL(
+                    url
+                );
+                const max =
+                    1200;
+                let width =
+                    img.naturalWidth;
+                let height =
+                    img.naturalHeight;
+                if(
+                    width > max ||
+                    height > max
+                ){
+                    if(width > height){
+                        height =
+                            Math.round(
+                                height *
+                                max /
+                                width
+                            );
+                        width = max;
+                    }else{
+                        width =
+                            Math.round(
+                                width *
+                                max /
+                                height
+                            );
+                        height = max;
+                    }
+                }
+                const canvas =
+                    document.createElement(
+                        "canvas"
+                    );
+                canvas.width =
+                    width;
+                canvas.height =
+                    height;
+                const ctx =
+                    canvas.getContext(
+                        "2d"
+                    );
+                ctx.drawImage(
+                    img,
+                    0,
+                    0,
+                    width,
+                    height
+                );
+                canvas.toBlob(
+                    blob=>{
+                        if(blob){
+                            resolve(blob);
+                        }else{
+                            reject(
+                                new Error(
+                                    "Compression failed."
+                                )
+                            );
+                        }
+                    },
+                    "image/jpeg",
+                    .55
+                );
+            };
+            img.onerror = ()=>{
+                URL.revokeObjectURL(
+                    url
+                );
+                reject(
+                    new Error(
+                        "Image could not be read."
+                    )
+                );
+            };
+            img.src = url;
+        }
+    );
+}
+/* =========================================================
+   ADD PHOTOS
+========================================================= */
 async function addPhotos(){
     const input =
-        document.getElementById("photoInput");
+        document.getElementById(
+            "photoInput"
+        );
     const files =
-        Array.from(input.files);
+        Array.from(
+            input.files
+        );
     if(files.length === 0){
-        alert("Choose at least one photo.");
+        alert(
+            "Choose some photos first."
+        );
         return;
     }
-    if(data.photos.length + files.length > MAX_PHOTOS){
+    if(
+        data.photos.length +
+        files.length >
+        MAX_PHOTOS
+    ){
         alert(
-            `You can only have ${MAX_PHOTOS} photos. ` +
-            `You currently have ${data.photos.length}.`
+            "You can have a maximum of 25 photos."
         );
         return;
     }
     const status =
-        document.getElementById("photoStatus");
-    for(let i=0;i<files.length;i++){
+        document.getElementById(
+            "photoStatus"
+        );
+    for(
+        let i=0;
+        i<files.length;
+        i++
+    ){
         status.textContent =
-            `Compressing photo ${i+1} of ${files.length}...`;
+            `Compressing ${i+1} of ${files.length}...`;
         try{
             const compressed =
-                await compressBlob(files[i]);
+                await compressImage(
+                    files[i]
+                );
             const id =
-                await add("photos",{
-                    image:compressed,
-                    name:files[i].name
-                });
+                await add(
+                    "photos",
+                    {
+                        image:compressed,
+                        name:files[i].name
+                    }
+                );
             data.photos.push({
                 id:id,
                 image:compressed,
                 name:files[i].name
             });
         }catch(error){
-            console.log(error);
+            console.error(error);
             alert(
-                `Could not process ${files[i].name}.`
+                "One of the photos could not be processed."
             );
         }
     }
@@ -1488,47 +1717,63 @@ async function addPhotos(){
     renderEverything();
     status.textContent =
         `${data.photos.length} / ${MAX_PHOTOS} photos`;
-    alert("Photos added.");
+    alert(
+        "Photos added successfully."
+    );
 }
+/* =========================================================
+   PHOTO STATUS
+========================================================= */
 function updatePhotoStatus(){
     const status =
-        document.getElementById("photoStatus");
+        document.getElementById(
+            "photoStatus"
+        );
     if(status){
         status.textContent =
             `${data.photos.length} / ${MAX_PHOTOS} photos`;
     }
 }
-/* ============================================================
+/* =========================================================
    RESEARCH
-============================================================ */
+========================================================= */
 async function addResearch(){
     const title =
         document
-        .getElementById("researchTitle")
+        .getElementById(
+            "researchTitle"
+        )
         .value
         .trim();
     const description =
         document
-        .getElementById("researchDescription")
+        .getElementById(
+            "researchDescription"
+        )
         .value
         .trim();
     const file =
         document
-        .getElementById("researchFile")
+        .getElementById(
+            "researchFile"
+        )
         .files[0];
     if(!title || !file){
         alert(
-            "Please enter a title and choose a document."
+            "Enter a title and choose a document."
         );
         return;
     }
     const id =
-        await add("documents",{
-            title:title,
-            description:description,
-            file:file,
-            fileName:file.name
-        });
+        await add(
+            "documents",
+            {
+                title:title,
+                description:description,
+                file:file,
+                fileName:file.name
+            }
+        );
     data.documents.push({
         id:id,
         title:title,
@@ -1536,50 +1781,66 @@ async function addResearch(){
         file:file,
         fileName:file.name
     });
-    document.getElementById("researchTitle").value =
-        "";
-    document.getElementById("researchDescription").value =
-        "";
-    document.getElementById("researchFile").value =
-        "";
+    document.getElementById(
+        "researchTitle"
+    ).value = "";
+    document.getElementById(
+        "researchDescription"
+    ).value = "";
+    document.getElementById(
+        "researchFile"
+    ).value = "";
     renderEverything();
-    alert("Research document added.");
+    alert(
+        "Research document added."
+    );
 }
-/* ============================================================
+/* =========================================================
    NEWSPAPER
-============================================================ */
+========================================================= */
 async function addArticle(){
-    let title =
+    const title =
         document
-        .getElementById("articleTitle")
+        .getElementById(
+            "articleTitle"
+        )
         .value
         .trim();
     const date =
         document
-        .getElementById("articleDate")
+        .getElementById(
+            "articleDate"
+        )
         .value
         .trim();
     let url =
         document
-        .getElementById("articleURL")
+        .getElementById(
+            "articleURL"
+        )
         .value
         .trim();
     if(!title || !url){
         alert(
-            "Please enter an article title and link."
+            "Enter an article title and link."
         );
         return;
     }
-    if(!/^https?:\/\//i.test(url)){
+    if(
+        !/^https?:\/\//i.test(url)
+    ){
         url =
             "https://" + url;
     }
     const id =
-        await add("articles",{
-            title:title,
-            date:date,
-            url:url
-        });
+        await add(
+            "articles",
+            {
+                title:title,
+                date:date,
+                url:url
+            }
+        );
     data.articles.push({
         id:id,
         title:title,
@@ -1588,49 +1849,77 @@ async function addArticle(){
     });
     data.newspaperHasPublishedArticle =
         true;
-    await put("settings",{
-        key:"newspaperHasPublishedArticle",
-        value:true
-    });
-    document.getElementById("articleTitle").value =
-        "";
-    document.getElementById("articleDate").value =
-        "";
-    document.getElementById("articleURL").value =
-        "";
+    await put(
+        "settings",
+        {
+            key:
+                "newspaperHasPublishedArticle",
+            value:true
+        }
+    );
+    document.getElementById(
+        "articleTitle"
+    ).value = "";
+    document.getElementById(
+        "articleDate"
+    ).value = "";
+    document.getElementById(
+        "articleURL"
+    ).value = "";
     renderEverything();
-    alert("Article published.");
+    alert(
+        "Article published."
+    );
 }
-/* ============================================================
+/* =========================================================
    MODALS
-============================================================ */
+========================================================= */
 function closeModal(id){
     document
         .getElementById(id)
-        .classList.remove("active");
+        .classList.remove(
+            "active"
+        );
 }
-document.querySelectorAll(".modal").forEach(modal=>{
-    modal.addEventListener("click",function(event){
-        if(event.target === modal){
-            modal.classList.remove("active");
-        }
-    });
-});
 document
-    .getElementById("editCode")
-    .addEventListener("keydown",function(event){
-        if(event.key === "Enter"){
-            checkCode();
-        }
+    .querySelectorAll(".modal")
+    .forEach(modal=>{
+        modal.addEventListener(
+            "click",
+            event=>{
+                if(
+                    event.target ===
+                    modal
+                ){
+                    modal.classList.remove(
+                        "active"
+                    );
+                }
+            }
+        );
     });
-/* ============================================================
+document
+    .getElementById(
+        "editCode"
+    )
+    .addEventListener(
+        "keydown",
+        event=>{
+            if(
+                event.key ===
+                "Enter"
+            ){
+                checkCode();
+            }
+        }
+    );
+/* =========================================================
    START
-============================================================ */
+========================================================= */
 loadData().catch(error=>{
     console.error(error);
     alert(
-        "The portfolio could not load its saved data. " +
-        "Try refreshing the page."
+        "There was a problem loading your portfolio."
     );
 });
 </script>
